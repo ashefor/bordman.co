@@ -1,5 +1,124 @@
+h1,h2,h3,h4,h5,h6{
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+
 a{
     cursor: pointer;
+}
+// .jumbo{
+//     position: relative;
+//     background-image: url(../../../assets/img/friendsbet.jpg);
+//     background-size: cover;
+//     background-position: top center;
+//     background-repeat: no-repeat;
+//     height: 570px;
+//     opacity: 0.7;
+
+
+//     .caption{
+//         color: #fff;
+//         -moz-box-sizing: border-box;
+//         -webkit-box-sizing: border-box;
+//         -o-box-sizing: border-box;
+//         box-sizing: border-box;
+
+//         h2{
+//             color: #fff;
+//             text-transform: uppercase;
+//             text-shadow: 2px 2px #606941;
+//             margin-bottom: 16px
+//         }
+
+//         p{
+//             padding-bottom: 22px;
+//             text-shadow: 2px 2px #606941;
+//             margin-bottom: 21px
+//         }
+//         a{
+//             color: #fff;
+//             background: #52bcec;
+//             text-decoration: none;
+//             text-transform: uppercase;
+//             padding: 5px 67px 7px;
+//             display: inline-block;
+//             border-radius: 17px;
+//             text-shadow: 0 -1px #4093b8
+//         }
+//     }
+// }
+.slanted{
+    height: 500px;
+    background: #52bcec;
+    display: flex;
+
+    .caption{
+        color: #fff;
+        text-align: center;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        box-sizing: border-box;
+
+        h2{
+            color: #fff;
+            text-transform: uppercase;
+            text-shadow: 2px 2px #606941;
+            margin-bottom: 16px
+        }
+
+        p{
+            padding-bottom: 22px;
+            text-shadow: 2px 2px #606941;
+            margin-bottom: 21px
+        }
+        a{
+            color: #52bcec;
+            background: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: 5px 67px 7px;
+            display: inline-block;
+            border-radius: 17px;
+            text-shadow: 0 -1px #4093b8
+        }
+    }
+    .content{
+        width: 55%;
+        height: 100%;
+        background: #52bcec;
+        box-sizing: border-box;
+        background: url(../../../assets/img/friendsbet.jpg);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        box-shadow: 0 0 8px 8px #52bcec inset;
+    }
+    .imageBox{
+        position: relative;
+        width: 45%;
+        height: 100%;
+        background: #52bcec;
+        box-sizing: border-box;
+        z-index: 0;
+
+        &::before{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            content: "";
+            background: inherit;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transform-origin: top left;
+            transform: skewX(-20deg);
+        }
+    }
 }
 .wrapper{
     max-width: 1000px;
@@ -27,6 +146,39 @@ a{
             border: 1px solid #0D9737;
             -webkit-box-shadow: 0px 0px 0px 1px #0D9737 inset;
             box-shadow: 0px 0px 0px 1px #0D9737 inset;
+        }
+    }
+}
+@media (max-width: 767px){
+    .caption{
+        position: unset;
+        width: 320px;
+        margin-right: 0;
+        margin: auto;
+        padding-top: 50px;
+
+        h2{
+            font-size: 20px;
+            line-height: 30px;
+        }
+    }
+}
+
+@media(min-width: 768px){
+    .caption{
+        position: absolute;
+        width: 470px;
+        left: 0;
+        margin-right: -470px;
+        top: 50%;
+        margin-top: -140px;
+
+        h2{
+            font-size: 30px;
+            line-height: 50px;
+        }
+        a{
+            font-size: 30px;
         }
     }
 }
