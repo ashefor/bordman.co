@@ -1,0 +1,77 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="av_bets card border-secondary">
+                    <div class="card-header bg-transparent">
+                        Top Bets
+                    </div>
+                    <div class="card-body">
+                        <nav class="nav justify-content-between">
+                            <a [routerLink]="['premier-league']" routerLinkActive="activenav" 
+                                class="nav-item nav-link" skipLocationChange>England <br>Premier League</a>
+                            <a [routerLink]="['ligue-1']" routerLinkActive="activenav" class="nav-item nav-link" skipLocationChange>France
+                                <br> Ligue 1</a>
+                            <a [routerLink]="['la-liga']" routerLinkActive="activenav" class="nav-item nav-link" skipLocationChange>Spain <br>
+                                La Liga</a>
+                            <a [routerLink]="['bundesliga']" routerLinkActive="activenav" class="nav-item nav-link" skipLocationChange>Germany
+                                <br> Bundesliga</a>
+                            <a [routerLink]="['serie-a']" routerLinkActive="activenav" class="nav-item nav-link" skipLocationChange>Italy <br>
+                                Serie A</a>
+                        </nav>
+
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card border-secondary">
+                    <div class="card-header">
+                        Betslip
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="nobetslip">
+                            No bets
+                        </div>
+                        <div *ngIf="!nobetslip">
+                            <h5 class="card-title d-flex justify-content-between">
+                                <span>
+                                    {{betslip.match}}
+                                </span>
+                                <a role="button" (click)="removeBet()">
+                                    <i class="fa fa-times-circle text-danger"></i>
+                                </a>
+                            </h5>
+
+                            <p class="card-text">{{betslip.outcome | titlecase}}</p>
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    Total stake
+                                </div>
+                                <div class="stake_input d-flex justify-content-between">
+                                    <span class="align-self-center">NGN</span>
+                                    <input type="number" placeholder="Amount">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    Potential win
+                                </span>
+                                <span>
+                                    Amount
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent" *ngIf="!nobetslip">
+                        <button class="btn btn-primary btn-lg btn-block">
+                            Place bet
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
