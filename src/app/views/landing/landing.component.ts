@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
 export class LandingComponent implements OnInit {
   betslip:object = {};
   nobetslip;
-  constructor(private router: Router, private sportservice: SportsService, private dataservice: DataService) { 
+  constructor(private router: Router, private dataservice: DataService) { 
     this.dataservice.getBetslip.subscribe(data => {
-      this.betslip = data;
+      this.betslip = JSON.parse(localStorage.getItem('betslip'));
       if(Object.keys(this.betslip).length === 0){
         this.nobetslip = true
       }else{
@@ -23,11 +23,11 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sportservice.getSports().subscribe(data => console.log(data));
-    this.router.navigateByUrl('landing/premier-league', {skipLocationChange: true})
+    this.router.navigateByUrl('premier-league', {skipLocationChange: true})
   }
   removeBet(){
     this.betslip = {}
-    this.dataservice.viewBetslip(this.betslip)
+    localStorage.setItem('betslip', JSON.stringify(this.betslip))
+    this.dataservice.viewBetslip(localStorage.setItem('betslip', JSON.stringify(this.betslip)))
   }
 }

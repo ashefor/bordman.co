@@ -10,12 +10,7 @@ import { DataService } from 'src/app/services/data.service';
 export class EngLeageComponent implements OnInit {
   allSchedules = [];
   leagueId = 4328;
-  betslip = []
-  constructor(private sportservice: SportsService, private dataservice: DataService) { 
-    // this.dataservice.getBetslip.subscribe(data => {
-    //   this.cart = data;
-    // })
-    // this.cart = localStorage.getItem('betslip')
+  constructor(private sportservice: SportsService, private dataservice: DataService) {
   }
 
   ngOnInit() {
@@ -31,7 +26,8 @@ export class EngLeageComponent implements OnInit {
       match: evnt,
       outcome: e.target.value
     }
-    this.dataservice.viewBetslip(matchevent)
     localStorage.setItem('betslip', JSON.stringify(matchevent))
+    this.dataservice.viewBetslip(localStorage.setItem('betslip', JSON.stringify(matchevent)))
+    // localStorage.setItem('betslip', JSON.stringify(matchevent))
   }
 }

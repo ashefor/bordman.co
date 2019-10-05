@@ -3,11 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
+  
   {
-    path: '', redirectTo: 'landing', pathMatch: 'full'
+    path: '', loadChildren: ()=> import('./views/landing/landing.module').then((m)=> m.LandingModule)
   },
   {
-    path: 'landing', loadChildren: './views/landing/landing.module#LandingModule'
+    path: 'sports', loadChildren: ()=> import('./views/sports/sports.module').then((m)=>m.SportsModule)
   }
 ];
 

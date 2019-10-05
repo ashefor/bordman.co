@@ -1,0 +1,80 @@
+.wrapper{
+    max-width: 1400px;
+    margin: auto;
+    padding: 10px;
+}
+
+@font-face{
+    font-family: lato;
+    src: url('../../../assets/fonts/Lato-Regular.ttf')
+}
+h1,h2,h3,h4,h5,h6{
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+p{
+    margin: 0;
+    padding: 0
+}
+
+.card{
+    font-family: lato
+}
+a{
+    cursor: pointer;
+    text-decoration: none;
+    color: unset;
+}
+
+.card{
+    .card-body{
+        .stake_input{
+            width: 40%;
+            input{
+                width: 100%
+            }
+        }
+    }
+}
+.main_content{
+    display: grid;
+    grid-template-columns: 300px auto 300px;
+    grid-gap: 10px;
+
+    hr{
+        margin-top: 0.25rem;
+        margin-bottom: 0.25rem;
+    }
+    .betCollection{
+        display: grid;
+        grid-template-columns: 2fr .5fr 2fr;
+        // grid-gap: 10px;
+    
+        .home{
+            text-align: right
+        }
+        .draw{
+            text-align: center
+        }
+    }
+
+    .leaguesitem{
+        padding: 10px 0;
+        border-bottom: .1px solid #cccccc;
+        // border-bottom-color: #967f40
+    }
+}
+@media (max-width: 767px){
+    .main_content{
+        display: grid;
+        grid-template-columns: 1fr
+    }
+}
+@media(max-width: 991px){
+    .main_content{
+        display: grid;
+        grid-template-columns: 1fr
+    }
+}
+

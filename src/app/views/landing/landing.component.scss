@@ -1,13 +1,191 @@
+.wrapper{
+    max-width: 1400px;
+    margin: auto;
+    padding: 10px;
+}
+a{
+    text-decoration: none;
+    color: unset;
+    cursor: pointer;
+}
+
+@font-face{
+    font-family: font1;
+    src: url('../../../assets/fonts/Graphik-Semibold.woff2')
+}
+@font-face{
+    font-family: font2;
+    src: url('../../../assets/fonts/AvenirNextLTPro-Regular.otf')
+}
+@font-face{
+    font-family: lato;
+    src: url('../../../assets/fonts/Lato-Regular.ttf')
+}
+
 h1,h2,h3,h4,h5,h6{
     font-weight: bold;
     margin: 0;
     padding: 0;
 }
-
-
-a{
-    cursor: pointer;
+p{
+    margin: 0;
+    padding: 0;
 }
+.logoarea{
+    width: 50px;
+    height: 50px;
+}
+.main_content{
+    display: grid;
+    grid-template-columns: 300px auto 300px;
+    grid-gap: 10px;
+}
+.leftside{
+    // position: fixed;
+    // left: 0;
+    top: 100px;
+    // width: 250px;
+    z-index: 999;
+}
+.main{
+    // margin-left: 250px
+}
+
+.leaguesitem{
+    padding: 10px 0;
+    border-bottom: .1px solid #cccccc;
+    // border-bottom-color: #967f40
+}
+.popular_bets{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+    .epl{
+        background: #05f0ff;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        height: 150px;
+
+        .league_title{
+            margin-top: auto;
+            margin-left: 15px;
+            margin-bottom: 15px;
+
+            span{
+                font-weight: bold
+            }
+        }
+    }
+    .ligue-1{
+        background: #43A8E8;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        height: 150px;
+
+        .league_title{
+            margin-top: auto;
+            margin-left: 15px;
+            margin-bottom: 15px;
+
+            span{
+                font-weight: bold
+            }
+        }
+    }
+    .laliga{
+         background: #ffe501;
+         border-radius: 10px;
+         display: flex;
+         flex-direction: column;
+         height: 150px;
+ 
+         .league_title{
+             margin-top: auto;
+             margin-left: 15px;
+             margin-bottom: 15px;
+
+            span{
+                font-weight: bold
+            }
+         }
+    }
+    .bundesliga{
+        background: #D3010C;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        height: 150px;
+
+        .league_title{
+            margin-top: auto;
+            margin-left: 15px;
+            margin-bottom: 15px;
+
+            span{
+                font-weight: bold
+            }
+        }
+    }
+    .seriea{
+        background: #967f40;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        height: 150px;
+
+        .league_title{
+            margin-top: auto;
+            margin-left: 15px;
+            margin-bottom: 15px;
+
+            span{
+                font-weight: bold
+            }
+        }
+    }
+    .p_l{
+        margin-left: 10px;
+        background: url(../../../assets/img/Premier-League-logo-2016.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain
+    }
+    .f_l{
+        margin-left: 10px;
+        background: url(../../../assets/img/Ligue-1-logo-france-880x660.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain
+    }
+    .l_l{
+        margin-left: 10px;
+        background: url(../../../assets/img/Liga-BBVA-logo-1024x768.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain
+    }
+    .g_l{
+        margin-left: 10px;
+        background: url(../../../assets/img/Bundesliga-logo-2010-1024x762.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain
+    }
+    .i_l{
+        background: url(../../../assets/img/Serie-a-logo.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain
+    }
+}
+
+.card{
+    font-family: lato
+}
+
 // .jumbo{
 //     position: relative;
 //     background-image: url(../../../assets/img/friendsbet.jpg);
@@ -49,42 +227,11 @@ a{
 //         }
 //     }
 // }
-.slanted{
-    height: 500px;
+.jumbotron{
+    height: 350px;
     background: #52bcec;
-    display: flex;
 
-    .caption{
-        color: #fff;
-        text-align: center;
-        -moz-box-sizing: border-box;
-        -webkit-box-sizing: border-box;
-        -o-box-sizing: border-box;
-        box-sizing: border-box;
-
-        h2{
-            color: #fff;
-            text-transform: uppercase;
-            text-shadow: 2px 2px #606941;
-            margin-bottom: 16px
-        }
-
-        p{
-            padding-bottom: 22px;
-            text-shadow: 2px 2px #606941;
-            margin-bottom: 21px
-        }
-        a{
-            color: #52bcec;
-            background: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            padding: 5px 67px 7px;
-            display: inline-block;
-            border-radius: 17px;
-            text-shadow: 0 -1px #4093b8
-        }
-    }
+   
     .content{
         width: 55%;
         height: 100%;
@@ -94,36 +241,86 @@ a{
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
-        box-shadow: 0 0 8px 8px #52bcec inset;
+        // box-shadow: 0 0 8px 8px #52bcec inset;
+
+        .caption{
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+            padding-top: 20px;
+            color: #fff;
+            text-align: center;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -o-box-sizing: border-box;
+            box-sizing: border-box;
+    
+            h2{
+                color: #fff;
+                font-family: font2;
+                text-transform: uppercase;
+                text-shadow: 2px 2px #606941;
+                margin-bottom: 16px
+            }
+    
+            p{
+                // padding-bottom: 22px;
+                text-shadow: 2px 2px #606941;
+                // margin-bottom: 21px
+            }
+            a{
+                color: #52bcec;
+                background: #fff;
+                text-decoration: none;
+                text-transform: uppercase;
+                padding: 5px 67px 7px;
+                display: inline-block;
+                border-radius: 17px;
+                text-shadow: 0 -1px #4093b8
+            }
+        }
     }
     .imageBox{
-        position: relative;
-        width: 45%;
         height: 100%;
         background: #52bcec;
         box-sizing: border-box;
         z-index: 0;
 
-        &::before{
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            content: "";
-            background: inherit;
-            z-index: -1;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            transform-origin: top left;
-            transform: skewX(-20deg);
+        .caption{
+            color: #fff;
+            text-align: center;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -o-box-sizing: border-box;
+            box-sizing: border-box;
+    
+            h2{
+                color: #fff;
+                font-family: font2;
+                text-transform: uppercase;
+                text-shadow: 2px 2px #606941;
+                margin-bottom: 16px
+            }
+    
+            p{
+                // padding-bottom: 22px;
+                text-shadow: 2px 2px #606941;
+                // margin-bottom: 21px
+            }
+            a{
+                color: #52bcec;
+                background: #fff;
+                text-decoration: none;
+                text-transform: uppercase;
+                padding: 5px 67px 7px;
+                display: inline-block;
+                border-radius: 17px;
+                text-shadow: 0 -1px #4093b8
+            }
         }
     }
 }
-.wrapper{
-    max-width: 1000px;
-    margin: auto;
-}
+
 .card{
     .card-body{
         .stake_input{
@@ -136,49 +333,137 @@ a{
 }
 .av_bets{
     nav{
-        a{
-            width: 20%;
-            white-space: nowrap;
-            background: #f7f7f7;
-            color: black;
-        }
+        
         .activenav{
             border: 1px solid #0D9737;
             -webkit-box-shadow: 0px 0px 0px 1px #0D9737 inset;
             box-shadow: 0px 0px 0px 1px #0D9737 inset;
         }
     }
+    .fixtures{
+        height: 500px;
+        overflow: hidden;
+    }
 }
 @media (max-width: 767px){
-    .caption{
-        position: unset;
-        width: 320px;
-        margin-right: 0;
-        margin: auto;
-        padding-top: 50px;
+    .main_content{
+        display: grid;
+        grid-template-columns: 1fr
+    }
 
-        h2{
-            font-size: 20px;
-            line-height: 30px;
+    .jumbotron{
+        display: block;
+        border-radius: 0;
+        .content{
+            display: none
+        }
+        .imageBox{
+            width: 100%;
+            height: 100%;
+            background: #52bcec;
+            box-sizing: border-box;
+            z-index: 0;
+
+            .caption{
+                position: unset;
+                width: 100%;
+                margin-right: 0;
+                margin: auto;
+        
+                h2{
+                    font-size: 20px;
+                    line-height: 30px;
+                }
+            }
+            
         }
     }
 }
-
-@media(min-width: 768px){
-    .caption{
-        position: absolute;
-        width: 470px;
-        left: 0;
-        margin-right: -470px;
-        top: 50%;
-        margin-top: -140px;
-
-        h2{
-            font-size: 30px;
-            line-height: 50px;
+@media(max-width: 991px){
+    .main_content{
+        display: grid;
+        grid-template-columns: 1fr
+    }
+}
+@media(min-width: 768px) and (max-width: 1199px){
+    .jumbotron{
+        // display: flex;
+        padding: 0;
+        .content{
+            display: block;
+            width: 100%;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
         }
-        a{
-            font-size: 30px;
+        .imageBox{
+            display: none;
         }
     }
+}
+@media (min-width: 1200px){
+
+    .jumbotron{
+        display: flex;
+        padding: 0;
+        .content{
+            display: block;
+            width: 55%;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            .caption{
+                display: none;
+            }
+        }
+        .imageBox{
+            display: block;
+            position: relative;
+            width: 45%;
+            height: 100%;
+            background: #52bcec;
+            box-sizing: border-box;
+            z-index: 0;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+    
+            &::before{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                content: "";
+                background: inherit;
+                z-index: -1;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                transform-origin: top left;
+                transform: skewX(-20deg);
+                border-top-right-radius: 5px;
+            }
+
+            .caption{
+                position: absolute;
+                width: 100%;
+                max-width: 470px;
+                left: 0;
+                // margin-right: -470px;
+                // top: 40%;
+                margin-top: 55px;
+        
+                h2{
+                    font-size: 25px;
+                    // line-height: 50px;
+                }
+                p{
+                    font-size: 16px
+                }
+                a{
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+
 }

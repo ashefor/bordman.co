@@ -6,3 +6,15 @@ hr{
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
 }
+.betCollection{
+    display: grid;
+    grid-template-columns: 2fr .5fr 2fr;
+    // grid-gap: 10px;
+
+    .home{
+        text-align: right
+    }
+    .draw{
+        text-align: center
+    }
+}

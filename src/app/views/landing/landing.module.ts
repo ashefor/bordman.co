@@ -8,6 +8,7 @@ import { SpainLeageComponent } from './spain-leage/spain-leage.component';
 import { ItalyLeageComponent } from './italy-leage/italy-leage.component';
 import { EngLeageComponent } from './eng-leage/eng-leage.component';
 import { UtcDatePipe } from 'src/app/pipes/utc-date.pipe';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -17,11 +18,11 @@ import { UtcDatePipe } from 'src/app/pipes/utc-date.pipe';
     GerLeageComponent, 
     FrenchLeageComponent, 
     SpainLeageComponent, 
-    ItalyLeageComponent,
-    UtcDatePipe,
+    ItalyLeageComponent
   ],
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild([
       {
         path: '', component: LandingComponent,

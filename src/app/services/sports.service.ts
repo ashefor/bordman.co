@@ -10,9 +10,12 @@ export class SportsService {
   constructor(public http: HttpClient) { }
 
   getSports(){
-    return this.http.get(`${environment.sportsDB}all_leagues.php`)
+    return this.http.get(`${environment.sportsDB}search_all_leagues.php?c=spain`)
   }
   getSchedules(leagueId){
     return this.http.get(`${environment.sportsDB}eventsnextleague.php?id=${leagueId}`)
+  }
+  getRet(){
+    return this.http.get('https://www.thesportsdb.com/api/v1/json/1/lookupevent.php?id=441613')
   }
 }

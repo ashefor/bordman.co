@@ -1,25 +1,51 @@
 <div *ngFor="let event of allSchedules">
-        <p>
-            {{event.strDate}}
-        </p>
-        <div class="row">
-            <div class="col-lg-2 align-self-center">
-                <small>
-                    {{event.strTime | utcDate}}
-                </small>
-            </div>
-            <div class="col-lg-5 align-self-center">
-                <span class="">
-                    {{event.strEvent}}
-                </span>
-            </div>
-            <div class="col-lg-5">
-                <div class="btn-group d-flex" role="group" aria-label="Basic example" (click)="clicked($event, event.strEvent)">
+    <p>
+        {{event.strDate}}
+    </p>
+    <div class="row">
+        <div class="col-lg-2 align-self-center">
+            <small>
+                {{event.strTime | utcDate}}
+            </small>
+        </div>
+        <div class="col-lg-10">
+           <div class="betCollection">
+                <div class="home">
+                        <span class="">
+                            {{event.strHomeTeam}}
+                        </span>
+                        <button class="btn btn-secondary" (click)="clicked($event, event.strEvent)" [value]="event.strHomeTeam">
+                            Home
+                        </button>
+                    </div>
+                    <div class="draw">
+                            <button class="btn btn-secondary" (click)="clicked($event, event.strEvent)" value="draw">
+                                    draw
+                                </button>
+                    </div>
+                        <div class="">
+                                <button class="btn btn-secondary" (click)="clicked($event, event.strEvent)" [value]="event.strAwayTeam">
+                                        away
+                                    </button>
+                                <span class="">
+                                    {{event.strAwayTeam}}
+                                </span>
+                            </div>
+           </div>
+            <!-- <div class="">
+                <div class="btn-group d-flex" role="group" aria-label="Basic example"
+                    (click)="clicked($event, event.strEvent)">
                     <button type="button" class="btn btn-success" [value]="event.strHomeTeam">Home</button>
                     <button type="button" class="btn btn-success" value="draw">Draw</button>
                     <button type="button" class="btn btn-success" [value]="event.strAwayTeam">Away</button>
                 </div>
             </div>
+            <div class="">
+                <span class="">
+                    {{event.strAwayTeam}}
+                </span>
+            </div> -->
         </div>
-        <hr>
     </div>
+    <hr>
+</div>
