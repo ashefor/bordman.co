@@ -1,0 +1,38 @@
+<div id="logreg-forms">
+        <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Continue with</h1>
+            <div class="container">
+                <div class="row social-login">
+                    <a role="button" class="col-md-5 btn google-btn"><span><i class="fa fa-google"></i> &nbsp;
+                            Google</span></a>
+                    <a role="button" class="col-md-5 ml-auto btn facebook-btn mp"><span><i
+                                class="fa fa-facebook-official"></i> &nbsp; Facebook</span> </a>
+                </div>
+                <div class="row mt-3 social-login">
+                    <a role="button" class="col-md-5 btn github-btn"><span><i class="fa fa-github"></i> &nbsp; Github</span>
+                    </a>
+                    <a role="button" class="col-md-5 ml-auto btn linkedin-btn mp"><span><i class="fa fa-linkedin"></i>
+                            &nbsp; Linkedin</span></a>
+                </div>
+            </div>
+            <p class="text-center mt-3"> OR </p>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" formControlName="username">
+            <div class="password-area">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                    formControlName="password" [type]="hide? 'password': 'text'">
+                <a role="button" (click)="togglePwd()">
+                    <i class="{{hide ? 'fa fa-eye-slash' : 'fa fa-eye'}}"></i>
+                </a>
+            </div>
+            <button class="btn btn-success btn-block" type="submit"><i class="fa fa-sign-in"></i> Sign in <span
+                    *ngIf="loading"><i class="fa fa-spin fa-spinner"></i></span> </button>
+            <hr>
+            <!-- Don't have an account! -->
+            <div class="text-center">
+                <span>
+                    Don't have an account? <a [routerLink]="['/auth/register']">Create one now</a>
+                </span>
+            </div>
+        </form>
+    
+    </div>

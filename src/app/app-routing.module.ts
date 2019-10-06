@@ -9,6 +9,9 @@ const routes: Routes = [
   },
   {
     path: 'sports', loadChildren: ()=> import('./views/sports/sports.module').then((m)=>m.SportsModule)
+  },
+  {
+    path: 'auth', loadChildren: ()=> import('./views/users/users.module').then((m)=>m.UsersModule)
   }
 ];
 

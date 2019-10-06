@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UtcDatePipe } from 'src/app/pipes/utc-date.pipe';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -9,10 +12,18 @@ import { UtcDatePipe } from 'src/app/pipes/utc-date.pipe';
     UtcDatePipe
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatButtonModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatCardModule
   ],
   exports: [
-    UtcDatePipe
+    UtcDatePipe,
+    MatButtonModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatCardModule
   ]
 })
 export class SharedModule { }

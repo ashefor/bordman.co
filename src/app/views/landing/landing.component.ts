@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class LandingComponent implements OnInit {
   betslip:object = {};
   nobetslip;
+  multi: boolean = true;
   constructor(private router: Router, private dataservice: DataService) { 
     this.dataservice.getBetslip.subscribe(data => {
       this.betslip = JSON.parse(localStorage.getItem('betslip'));

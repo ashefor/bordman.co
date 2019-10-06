@@ -1,0 +1,39 @@
+<div id="logreg-forms">
+        <form action="/signup/" class="form-signup" [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Continue with</h1>
+            <div class="container">
+                <div class="row social-login">
+                    <a role="button" class="col-md-5 btn google-btn"><span><i class="fa fa-google"></i> &nbsp;
+                            Google</span></a>
+                    <a role="button" class="col-md-5 ml-auto btn facebook-btn mp"><span><i
+                                class="fa fa-facebook-official"></i> &nbsp; Facebook</span> </a>
+                </div>
+                <div class="row mt-3 social-login">
+                    <a role="button" class="col-md-5 btn github-btn"><span><i class="fa fa-github"></i> &nbsp; Github</span>
+                    </a>
+                    <a role="button" class="col-md-5 ml-auto btn linkedin-btn mp"><span><i class="fa fa-linkedin"></i>
+                            &nbsp; Linkedin</span></a>
+                </div>
+            </div>
+    
+            <p style="text-align:center">OR</p>
+            <input type="email" id="user-email" class="form-control mb-2" placeholder="Email address"
+                formControlName="email" required>
+            <input type="text" id="user-name" class="form-control mb-2" placeholder="choose a username"
+            formControlName="username" required>
+            <input type="password" id="user-pass" class="form-control mb-2" placeholder="Password"
+                formControlName="password" required>
+            <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-user-plus"></i> Sign Up <span
+                    *ngIf="loading"><i class="fa fa-spin fa-spinner"></i></span> </button>
+    
+            <hr>
+            <!-- Don't have an account! -->
+            <div class="text-center">
+                <span>
+                    Already have an account? <a [routerLink]="['/auth/login']">Login here</a>
+                </span>
+            </div>
+        </form>
+    
+    
+    </div>
