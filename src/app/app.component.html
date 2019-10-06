@@ -9,13 +9,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item" *ngIf="!LoggedIn">
-            <form [formGroup]="loginForm" class="form-inline" (ngSubmit)="login(loginForm.value)">
-                <input type="email" formControlName="email" class="form-control mr-sm-2" placeholder="Jane Doe">
-                <input type="password" formControlName="password" class="form-control mr-sm-2"  placeholder="password">
-                <!-- <button type="submit" class="btn btn-primary mb-2 mr-sm-2">Submit</button> -->
-                <button type="submit" mat-flat-button color="primary" class="mr-sm-2">Submit</button>
-                <a mat-stroked-button color="primary" role="button" [routerLink]="['/auth/register']" routerLinkActive="router-link-active" class="mr-sm-2">Register</a>
-              </form>
+          <form [formGroup]="loginForm" class="form-inline" (ngSubmit)="login(loginForm.value)">
+            <input type="email" formControlName="email" class="form-control mr-sm-2" placeholder="Jane Doe">
+            <input type="password" formControlName="password" class="form-control mr-sm-2" placeholder="password">
+            <!-- <button type="submit" class="btn btn-primary mb-2 mr-sm-2">Submit</button> -->
+            <button type="submit" mat-flat-button color="primary" class="mr-sm-2">Submit</button>
+            <a mat-stroked-button color="primary" role="button" (click)="openThisModal()" class="mr-sm-2">Register</a>
+          </form>
         </li>
         <li class="nav-item" *ngIf="LoggedIn">
           <a class="nav-link">Amount</a>
@@ -27,22 +27,74 @@
           <a class="nav-link">Bet History</a>
         </li>
         <li *ngIf="LoggedIn">
-            <div class="btn-group dropdown">
-              <a role="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                <span>My account</span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right">
-                <button class="dropdown-item" type="button">My bets</button>
-                <button class="dropdown-item" type="button">Dashboard</button>
-                <div class="dropdown-divider"></div>
-                <button class="dropdown-item" type="button" (click)="authservice.signOut()">Sign Out</button>
-              </div>
+          <div class="btn-group dropdown">
+            <a role="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              <span>My account</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <button class="dropdown-item" type="button">My bets</button>
+              <button class="dropdown-item" type="button">Dashboard</button>
+              <div class="dropdown-divider"></div>
+              <button class="dropdown-item" type="button" (click)="authservice.signOut()">Sign Out</button>
             </div>
-          </li>
+          </div>
+        </li>
       </ul>
     </div>
 
   </nav>
+  <div #openmodal id="popup1" class="overlay">
+    <div class="popup">
+      <a class="close" role="button" (click)="closeModal()">&times;</a>
+      <div id="logreg-forms">
+        <mat-tab-group mat-align-tabs="center" #tabGroup (selectedTabChange)="tabChanged($event)">
+          <mat-tab label="Register">
+            <form action="/signup/" class="form-signup" [formGroup]="registerForm"
+              (ngSubmit)="register(registerForm.value)">
+              <div class="container">
+                <div class="row social-login mb-3">
+                  <a role="button" class="w-100 btn twitter-btn"><span><i class="fa fa-twitter"></i> &nbsp;
+                      twitter</span></a>
+                </div>
+              </div>
+
+              <p style="text-align:center">OR</p>
+              <input type="email" id="user-email" class="form-control mb-2" placeholder="Email address"
+                formControlName="email" required>
+              <!-- <input type="text" id="user-name" class="form-control mb-2" placeholder="choose a username"
+                        formControlName="username" required> -->
+              <input type="password" id="user-pass" class="form-control mb-2" placeholder="Password"
+                formControlName="password" required>
+              <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-user-plus"></i> Sign Up <span
+                  *ngIf="loading"><i class="fa fa-spin fa-spinner"></i></span> </button>
+            </form>
+          </mat-tab>
+          <mat-tab label="Log In" isActive>
+            <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+              <div class="container">
+                  <div class="row social-login mb-3">
+                      <a role="button" class="w-100 btn twitter-btn"><span><i class="fa fa-twitter"></i> &nbsp;
+                          twitter</span></a>
+                    </div>
+              </div>
+              <p class="text-center mt-3"> OR </p>
+              <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
+                formControlName="email">
+              <div class="password-area">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                  formControlName="password" [type]="hide? 'password': 'text'">
+                <a role="button" (click)="togglePwd()">
+                  <i class="{{hide ? 'fa fa-eye-slash' : 'fa fa-eye'}}"></i>
+                </a>
+              </div>
+              <button class="btn btn-success btn-block" type="submit"><i class="fa fa-sign-in"></i> Sign in <span
+                  *ngIf="loading"><i class="fa fa-spin fa-spinner"></i></span> </button>
+            </form>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
   <router-outlet></router-outlet>
 </div>

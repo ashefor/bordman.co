@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 @NgModule({
@@ -16,14 +17,16 @@ import {MatCardModule} from '@angular/material/card';
     MatButtonModule,
     MatExpansionModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule
   ],
   exports: [
     UtcDatePipe,
     MatButtonModule,
     MatExpansionModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule
   ]
 })
 export class SharedModule { }
