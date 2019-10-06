@@ -13,6 +13,10 @@ export class LandingComponent implements OnInit {
   nobetslip;
   multi: boolean = true;
   constructor(private router: Router, private dataservice: DataService) { 
+   
+  }
+
+  ngOnInit() {
     this.dataservice.getBetslip.subscribe(data => {
       this.betslip = JSON.parse(localStorage.getItem('betslip'));
       if(Object.keys(this.betslip).length === 0){
@@ -21,9 +25,6 @@ export class LandingComponent implements OnInit {
         this.nobetslip = false
       }
     })
-  }
-
-  ngOnInit() {
     this.router.navigateByUrl('premier-league', {skipLocationChange: true})
   }
   removeBet(){

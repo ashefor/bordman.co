@@ -19,14 +19,6 @@ export class SportsComponent implements OnInit {
     private sportservice: SportsService,
     private dataservice: DataService,
     private route: ActivatedRoute) {
-    this.dataservice.getBetslip.subscribe(data => {
-      this.betslip = JSON.parse(localStorage.getItem('betslip'));
-      if (Object.keys(this.betslip).length === 0) {
-        this.nobetslip = true
-      } else {
-        this.nobetslip = false
-      }
-    })
   }
   ngOnInit() {
     this.sportservice.getRet().subscribe(data => console.log(data))
@@ -43,6 +35,14 @@ export class SportsComponent implements OnInit {
     this.route.queryParams.subscribe(data => {
       console.log(data['category'])
       this.getFixtures(data['category'])
+    })
+    this.dataservice.getBetslip.subscribe(data => {
+      this.betslip = JSON.parse(localStorage.getItem('betslip'));
+      if (Object.keys(this.betslip).length === 0) {
+        this.nobetslip = true
+      } else {
+        this.nobetslip = false
+      }
     })
   }
 
