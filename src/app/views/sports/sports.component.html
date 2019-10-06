@@ -327,20 +327,18 @@
                                         <span class="">
                                             {{event.strHomeTeam}}
                                         </span>
-                                        <button mat-flat-button color="primary"
-                                            (click)="clicked($event, event.strEvent)" [value]="event.strHomeTeam">
+                                        <button mat-flat-button #win color="primary" (click)="clicked(win, event.strEvent)"
+                                            [value]="event.strHomeTeam">
                                             Home
                                         </button>
                                     </div>
                                     <div class="draw">
-                                        <button mat-flat-button color="primary"
-                                            (click)="clicked($event, event.strEvent)" value="draw">
+                                        <button mat-flat-button #draw color="primary" (click)="clicked(draw, event.strEvent)" value="draw">
                                             Draw
                                         </button>
                                     </div>
                                     <div class="">
-                                        <button mat-flat-button color="primary"
-                                            (click)="clicked($event, event.strEvent)" [value]="event.strAwayTeam">
+                                        <button mat-flat-button #away color="primary" (click)="clicked(away, event.strEvent)" [value]="event.strAwayTeam">
                                             Away
                                         </button>
                                         <span class="">

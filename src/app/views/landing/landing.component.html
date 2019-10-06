@@ -357,7 +357,7 @@
 
                     <a>View more leagues</a>
                 </div>
-                <div class="av_bets card border-secondary">
+                <div class="av_bets card border-secondary d-none d-md-block">
                     <div class="card-header bg-transparent">
                         Popular Bets
                     </div>
@@ -430,52 +430,6 @@
                 </div>
             </div>
             <aside class="d-none d-lg-block">
-                    <!-- <div class="card border-secondary">
-                        <div class="card-header">
-                            Betslip
-                        </div>
-                        <div class="card-body">
-                            <div *ngIf="nobetslip">
-                                No bets
-                            </div>
-                            <div *ngIf="!nobetslip">
-                                <h5 class="card-title d-flex justify-content-between">
-                                    <span>
-                                        {{betslip.match}}
-                                    </span>
-                                    <a role="button" (click)="removeBet()">
-                                        <i class="fa fa-times-circle text-danger"></i>
-                                    </a>
-                                </h5>
-        
-                                <p class="card-text">{{betslip.outcome | titlecase}}</p>
-                                <hr>
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        Total stake
-                                    </div>
-                                    <div class="stake_input d-flex justify-content-between">
-                                        <span class="align-self-center">NGN</span>
-                                        <input type="number" placeholder="Amount">
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="d-flex justify-content-between">
-                                    <span>
-                                        Potential win
-                                    </span>
-                                    <span>
-                                        Amount
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer bg-transparent" *ngIf="!nobetslip">
-                            <button mat-flat-button color="primary" class="btn-lg btn-block">
-                                Place bet
-                            </button>
-                        </div>
-                    </div> -->
                     <mat-card class="example-card border-gray">
                             <mat-card-header>
                               <mat-card-title>Betslip</mat-card-title>

@@ -65,6 +65,9 @@ a{
         // border-bottom-color: #967f40
     }
 }
+.border-gray{
+    border: 1px solid #6c757d;
+}
 @media (max-width: 767px){
     .main_content{
         display: grid;

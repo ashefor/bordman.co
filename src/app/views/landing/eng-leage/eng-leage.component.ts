@@ -22,6 +22,8 @@ export class EngLeageComponent implements OnInit {
     })
   }
   clicked(e, evnt){
+    console.log(e)
+    console.log(e.target.value)
     const matchevent = {
       match: evnt,
       outcome: e.target.value

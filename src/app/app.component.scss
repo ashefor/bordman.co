@@ -1,9 +1,11 @@
 .dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 0; // remove the gap so it doesn't close
- }
-
- .wrapper{
+}
+a{
+    cursor: pointer;
+}
+.wrapper{
     max-width: 1440px;
     margin: auto;
 }
@@ -82,10 +84,10 @@
     }
 }
 :host ::ng-deep .mat-tab-label-content{
-    // font-size: 25px !important;
+    font-size: 20px !important;
 }
 :host ::ng-deep .mat-tab-label-active{
-    font-size: 25px !important;
+    font-size: 30px !important;
 }
 #logreg-forms{
     width:100%;

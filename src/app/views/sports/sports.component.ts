@@ -9,10 +9,11 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./sports.component.scss']
 })
 export class SportsComponent implements OnInit {
-  betslip: object = {};
+  betslip: any = {};
   nobetslip;
   leagues = [];
   leaguename;
+  multi: boolean = true;
   allSchedules = [];
   constructor(private router: Router,
     private sportservice: SportsService,
@@ -45,15 +46,20 @@ export class SportsComponent implements OnInit {
     })
   }
 
-  clicked(e, evnt) {
+  clicked(event, evnt){
+    console.log(event._elementRef.nativeElement.value)
     const matchevent = {
       match: evnt,
-      outcome: e.target.value
+      outcome: event._elementRef.nativeElement.value
     }
+    console.log(matchevent)
     localStorage.setItem('betslip', JSON.stringify(matchevent))
     this.dataservice.viewBetslip(localStorage.setItem('betslip', JSON.stringify(matchevent)))
     // localStorage.setItem('betslip', JSON.stringify(matchevent))
   }
+  itemclick(event) {
+    console.log(event._elementRef.nativeElement.value)
+ }
   removeBet() {
     this.betslip = {}
     localStorage.setItem('betslip', JSON.stringify(this.betslip))

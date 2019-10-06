@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   hide = true;
+  loading;
   constructor(private authservice: AuthService, private formbuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
@@ -24,5 +25,9 @@ export class LoginComponent implements OnInit {
   }
   togglePwd(){
     this.hide = !this.hide
+  }
+  login(formvalue){
+    console.log(formvalue.email, formvalue.password)
+    this.authservice.signIn(formvalue.email, formvalue.password)
   }
 }

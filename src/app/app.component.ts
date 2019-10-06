@@ -16,8 +16,9 @@ export class AppComponent {
   loginForm: FormGroup;
   registerForm: FormGroup;
   hide = true;
+  loading;
   active: boolean = true;
-  constructor(private authservice: AuthService, private formbuilder: FormBuilder, private router: Router) {
+  constructor(public authservice: AuthService, private formbuilder: FormBuilder, private router: Router) {
     console.log(this.authservice.isLoggedIn)
    }
    

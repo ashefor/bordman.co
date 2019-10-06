@@ -12,7 +12,6 @@
           <form [formGroup]="loginForm" class="form-inline" (ngSubmit)="login(loginForm.value)">
             <input type="email" formControlName="email" class="form-control mr-sm-2" placeholder="Jane Doe">
             <input type="password" formControlName="password" class="form-control mr-sm-2" placeholder="password">
-            <!-- <button type="submit" class="btn btn-primary mb-2 mr-sm-2">Submit</button> -->
             <button type="submit" mat-flat-button color="primary" class="mr-sm-2">Submit</button>
             <a mat-stroked-button color="primary" role="button" (click)="openThisModal()" class="mr-sm-2">Register</a>
           </form>
@@ -62,8 +61,6 @@
               <p style="text-align:center">OR</p>
               <input type="email" id="user-email" class="form-control mb-2" placeholder="Email address"
                 formControlName="email" required>
-              <!-- <input type="text" id="user-name" class="form-control mb-2" placeholder="choose a username"
-                        formControlName="username" required> -->
               <input type="password" id="user-pass" class="form-control mb-2" placeholder="Password"
                 formControlName="password" required>
               <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-user-plus"></i> Sign Up <span

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
-  betslip:object = {};
+  betslip:any = {};
   nobetslip;
   multi: boolean = true;
   constructor(private router: Router, private dataservice: DataService) { 
