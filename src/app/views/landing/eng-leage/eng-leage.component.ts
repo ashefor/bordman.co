@@ -16,20 +16,17 @@ export class EngLeageComponent implements OnInit {
   ngOnInit() {
     this.getNext15Schedules()
   }
-  getNext15Schedules(){
-    this.sportservice.getSchedules(this.leagueId).subscribe((data: any)=>{
+  getNext15Schedules() {
+    this.sportservice.getSchedules(this.leagueId).subscribe((data: any) => {
       this.allSchedules = data.events;
     })
   }
-  clicked(e, evnt){
-    console.log(e)
-    console.log(e.target.value)
+  clicked(event, evnt) {
     const matchevent = {
       match: evnt,
-      outcome: e.target.value
+      outcome: event._elementRef.nativeElement.value
     }
     localStorage.setItem('betslip', JSON.stringify(matchevent))
     this.dataservice.viewBetslip(localStorage.setItem('betslip', JSON.stringify(matchevent)))
-    // localStorage.setItem('betslip', JSON.stringify(matchevent))
   }
 }

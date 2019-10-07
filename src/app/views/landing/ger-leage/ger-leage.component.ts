@@ -17,15 +17,15 @@ export class GerLeageComponent implements OnInit {
   ngOnInit() {
     this.getNext15Schedules()
   }
-  getNext15Schedules(){
-    this.sportservice.getSchedules(this.leagueId).subscribe((data: any)=>{
+  getNext15Schedules() {
+    this.sportservice.getSchedules(this.leagueId).subscribe((data: any) => {
       this.allSchedules = data.events;
     })
   }
-  clicked(e, evnt){
+  clicked(event, evnt) {
     const matchevent = {
       match: evnt,
-      outcome: e.target.value
+      outcome: event._elementRef.nativeElement.value
     }
     localStorage.setItem('betslip', JSON.stringify(matchevent))
     this.dataservice.viewBetslip(localStorage.setItem('betslip', JSON.stringify(matchevent)))

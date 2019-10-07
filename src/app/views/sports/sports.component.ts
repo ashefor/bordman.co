@@ -28,7 +28,7 @@ export class SportsComponent implements OnInit {
       this.leagues.forEach(elem => {
         // console.log(elem)
         if (Object.values(elem).includes('Soccer')) {
-          console.log(elem)
+          // console.log(elem)
         }
       })
     });
@@ -46,20 +46,20 @@ export class SportsComponent implements OnInit {
     })
   }
 
-  clicked(event, evnt){
-    console.log(event._elementRef.nativeElement.value)
+  clicked(event, evnt) {
     const matchevent = {
       match: evnt,
       outcome: event._elementRef.nativeElement.value
     }
-    console.log(matchevent)
     localStorage.setItem('betslip', JSON.stringify(matchevent))
     this.dataservice.viewBetslip(localStorage.setItem('betslip', JSON.stringify(matchevent)))
-    // localStorage.setItem('betslip', JSON.stringify(matchevent))
   }
-  itemclick(event) {
-    console.log(event._elementRef.nativeElement.value)
- }
+
+  addToslip(slip) {
+    this.sportservice.addBets(slip).then(res => {
+      this.removeBet()
+    })
+  }
   removeBet() {
     this.betslip = {}
     localStorage.setItem('betslip', JSON.stringify(this.betslip))

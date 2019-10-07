@@ -65,6 +65,23 @@ a{
         // border-bottom-color: #967f40
     }
 }
+.tot_stake{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .tot{
+        width: 50%;
+    }
+    .stake_input{
+        width: 50%;
+
+        input{
+            width: 100%;
+        }
+    }
+}
 .border-gray{
     border: 1px solid #6c757d;
 }

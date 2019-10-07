@@ -54,6 +54,23 @@ p{
     border-bottom: .1px solid #cccccc;
     // border-bottom-color: #967f40
 }
+.tot_stake{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .tot{
+        width: 50%;
+    }
+    .stake_input{
+        width: 50%;
+
+        input{
+            width: 100%;
+        }
+    }
+}
 .popular_bets{
     display: grid;
     grid-gap: 10px;
@@ -319,16 +336,6 @@ p{
     }
 }
 
-.card{
-    .card-body{
-        .stake_input{
-            width: 40%;
-            input{
-                width: 100%
-            }
-        }
-    }
-}
 .av_bets{
     nav{
         

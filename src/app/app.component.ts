@@ -19,16 +19,12 @@ export class AppComponent {
   loading;
   active: boolean = true;
   constructor(public authservice: AuthService, private formbuilder: FormBuilder, private router: Router) {
-    console.log(this.authservice.isLoggedIn)
+    // console.log(this.authservice.isLoggedIn)
    }
    
   ngOnInit() {
     this.initialiseForm()
     this.initialiseRegForm();
-  }
-  ngAfterViewInit() {
-    console.log(this.tabGroup.selectedIndex);
-    this.tabGroup.selectedIndex = 0;
   }
   initialiseForm() {
     this.loginForm = this.formbuilder.group({
@@ -69,11 +65,9 @@ export class AppComponent {
   }
   closeModal() {
     this.openModal.nativeElement.classList.remove('open')
-    console.log(this.tabGroup.selectedIndex);
-    // this.tabGroup.selectedIndex = 0;
   }
-  tabChanged(tabChangeEvent: MatTabChangeEvent){
-    console.log('tabChangeEvent => ', tabChangeEvent);
-    console.log('index => ', tabChangeEvent.index);
-  }
+  // tabChanged(tabChangeEvent: MatTabChangeEvent){
+  //   console.log('tabChangeEvent => ', tabChangeEvent);
+  //   console.log('index => ', tabChangeEvent.index);
+  // }
 }

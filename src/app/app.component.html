@@ -47,7 +47,7 @@
     <div class="popup">
       <a class="close" role="button" (click)="closeModal()">&times;</a>
       <div id="logreg-forms">
-        <mat-tab-group mat-align-tabs="center" #tabGroup (selectedTabChange)="tabChanged($event)">
+        <mat-tab-group mat-align-tabs="center" #tabGroup>
           <mat-tab label="Register">
             <form action="/signup/" class="form-signup" [formGroup]="registerForm"
               (ngSubmit)="register(registerForm.value)">
