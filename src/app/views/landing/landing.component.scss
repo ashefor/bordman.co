@@ -21,7 +21,16 @@ a{
     font-family: lato;
     src: url('../../../assets/fonts/Lato-Regular.ttf')
 }
-
+:host ::ng-deep mat-expansion-panel-header {
+    font-size: 14px
+}
+:host ::ng-deep .mat-expansion-panel-body {
+    padding: 0 15px 16px !important;
+    font-size: 12px
+}
+section{
+    font-size: 14px;
+}
 h1,h2,h3,h4,h5,h6{
     font-weight: bold;
     margin: 0;
@@ -37,8 +46,8 @@ p{
 }
 .main_content{
     display: grid;
-    grid-template-columns: 300px auto 300px;
-    grid-gap: 10px;
+    grid-template-columns: 200px auto 200px;
+    grid-gap: 20px;
 }
 .leftside{
     // position: fixed;
@@ -350,6 +359,7 @@ p{
         overflow: hidden;
     }
 }
+
 @media (max-width: 767px){
     .main_content{
         display: grid;

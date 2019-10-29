@@ -27,7 +27,7 @@ export class FrenchLeageComponent implements OnInit {
       match: evnt,
       outcome: event._elementRef.nativeElement.value
     }
-    localStorage.setItem('betslip', JSON.stringify(matchevent))
-    this.dataservice.viewBetslip(localStorage.setItem('betslip', JSON.stringify(matchevent)))
+    localStorage.setItem('bordman-slip', JSON.stringify(matchevent))
+    this.dataservice.viewBetslip(matchevent)
   }
 }

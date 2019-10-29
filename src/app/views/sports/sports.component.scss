@@ -3,10 +3,20 @@
     margin: auto;
     padding: 10px;
 }
+section{
+    font-size: 14px;
+}
 
 @font-face{
     font-family: lato;
     src: url('../../../assets/fonts/Lato-Regular.ttf')
+}
+:host ::ng-deep mat-expansion-panel-header {
+    font-size: 14px
+}
+:host ::ng-deep .mat-expansion-panel-body {
+    padding: 0 15px 16px !important;
+    font-size: 12px
 }
 h1,h2,h3,h4,h5,h6{
     font-weight: bold;
@@ -39,8 +49,8 @@ a{
 }
 .main_content{
     display: grid;
-    grid-template-columns: 300px auto 300px;
-    grid-gap: 10px;
+    grid-template-columns: 200px auto 200px;
+    grid-gap: 20px;
 
     hr{
         margin-top: 0.25rem;
@@ -85,6 +95,14 @@ a{
 .border-gray{
     border: 1px solid #6c757d;
 }
+.swal-button {
+    padding: 7px 19px;
+    border-radius: 2px;
+    background-color: #4962B3;
+    font-size: 12px;
+    border: 1px solid #3e549a;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+  }
 @media (max-width: 767px){
     .main_content{
         display: grid;

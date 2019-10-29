@@ -11,31 +11,29 @@ export class SportsService {
 
   constructor(public http: HttpClient, private db: AngularFireDatabase, private firestore: AngularFirestore) { }
 
-  postData(){
-    return this.http.get('https://bord-manbets.firebaseio.com/allbets')
-  }
-  getSports(){
-    return this.http.get(`${environment.sportsDB}search_all_leagues.php?c=spain`)
-  }
+  // postData(){
+  //   return this.http.get('https://bord-manbets.firebaseio.com/allbets')
+  // }
+  // getSports(){
+  //   return this.http.get(`${environment.sportsDB}search_all_leagues.php?c=spain`)
+  // }
   getSchedules(leagueId){
     return this.http.get(`${environment.sportsDB}eventsnextleague.php?id=${leagueId}`)
   }
-  getRet(){
-    return this.http.get('https://www.thesportsdb.com/api/v1/json/1/lookupevent.php?id=441613')
-  }
 
   addBets(betslip){
-    return this.db.list('/allbets').push(betslip).then((data)=>{
-      console.log(data)
-    })
+    const userid = JSON.parse(localStorage.getItem('user'))
+    return this.db.list(`/allbets/${userid.uid}`).push(betslip)
   }
-  // addBets(betslip){
-  //   return this.firestore.collection('allbets').add(betslip).then(data=>console.log(data),err=>console.log(err))
+  // getAllBetsDatas(){
+  //   const userid = JSON.parse(localStorage.getItem('user'))
+  //   return this.db.list(`/allbets/${userid.uid}`).snapshotChanges()
   // }
-  getDatas(){
-    return this.db.list('/allbets').valueChanges()
+  getAllBets(){
+    const userid = JSON.parse(localStorage.getItem('user'))
+    return this.db.list(`/allbets/${userid.uid}`).valueChanges()
   }
-  getData(){
-    return this.firestore.collection('/allbets').snapshotChanges()
-  }
+  // getAllCompetitions(){
+  //   return this.http.get('http://api.football-data.org/v2/competitions/2021/matches?status=SCHEDULED&dateFrom=2019-10-19&dateTo=2019-10-21')
+  // }
 }

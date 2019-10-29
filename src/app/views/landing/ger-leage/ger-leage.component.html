@@ -1,11 +1,11 @@
-<div *ngFor="let event of allSchedules">
+<div *ngFor="let event of allSchedules | paginate: { itemsPerPage: 7, currentPage: 1}">
     <p>
-        {{event.strDate}}
+        {{event.dateEvent | date: 'dd/MM EE'}}
     </p>
     <div class="row">
         <div class="col-lg-2 align-self-center">
             <small>
-                {{event.strTime | utcDate}}
+                {{event.strTimeLocal | utcDate}}
             </small>
         </div>
         <div class="col-lg-10">

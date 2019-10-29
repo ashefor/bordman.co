@@ -1,4 +1,4 @@
-<section>
+<section class="container">
     <!-- <div class="jumbo">
                 <div class="caption fadeIn" style="visibility: visible; opacity: 1;">
                         <h2>Your guide to sports betting with friends</h2>
@@ -20,7 +20,7 @@
             </div>
         </div>
     </div> -->
-    <div class="wrapper">
+    <div>
         <div class="mt-5 main_content">
             <aside class="leftside d-none d-lg-block">
                 <div class="card border-secondary">
@@ -435,10 +435,10 @@
                         <mat-card-title>Betslip</mat-card-title>
                     </mat-card-header>
                     <mat-card-content>
-                        <div *ngIf="nobetslip">
+                        <div *ngIf="!betslip">
                             No bets
                         </div>
-                        <div *ngIf="!nobetslip">
+                        <div *ngIf="betslip">
                             <h5 class="card-title d-flex justify-content-between mb-3">
                                 <span>
                                     {{betslip.match}}
@@ -470,7 +470,7 @@
                             </div>
                         </div>
                     </mat-card-content>
-                    <mat-card-actions *ngIf="!nobetslip">
+                    <mat-card-actions *ngIf="betslip">
                         <button mat-flat-button color="primary" class="btn-lg btn-block" (click)="addToslip(betslip)">
                             Place bet
                         </button>

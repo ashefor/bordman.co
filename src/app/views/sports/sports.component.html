@@ -1,4 +1,4 @@
-<section class="wrapper">
+<section class="container">
     <div class="mt-5 main_content">
         <aside class="leftside d-none d-lg-block">
             <div class="card border-secondary">
@@ -313,12 +313,12 @@
                 <div class="card-body">
                     <div *ngFor="let event of allSchedules">
                         <p>
-                            {{event.strDate}}
+                            {{event.dateEvent | date: 'dd/MM EE'}}
                         </p>
                         <div class="row">
                             <div class="col-lg-2 align-self-center">
                                 <small>
-                                    {{event.strTime | utcDate}}
+                                    {{event.strTimeLocal | utcDate}}
                                 </small>
                             </div>
                             <div class="col-lg-10">
@@ -361,10 +361,10 @@
                     <mat-card-title>Betslip</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
-                    <div *ngIf="nobetslip">
+                    <div *ngIf="!betslip">
                         No bets
                     </div>
-                    <div *ngIf="!nobetslip">
+                    <div *ngIf="betslip">
                         <h5 class="card-title d-flex justify-content-between mb-3">
                             <span>
                                 {{betslip.match}}
@@ -396,7 +396,7 @@
                         </div>
                     </div>
                 </mat-card-content>
-                <mat-card-actions *ngIf="!nobetslip">
+                <mat-card-actions *ngIf="betslip">
                     <button mat-flat-button color="primary" class="btn-lg btn-block" (click)="addToslip(betslip)">
                         Place bet
                     </button>

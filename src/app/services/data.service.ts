@@ -5,9 +5,9 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-  private betSlip = new BehaviorSubject([])
+  public betSlip = new BehaviorSubject(null)
 
-  getBetslip = this.betSlip.asObservable()
+  // getBetslip = this.betSlip.asObservable()
   constructor() { }
 
   viewBetslip(data: any){

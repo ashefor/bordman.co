@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { AngularFireModule } from '@angular/fire';
@@ -15,6 +15,9 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './views/shared/shared.module';
+import { TokenInterceptor } from './interceptors/token-interceptor';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 @NgModule({
   declarations: [
@@ -25,8 +28,8 @@ import { SharedModule } from './views/shared/shared.module';
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     ReactiveFormsModule,
-    // MatButtonModule,
     SharedModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
@@ -34,7 +37,9 @@ import { SharedModule } from './views/shared/shared.module';
     AngularFirestoreModule,
     AngularFireStorageModule
   ],
-  providers: [],
+  providers: [
+    // { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

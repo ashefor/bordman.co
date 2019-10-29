@@ -83,6 +83,19 @@ a{
         }
     }
 }
+.nav-link{
+    position: relative;
+}
+.nav-link:after{
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 1px;
+    height: 50%;
+    background: black;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
 :host ::ng-deep .mat-tab-label-content{
     font-size: 20px !important;
 }
@@ -219,6 +232,9 @@ a{
 @media (max-width: 767.98px){
     .mp{
       margin-top: 1rem 
+    }
+    .nav-link:after{
+        display: none
     }
 }
 @media (max-width: 899px){

@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SportsService } from 'src/app/services/sports.service';
 import { DataService } from 'src/app/services/data.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+import { AppComponent } from 'src/app/app.component';
+declare var swal: any;
 
 @Component({
   selector: 'app-landing',
@@ -10,38 +13,50 @@ import { Observable } from 'rxjs';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
-  betslip:any = {};
+  betslip;
   nobetslip;
   slip: Observable<any>
   multi: boolean = true;
-  constructor(private router: Router, private sportservice: SportsService, private dataservice: DataService) { 
-   
+  constructor(private router: Router, private sportservice: SportsService, private dataservice: DataService, private authservice: AuthService, public appcomponent: AppComponent) {
+
   }
 
   ngOnInit() {
-    this.sportservice.getDatas().subscribe((res:any)=>{
-      this.slip = res;
-      console.log(this.slip)
-    })
-    this.dataservice.getBetslip.subscribe(data => {
-      this.betslip = JSON.parse(localStorage.getItem('betslip'));
-      if(Object.keys(this.betslip).length === 0){
-        this.nobetslip = true
-      }else{
-        this.nobetslip = false
+    this.dataservice.betSlip.subscribe(data => {
+      if (data) {
+        this.betslip = data
+      }
+      const betslip = JSON.parse(localStorage.getItem('bordman-slip'))
+      if (betslip) {
+        this.betslip = betslip
       }
     })
-    this.router.navigateByUrl('premier-league', {skipLocationChange: true})
+    this.router.navigateByUrl('premier-league', { skipLocationChange: true })
   }
 
-  addToslip(slip){
-    this.sportservice.addBets(slip).then(res=>{
-      this.removeBet()
-    })
+  addToslip(slip) {
+    if (this.authservice.isLoggedIn) {
+      console.log(this.authservice.user.uid)
+      this.sportservice.addBets(slip).then(res => {
+        this.removeBet()
+      })
+    } else {
+      swal("You need to be signed in for that", {
+        icon: "info",
+        buttons: {
+          cancel: true,
+          confirm: 'Login',
+        },
+      }).then(data=>{
+        if(data){
+          this.appcomponent.openThisModal()
+        }
+      })
+    }
   }
-  removeBet(){
-    this.betslip = {}
-    localStorage.setItem('betslip', JSON.stringify(this.betslip))
-    this.dataservice.viewBetslip(localStorage.setItem('betslip', JSON.stringify(this.betslip)))
+  removeBet() {
+    this.betslip = null
+    localStorage.removeItem('bordman-slip')
+    this.dataservice.viewBetslip(null)
   }
 }

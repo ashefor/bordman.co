@@ -4,6 +4,7 @@ import { SportsComponent } from './sports.component';
 import { RouterModule } from '@angular/router';
 import { UtcDatePipe } from 'src/app/pipes/utc-date.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -14,6 +15,7 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     SharedModule,
+    FlexLayoutModule,
     RouterModule.forChild([
       {
         path: '', redirectTo: 'football', pathMatch: 'full'

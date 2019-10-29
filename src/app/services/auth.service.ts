@@ -14,6 +14,7 @@ export class AuthService {
     this.auth.authState.subscribe((user) => {
       if (user) {
         this.user = user;
+        console.log(this.user)
         localStorage.setItem('user', JSON.stringify(this.user))
       } else {
         localStorage.setItem('user', null)
@@ -43,7 +44,8 @@ export class AuthService {
     })
   }
   signOut() {
-    this.auth.auth.signOut()
+    this.auth.auth.signOut();
+    this.user = null;
   }
 
   get isLoggedIn() {
