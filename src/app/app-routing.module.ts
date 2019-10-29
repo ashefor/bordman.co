@@ -12,6 +12,9 @@ const routes: Routes = [
   },
   {
     path: 'auth', loadChildren: ()=> import('./views/users/users.module').then((m)=>m.UsersModule)
+  },
+  {
+    path: 'dashboard', loadChildren: ()=> import('./views/dashboard/dashboard.module').then((m)=>m.DashboardModule)
   }
 ];
 
