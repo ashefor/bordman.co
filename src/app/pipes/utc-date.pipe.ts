@@ -8,7 +8,7 @@ export class UtcDatePipe implements PipeTransform {
   transform(value: string): any {
     if (value) {
       const newvalue = value.split("+");
-      const svalue = newvalue[0].split(":").slice(0, -1).join(":")
+      const svalue = value.split(":").slice(0, -1).join(":")
       return svalue
     } else {
       return null;
