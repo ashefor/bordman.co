@@ -1,0 +1,31 @@
+<section class="container">
+    <div class="mt-5 main_content">
+        <aside class="d-none d-lg-block">
+            <div class="card border-secondary">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Gifts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['bet-history']" routerLinkActive="activelink">Bet History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['deposit']" routerLinkActive="activelink" >Deposit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Withdraw</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Transactions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Account Info</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <div class="main">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</section>
