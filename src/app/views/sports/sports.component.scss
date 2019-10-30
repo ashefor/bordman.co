@@ -11,6 +11,14 @@ section{
     font-family: lato;
     src: url('../../../assets/fonts/Lato-Regular.ttf')
 }
+@font-face{
+    font-family: avenir;
+    src: url('../../../assets/fonts/AvenirNextLTPro-Regular.otf')
+}
+
+:not(i){
+    font-family: 'avenir', sans-serif;
+}
 :host ::ng-deep mat-expansion-panel-header {
     font-size: 14px
 }
@@ -31,9 +39,6 @@ p{
     padding: 0
 }
 
-.card{
-    font-family: lato
-}
 a{
     cursor: pointer;
     text-decoration: none;
@@ -55,10 +60,12 @@ a{
     grid-template-columns: 200px auto 200px;
     grid-gap: 20px;
 
-    hr{
-        margin-top: 0.25rem;
-        margin-bottom: 0.25rem;
-    }
+   .main{
+        hr{
+            margin-top: 0.25rem;
+            margin-bottom: 0.25rem;
+        }
+   }
     .betCollection{
         display: grid;
         grid-template-columns: 2fr .5fr 2fr;

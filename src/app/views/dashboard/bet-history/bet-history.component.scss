@@ -1,0 +1,129 @@
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+@font-face{
+    font-family: Avenir;
+    src: url('../../../../assets/fonts/AvenirNextLTPro-Regular.otf')
+}
+
+:not(i){
+    font-family: 'avenir', sans-serif;
+}
+
+.card{
+    .card-body{
+        .stake_input{
+            width: 40%;
+            input{
+                width: 100%
+            }
+        }
+    }
+}
+.betHistory{
+    display: grid;
+    grid-template-columns: auto  200px;
+    grid-gap: 20px;
+
+    .main{
+        hr{
+            margin-top: 0.25rem;
+            margin-bottom: 0.25rem;
+        }
+   }
+}
+.tot_stake{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .tot{
+        width: 50%;
+    }
+    .stake_input{
+        width: 50%;
+
+        input{
+            width: 100%;
+        }
+    }
+}
+.border-gray{
+    border: 1px solid #6c757d;
+}
+.allbets{
+    margin-top: 10px;
+}
+.borderedcard{
+    border: 1px solid rgba(0,0,0, 0.3);
+    margin: 15px 0;
+}
+
+.bet-details{
+    padding: 0 1.25rem
+}
+.bet-status{
+    margin: 10px 0;
+    background: black;
+    color: white;
+    padding: 5px 10px;
+    width: 100%;
+    text-align: right
+}
+.bet-selection{
+    margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .matchevent{
+        width: 40%;
+        position: relative;
+
+        
+    }
+    .matchstake{
+        width: 25%;
+        margin-left: 5%;
+        text-align: right; 
+        position: relative;
+
+        &::before{
+            content: '';
+            position: absolute;
+            height: 100%;
+            left: 0;
+            top: 0;
+            width: 1px;
+            background: rgba(0,0,0,.1)
+        }
+        
+    }
+    .matchreturn{
+        width: 25%;
+        margin-left: 5%;
+        text-align: right;
+        position: relative;
+        &::before{
+            content: '';
+            position: absolute;
+            height: 100%;
+            left: 0;
+            top: 0;
+            width: 1px;
+            background: rgba(0,0,0,.1)
+        }
+        
+    }
+}
+.bet-players{
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    span{
+        margin: 0 50px 0
+    }
+}

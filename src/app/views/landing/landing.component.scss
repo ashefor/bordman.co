@@ -14,12 +14,17 @@ a{
     src: url('../../../assets/fonts/Graphik-Semibold.woff2')
 }
 @font-face{
-    font-family: font2;
+    font-family: avenir;
     src: url('../../../assets/fonts/AvenirNextLTPro-Regular.otf')
 }
 @font-face{
     font-family: lato;
     src: url('../../../assets/fonts/Lato-Regular.ttf')
+}
+
+
+:not(i){
+    font-family: 'avenir', sans-serif;
 }
 :host ::ng-deep mat-expansion-panel-header {
     font-size: 14px
@@ -51,6 +56,7 @@ p{
     display: grid;
     grid-template-columns: 200px auto 200px;
     grid-gap: 20px;
+    font-family: 'avenir', sans-serif
 
     hr{
         margin-top: 0.25rem;
@@ -214,9 +220,7 @@ p{
     }
 }
 
-.card{
-    font-family: lato
-}
+
 
 // .jumbo{
 //     position: relative;
