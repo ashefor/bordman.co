@@ -6,6 +6,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatIconModule} from '@angular/material/icon';
+
 import {NgxPaginationModule} from 'ngx-pagination';
 
 
@@ -21,6 +24,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatFormFieldModule,
     MatCardModule,
     MatTabsModule,
+    MatIconModule,
+    MatButtonToggleModule
   ],
   exports: [
     UtcDatePipe,
@@ -30,6 +35,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatFormFieldModule,
     MatCardModule,
     MatTabsModule,
+    MatIconModule,
+    MatButtonToggleModule
   ]
 })
 export class SharedModule { }

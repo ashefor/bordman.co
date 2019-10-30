@@ -65,19 +65,19 @@ export class SportsComponent implements OnInit {
 
   addToslip(slip) {
     if (this.authservice.isLoggedIn) {
-      console.log(this.authservice.user.uid)
+      slip.createdAt = Date.now();
       this.sportservice.addBets(slip).then(res => {
         this.removeBet()
       })
     } else {
-       swal("You need to be signed in for that", {
+      swal("You need to be signed in for that", {
         icon: "info",
         buttons: {
           cancel: true,
           confirm: 'Login',
         },
-      }).then(data=>{
-        if(data){
+      }).then(data => {
+        if (data) {
           this.appcomponent.openThisModal()
         }
       })

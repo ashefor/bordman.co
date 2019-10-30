@@ -55,8 +55,11 @@ export class AppComponent {
   }
 
   login(formvalue){
-    console.log(formvalue.email, formvalue.password)
-    this.authservice.signIn(formvalue.email, formvalue.password)
+    this.authservice.signIn(formvalue.email, formvalue.password).then((value:any) => {
+      if(value.user){
+        this.closeModal()
+      }
+    })
   }
 
   openThisModal() {

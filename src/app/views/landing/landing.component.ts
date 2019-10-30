@@ -36,7 +36,7 @@ export class LandingComponent implements OnInit {
 
   addToslip(slip) {
     if (this.authservice.isLoggedIn) {
-      console.log(this.authservice.user.uid)
+      slip.createdAt = Date.now();
       this.sportservice.addBets(slip).then(res => {
         this.removeBet()
       })
@@ -47,8 +47,8 @@ export class LandingComponent implements OnInit {
           cancel: true,
           confirm: 'Login',
         },
-      }).then(data=>{
-        if(data){
+      }).then(data => {
+        if (data) {
           this.appcomponent.openThisModal()
         }
       })

@@ -15,6 +15,9 @@ const routes: Routes = [
   },
   {
     path: 'dashboard', loadChildren: ()=> import('./views/dashboard/dashboard.module').then((m)=>m.DashboardModule)
+  },
+  {
+    path: '**', loadChildren: ()=> import('./views/pagenotfound/pagenotfound.module').then((m)=>m.PagenotfoundModule)
   }
 ];
 

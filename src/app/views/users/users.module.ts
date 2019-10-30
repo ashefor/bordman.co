@@ -16,6 +16,9 @@ import { RegisterComponent } from './register/register.component'
     ReactiveFormsModule,
     RouterModule.forChild([
       {
+        path: '', redirectTo: 'login', pathMatch: 'full'
+      },
+      {
         path: 'login', component: LoginComponent
       },
       {

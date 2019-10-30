@@ -37,15 +37,16 @@ export class AuthService {
   }
 
   signIn(email, password) {
-    this.auth.auth.signInWithEmailAndPassword(email, password).then((value) => {
-      console.log(value)
-    }).catch((err) => {
+    return this.auth.auth.signInWithEmailAndPassword(email, password).catch((err) => {
       console.log(err.message)
     })
   }
   signOut() {
-    this.auth.auth.signOut();
-    this.user = null;
+    this.auth.auth.signOut().then(() => {
+      localStorage.setItem('user', JSON.stringify(null))
+      localStorage.removeItem('user')
+      this.router.navigateByUrl('')
+    })
   }
 
   get isLoggedIn() {
