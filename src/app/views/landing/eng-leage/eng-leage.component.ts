@@ -14,12 +14,12 @@ export class EngLeageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getNext15Schedules()
+    this.getNext15Schedules();
   }
   getNext15Schedules() {
     this.sportservice.getSchedules(this.leagueId).subscribe((data: any) => {
       this.allSchedules = data.events;
-    })
+    });
   }
   clicked(event, evnt) {
     const matchevent = {

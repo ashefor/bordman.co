@@ -10,24 +10,24 @@ import { DataService } from 'src/app/services/data.service';
 export class FrenchLeageComponent implements OnInit {
   allSchedules = [];
   leagueId = 4334;
-  cart = []
+  cart = [];
   constructor(private sportservice: SportsService, private dataservice: DataService) {
   }
 
   ngOnInit() {
-    this.getNext15Schedules()
+    this.getNext15Schedules();
   }
   getNext15Schedules() {
     this.sportservice.getSchedules(this.leagueId).subscribe((data: any) => {
       this.allSchedules = data.events;
-    })
+    });
   }
   clicked(event, evnt) {
     const matchevent = {
       match: evnt,
       outcome: event._elementRef.nativeElement.value
-    }
-    localStorage.setItem('bordman-slip', JSON.stringify(matchevent))
-    this.dataservice.viewBetslip(matchevent)
+    };
+    localStorage.setItem('bordman-slip', JSON.stringify(matchevent));
+    this.dataservice.viewBetslip(matchevent);
   }
 }
