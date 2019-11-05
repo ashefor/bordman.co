@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { UtcDatePipe } from 'src/app/pipes/utc-date.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 
 
@@ -16,6 +17,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CommonModule,
     SharedModule,
     FlexLayoutModule,
+    ComponentsModule,
     RouterModule.forChild([
       {
         path: '', redirectTo: 'football', pathMatch: 'full'

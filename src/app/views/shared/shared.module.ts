@@ -8,6 +8,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 import {NgxPaginationModule} from 'ngx-pagination';
 
@@ -25,7 +27,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatCardModule,
     MatTabsModule,
     MatIconModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatSidenavModule,
+    MatToolbarModule
   ],
   exports: [
     UtcDatePipe,
@@ -36,7 +40,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatCardModule,
     MatTabsModule,
     MatIconModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatSidenavModule,
+    MatToolbarModule
   ]
 })
 export class SharedModule { }

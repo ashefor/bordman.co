@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { BetHistoryComponent } from './bet-history/bet-history.component';
 import { DashboardComponent } from './dashboard.component';
 import { DepositComponent } from './deposit/deposit.component';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 
 
@@ -17,6 +18,7 @@ import { DepositComponent } from './deposit/deposit.component';
   imports: [
     SharedModule,
     CommonModule,
+    ComponentsModule,
     RouterModule.forChild([
       {
         path: '', component: DashboardComponent,
