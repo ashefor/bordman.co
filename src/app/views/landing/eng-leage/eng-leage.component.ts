@@ -17,7 +17,7 @@ export class EngLeageComponent implements OnInit {
     this.getNext15Schedules();
   }
   getNext15Schedules() {
-    this.sportservice.getSchedules(this.leagueId).subscribe((data: any) => {
+    this.sportservice.getSchedules(this.leagueId).then((data: any) => {
       this.allSchedules = data.events;
     });
   }
@@ -25,8 +25,8 @@ export class EngLeageComponent implements OnInit {
     const matchevent = {
       match: evnt,
       outcome: event._elementRef.nativeElement.value
-    }
-    localStorage.setItem('bordman-slip', JSON.stringify(matchevent))
-    this.dataservice.viewBetslip(matchevent)
+    };
+    localStorage.setItem('bordman-slip', JSON.stringify(matchevent));
+    this.dataservice.viewBetslip(matchevent);
   }
 }

@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { ToastrService } from 'ngx-toastr';
+import { DataService } from './services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -16,15 +18,30 @@ export class AppComponent implements OnInit {
   loginForm: FormGroup;
   registerForm: FormGroup;
   hide = true;
-  loading;
+  loading = false;
   active = true;
-  constructor(public authservice: AuthService, private formbuilder: FormBuilder, private router: Router) {
-    // console.log(this.authservice.isLoggedIn)
+  betslip;
+  constructor(public authservice: AuthService,
+              private formbuilder: FormBuilder,
+              private router: Router,
+              private toastr: ToastrService,
+              public dataservice: DataService) {
    }
 
   ngOnInit() {
     this.initialiseForm();
     this.initialiseRegForm();
+    this.dataservice.betSlip.subscribe(data => {
+      if (data) {
+        this.betslip = data;
+      }
+      const betslip = JSON.parse(localStorage.getItem('bordman-slip'));
+      if (betslip) {
+        this.betslip = betslip;
+      } else {
+        this.betslip = null;
+      }
+    });
   }
   initialiseForm() {
     this.loginForm = this.formbuilder.group({
@@ -44,8 +61,17 @@ export class AppComponent implements OnInit {
     });
   }
   register(formvalue) {
+    this.loading = true;
     console.log(formvalue.username, formvalue.email, formvalue.password);
-    this.authservice.signUp(formvalue.username, formvalue.email, formvalue.password);
+    this.authservice.signUp(formvalue.username, formvalue.email, formvalue.password).then((value: any) => {
+      if (value.user) {
+        this.loading = false;
+        this.closeModal();
+      }
+    }).catch((error) => {
+      this.loading = false;
+      this.toastr.error(error.message);
+    });
   }
   get LoggedIn() {
     return this.authservice.isLoggedIn;
@@ -55,10 +81,15 @@ export class AppComponent implements OnInit {
   }
 
   login(formvalue) {
+    this.loading = true;
     this.authservice.signIn(formvalue.email, formvalue.password).then((value: any) => {
       if (value.user) {
+        this.loading = false;
         this.closeModal();
       }
+    }).catch((error) => {
+      this.loading = false;
+      this.toastr.error(error.message);
     });
   }
 

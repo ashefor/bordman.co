@@ -44,24 +44,24 @@
         </mat-expansion-panel-header>
         <ul class="list-unstyled text-small">
           <li class="mt-3 mb-3">
-            <a class="text-muted" href="#">England</a>
+            <a class="text-muted" [routerLink]="['/sports/football']" [queryParams]="{category: '4328'}" (click)="sidenav.close()">England</a>
           </li>
           <li class="mt-3 mb-3">
-            <a class="text-muted" href="#">Spain</a>
+            <a class="text-muted" [routerLink]="['/sports/football']" [queryParams]="{category: '4335'}" (click)="sidenav.close()">Spain</a>
           </li>
           <li class="mt-3 mb-3">
-            <a class="text-muted" href="#">Germany</a>
+            <a class="text-muted" [routerLink]="['/sports/football']" [queryParams]="{category: '4331'}" (click)="sidenav.close()">Germany</a>
           </li>
           <li class="mt-3 mb-3">
-            <a class="text-muted" href="#">France</a>
+            <a class="text-muted" [routerLink]="['/sports/football']" [queryParams]="{category: '4334'}" (click)="sidenav.close()">France</a>
           </li>
           <li class="mt-3 mb-3">
-            <a class="text-muted" href="#">Italy</a>
+            <a class="text-muted" [routerLink]="['/sports/football']" [queryParams]="{category: '4332'}" (click)="sidenav.close()">Italy</a>
           </li>
         </ul>
       </mat-expansion-panel>
 
-      <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel [expanded]="true" *ngIf="LoggedIn">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <div class="d-flex justify-content-center align-items-center">
@@ -83,7 +83,8 @@
             <a class="text-muted" href="#">Transactions</a>
           </li>
           <li class="mt-3 mb-3">
-            <a class="text-muted" [routerLink]="['/dashboard/bet-history']" routerLinkActive="active" (click)="sidenav.close()">Bet History</a>
+            <a class="text-muted" [routerLink]="['/dashboard/bet-history']" routerLinkActive="active"
+              (click)="sidenav.close()">Bet History</a>
           </li>
         </ul>
       </mat-expansion-panel>
@@ -95,8 +96,11 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-light wrapper">
         <div class="container">
           <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="active">Bordman</a>
-          <a href="" class="d-block d-lg-none d-xl-none">
-            <i class="fa fa-ticket"></i>
+          <button mat-flat-button color="warn" *ngIf="LoggedIn" class="d-block d-lg-none d-xl-none"
+            (click)="authservice.signOut()">Log Out</button>
+          <a [routerLink]="['/bet-slip']" class="d-block d-lg-none d-xl-none">
+            <sub>{{ (betslip)? '1' : '' }}</sub>
+            <i class="fa fa-sticky-note-o"></i>
           </a>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
@@ -104,7 +108,7 @@
                 <form [formGroup]="loginForm" class="form-inline" (ngSubmit)="login(loginForm.value)">
                   <input type="email" formControlName="email" class="form-control mr-sm-2" placeholder="email">
                   <input type="password" formControlName="password" class="form-control mr-sm-2" placeholder="password">
-                  <button type="submit" mat-flat-button color="primary" class="mr-sm-2">Submit</button>
+                  <button type="submit" mat-flat-button color="primary" class="mr-sm-2">Log In</button>
                   <a mat-stroked-button color="primary" role="button" (click)="openThisModal()"
                     class="mr-sm-2">Register</a>
                 </form>
@@ -138,9 +142,14 @@
             </ul>
           </div>
         </div>
-        <div class="d-block d-lg-none d-xl-none w-100 d-flex justify-content-between border-top pt-2 pb-2">
+        <div
+          class="d-block container d-lg-none d-xl-none w-100 d-flex justify-content-between align-items-center border-top pt-2 pb-2">
           <span (click)="sidenav.open()"> &#9776; Menu</span>
-          <a href="">NGN20.00</a>
+          <span>
+            <a *ngIf="LoggedIn" href="">NGN20.00</a>
+            <a *ngIf="!LoggedIn" mat-stroked-button color="primary" role="button" (click)="openThisModal()"
+              class="mr-sm-2">Log In</a>
+          </span>
         </div>
       </nav>
       <div #openmodal id="popup1" class="overlay">
@@ -148,25 +157,6 @@
           <a class="close" role="button" (click)="closeModal()">&times;</a>
           <div id="logreg-forms">
             <mat-tab-group mat-align-tabs="center" #tabGroup>
-              <mat-tab label="Register">
-                <form action="/signup/" class="form-signup" [formGroup]="registerForm"
-                  (ngSubmit)="register(registerForm.value)">
-                  <div class="container">
-                    <div class="row social-login mb-3">
-                      <a role="button" class="w-100 btn twitter-btn"><span><i class="fa fa-twitter"></i> &nbsp;
-                          twitter</span></a>
-                    </div>
-                  </div>
-
-                  <p style="text-align:center">OR</p>
-                  <input type="email" id="user-email" class="form-control mb-2" placeholder="Email address"
-                    formControlName="email" required>
-                  <input type="password" id="user-pass" class="form-control mb-2" placeholder="Password"
-                    formControlName="password" required>
-                  <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-user-plus"></i> Sign Up <span
-                      *ngIf="loading"><i class="fa fa-spin fa-spinner"></i></span> </button>
-                </form>
-              </mat-tab>
               <mat-tab label="Log In" isActive>
                 <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
                   <div class="container">
@@ -185,8 +175,29 @@
                       <i class="{{hide ? 'fa fa-eye-slash' : 'fa fa-eye'}}"></i>
                     </a>
                   </div>
-                  <button class="btn btn-success btn-block" type="submit"><i class="fa fa-sign-in"></i> Sign in <span
-                      *ngIf="loading"><i class="fa fa-spin fa-spinner"></i></span> </button>
+                  <button class="btn btn-success btn-block" type="submit" [disabled]="loginForm.invalid"><i
+                      class="fa fa-sign-in"></i> Sign in <span *ngIf="loading"><i
+                        class="fa fa-spin fa-spinner"></i></span> </button>
+                </form>
+              </mat-tab>
+              <mat-tab label="Register">
+                <form action="/signup/" class="form-signup" [formGroup]="registerForm"
+                  (ngSubmit)="register(registerForm.value)">
+                  <div class="container">
+                    <div class="row social-login mb-3">
+                      <a role="button" class="w-100 btn twitter-btn"><span><i class="fa fa-twitter"></i> &nbsp;
+                          twitter</span></a>
+                    </div>
+                  </div>
+
+                  <p style="text-align:center">OR</p>
+                  <input type="email" id="user-email" class="form-control mb-2" placeholder="Email address"
+                    formControlName="email" required>
+                  <input type="password" id="user-pass" class="form-control mb-2" placeholder="Password"
+                    formControlName="password" required>
+                  <button class="btn btn-primary btn-block" type="submit" [disabled]="registerForm.invalid"><i
+                      class="fa fa-user-plus"></i> Sign Up <span *ngIf="loading"><i
+                        class="fa fa-spin fa-spinner"></i></span> </button>
                 </form>
               </mat-tab>
             </mat-tab-group>

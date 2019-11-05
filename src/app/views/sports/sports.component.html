@@ -153,8 +153,13 @@
                 </div>
                 <div class="card-body">
                     <div *ngFor="let event of allSchedules">
-                        <p>
-                            {{event.dateEvent | date: 'dd/MM EE'}}
+                        <p class="match_event">
+                            <span>
+                                    {{event.dateEvent | date: 'dd/MM EE'}}
+                            </span>
+                            <span class="d-xl-none d-block">
+                                {{event.strEvent}}
+                            </span>
                         </p>
                         <div class="row">
                             <div class="col-lg-2 align-self-center">
@@ -165,7 +170,7 @@
                             <div class="col-lg-10">
                                 <div class="betCollection">
                                     <div class="home">
-                                        <span class="">
+                                        <span class="outcome">
                                             {{event.strHomeTeam}}
                                         </span>
                                         <button mat-flat-button #win color="primary"
@@ -184,7 +189,7 @@
                                             (click)="clicked(away, event.strEvent)" [value]="event.strAwayTeam">
                                             Away
                                         </button>
-                                        <span class="">
+                                        <span class="outcome">
                                             {{event.strAwayTeam}}
                                         </span>
                                     </div>

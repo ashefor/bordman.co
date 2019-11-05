@@ -8,15 +8,22 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoggedInGuard implements CanActivate {
 
-  constructor(public authservice: AuthService, private router: Router){
+  constructor(public authservice: AuthService, private router: Router) {
 
   }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(this.authservice.isLoggedIn){
-      this.router.navigateByUrl('/')
-    }return true;
+    return this.checkIfLoggedin();
   }
-  
+
+  checkIfLoggedin() {
+    if (this.authservice.isLoggedIn) {
+      this.router.navigate(['/']);
+      return false;
+    } else {
+      return true;
+    }
+  }
+
 }

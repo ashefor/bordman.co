@@ -39,7 +39,7 @@ export class SportsComponent implements OnInit {
   }
 
   getFixtures(leagueid) {
-    this.sportservice.getSchedules(leagueid).subscribe((data: any) => {
+    this.sportservice.getSchedules(leagueid).then((data: any) => {
       this.allSchedules = data.events;
       if (this.allSchedules === null) {
         this.leaguename = 'Fixtures';

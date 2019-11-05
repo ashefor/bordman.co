@@ -6,6 +6,7 @@ import { BetHistoryComponent } from './bet-history/bet-history.component';
 import { DashboardComponent } from './dashboard.component';
 import { DepositComponent } from './deposit/deposit.component';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 
 
@@ -22,6 +23,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
     RouterModule.forChild([
       {
         path: '', component: DashboardComponent,
+        canActivate: [AuthGuard],
         children: [
           {
             path: 'bet-history', component: BetHistoryComponent

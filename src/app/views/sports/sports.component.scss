@@ -116,13 +116,28 @@ a{
 @media (max-width: 767px){
     .main_content{
         display: grid;
-        grid-template-columns: 1fr
+        grid-template-columns: 1fr;
     }
 }
 @media(max-width: 991px){
     .main_content{
         display: grid;
-        grid-template-columns: 1fr
+        grid-template-columns: 1fr;
+    }
+}
+@media all and (max-width: 1199px){
+    .match_event{
+        display: flex;
+        justify-content: space-between
+    }
+    .outcome{
+        display: none;
+    }
+    .main_content{
+        .betCollection{
+            display: flex;
+            justify-content: flex-end;
+        }
     }
 }
 

@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { AppComponent } from 'src/app/app.component';
 import { Title } from '@angular/platform-browser';
+import { ToastrService } from 'ngx-toastr';
 declare var swal: any;
 
 @Component({
@@ -25,11 +26,12 @@ export class LandingComponent implements OnInit {
   allSerieASchedules: Array<any>;
   allLaLigaSchedules: Array<any>;
   constructor(private router: Router,
-    private sportservice: SportsService,
-    private dataservice: DataService,
-    private authservice: AuthService,
-    public appcomponent: AppComponent,
-    title: Title) {
+              private sportservice: SportsService,
+              private dataservice: DataService,
+              private authservice: AuthService,
+              public appcomponent: AppComponent,
+              title: Title,
+              private toastr: ToastrService) {
     title.setTitle('BordmanBets');
   }
 
@@ -43,7 +45,6 @@ export class LandingComponent implements OnInit {
         this.betslip = betslip;
       }
     });
-    this.router.navigateByUrl('premier-league', { skipLocationChange: true });
     this.getNext15Schedules();
     this.getLigue1Next15Schedules();
     this.getBundesligaNext15Schedules();
@@ -53,29 +54,39 @@ export class LandingComponent implements OnInit {
   }
 
   getNext15Schedules() {
-    this.sportservice.getSchedules('4328').subscribe((data: any) => {
+    this.sportservice.getSchedules('4328').then((data: any) => {
       this.allEplSchedules = data.events;
       this.allSchedules = this.allEplSchedules;
+    }).catch((error: any) => {
+      this.toastr.error(error.message);
     });
   }
   getLigue1Next15Schedules() {
-    this.sportservice.getSchedules('4334').subscribe((data: any) => {
+    this.sportservice.getSchedules('4334').then((data: any) => {
       this.allLigue1Schedules = data.events;
+    }).catch((error: any) => {
+      this.toastr.error(error.message);
     });
   }
   getBundesligaNext15Schedules() {
-    this.sportservice.getSchedules('4331').subscribe((data: any) => {
+    this.sportservice.getSchedules('4331').then((data: any) => {
       this.allBundesligaSchedules = data.events;
+    }).catch((error: any) => {
+      this.toastr.error(error.message);
     });
   }
   getSerieANext15Schedules() {
-    this.sportservice.getSchedules('4332').subscribe((data: any) => {
+    this.sportservice.getSchedules('4332').then((data: any) => {
       this.allSerieASchedules = data.events;
+    }).catch((error: any) => {
+      this.toastr.error(error.message);
     });
   }
   getLaLigaNext15Schedules() {
-    this.sportservice.getSchedules('4335').subscribe((data: any) => {
+    this.sportservice.getSchedules('4335').then((data: any) => {
       this.allLaLigaSchedules = data.events;
+    }).catch((error: any) => {
+      this.toastr.error(error.message);
     });
   }
   clicked(event, evnt) {
@@ -87,7 +98,6 @@ export class LandingComponent implements OnInit {
     this.dataservice.viewBetslip(matchevent);
   }
   onValChange(eev) {
-    console.log(eev);
     switch (eev) {
       case 'epl':
         this.allSchedules = this.allEplSchedules;
