@@ -36,6 +36,34 @@ a{
     padding: 0 15px 16px !important;
     font-size: 12px
 }
+:host ::ng-deep .mat-button-toggle-button {
+    outline: none;
+    text-align: left;
+
+    &:focus{
+        outline: none; 
+    }
+}
+h1,h2,h3,h4,h5,h6,p,ul,ol,hr{
+    margin: 0;
+    padding: 0;
+}
+hr{
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+.betCollection{
+    display: grid;
+    grid-template-columns: 2fr .5fr 2fr;
+    // grid-gap: 10px;
+
+    .home{
+        text-align: right
+    }
+    .draw{
+        text-align: center
+    }
+}
 section{
     font-size: 14px;
 }
@@ -91,6 +119,22 @@ p{
 
         input{
             width: 100%;
+        }
+    }
+}
+
+.buttonToggleDiv{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+
+    .mat-button-toggle{
+        width: 25%;
+        border: 1px solid #cccccc;
+
+        span{
+            line-height: 2;
+            display: block;
         }
     }
 }
@@ -367,17 +411,27 @@ p{
         }
     }
     .fixtures{
-        height: 500px;
+        height: 100%;
         overflow: hidden;
     }
 }
 
 @media (max-width: 767px){
+    .outcome{
+        display: none;
+    }
+    .betCollection{
+        display: flex;
+        justify-content: flex-end;
+    }
     .main_content{
         display: grid;
         grid-template-columns: 1fr
     }
-
+    .match_event{
+        display: flex;
+        justify-content: space-between
+    }
     .jumbotron{
         display: block;
         border-radius: 0;
@@ -413,6 +467,17 @@ p{
     }
 }
 @media(min-width: 768px) and (max-width: 1199px){
+    .outcome{
+        display: none;
+    }
+    .betCollection{
+        display: flex;
+        justify-content: flex-end;
+    }
+    .match_event{
+        display: flex;
+        justify-content: space-between
+    }
     .jumbotron{
         // display: flex;
         padding: 0;

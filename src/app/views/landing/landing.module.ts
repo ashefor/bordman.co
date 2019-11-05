@@ -9,6 +9,7 @@ import { ItalyLeageComponent } from './italy-leage/italy-leage.component';
 import { EngLeageComponent } from './eng-leage/eng-leage.component';
 import { UtcDatePipe } from 'src/app/pipes/utc-date.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 
 
@@ -23,6 +24,7 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     SharedModule,
+    ComponentsModule,
     RouterModule.forChild([
       {
         path: '', component: LandingComponent,

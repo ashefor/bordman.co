@@ -21,7 +21,7 @@
         </div>
     </div> -->
     <div>
-        <div class="mt-5 main_content">
+        <div class="pt-5 main_content">
             <aside class="leftside d-none d-lg-block">
                 <div class="card border-secondary">
                     <div class="card-header">
@@ -357,12 +357,12 @@
 
                     <a>View more leagues</a>
                 </div>
-                <div class="av_bets card border-secondary d-none d-md-block">
+                <div class="av_bets card border-secondary">
                     <div class="card-header bg-transparent">
                         Popular Bets
                     </div>
                     <div class="card-body">
-                        <nav class="popular_bets mb-3">
+                        <!-- <nav class="popular_bets mb-3">
                             <a [routerLink]="['/premier-league']" routerLinkActive="activenav" class="epl"
                                 skipLocationChange>
                                 <div class="logoarea p_l">
@@ -422,9 +422,88 @@
                                     </span>
                                 </div>
                             </a>
-                        </nav>
+                        </nav> -->
+                        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="buttonToggleDiv"
+                            #group="matButtonToggleGroup" (change)="onValChange(group.value)">
+                            <mat-button-toggle value="epl" [checked]="true">
+                                    <span class="buttonToggleDiv-meta">England</span>
+                                    <span class="buttonToggleDiv-meta">EPL</span>
+                            </mat-button-toggle>
+                            <mat-button-toggle value="la-liga">
+                                    <span class="buttonToggleDiv-meta">Spain</span>
+                                    <span class="buttonToggleDiv-meta">La Liga</span>
+                            </mat-button-toggle>
+                            <mat-button-toggle value="bundesliga">
+                                    <span class="buttonToggleDiv-meta">Germany</span>
+                                    <span class="buttonToggleDiv-meta">Bundesliga</span>
+                            </mat-button-toggle>
+                            <mat-button-toggle value="ligue-1">
+                                    <span class="buttonToggleDiv-meta">France</span>
+                                    <span class="buttonToggleDiv-meta">Ligue 1</span>
+                            </mat-button-toggle>
+                            <mat-button-toggle value="serie-a">
+                                    <span class="buttonToggleDiv-meta">Italy</span>
+                                    <span class="buttonToggleDiv-meta">Serie A</span>
+                            </mat-button-toggle>
+                            <mat-button-toggle value="bold">
+                                    <span class="buttonToggleDiv-meta">Champions</span>
+                                    <span class="buttonToggleDiv-meta">League</span>
+                            </mat-button-toggle>
+                            <mat-button-toggle value="italic">
+                                <span class="buttonToggleDiv-meta">Europa</span>
+                                <span class="buttonToggleDiv-meta">League</span>
+                            </mat-button-toggle>
+                            <mat-button-toggle value="underline">
+                                    <span class="buttonToggleDiv-meta">England</span>
+                                    <span class="buttonToggleDiv-meta">Championship</span>
+                            </mat-button-toggle>
+                        </mat-button-toggle-group>
                         <div class="fixtures">
-                            <router-outlet></router-outlet>
+                                <div *ngFor="let event of allSchedules | paginate: { itemsPerPage: 10, currentPage: 1}">
+                                        <p class="match_event">
+                                            <span>
+                                                    {{event.dateEvent | date: 'dd/MM EE'}}
+                                            </span>
+                                            <span class="d-xl-none d-block">
+                                                {{event.strEvent}}
+                                            </span>
+                                        </p>
+                                        <div class="row">
+                                            <div class="col-lg-2 align-self-center">
+                                                <small>
+                                                    {{event.strTimeLocal | utcDate}}
+                                                </small>
+                                            </div>
+                                            <div class="col-lg-10">
+                                                <div class="betCollection">
+                                                    <div class="home">
+                                                        <span class="outcome">
+                                                            {{event.strHomeTeam}}
+                                                        </span>
+                                                        <button mat-flat-button #win color="primary" (click)="clicked(win, event.strEvent)"
+                                                            [value]="event.strHomeTeam">
+                                                            Home
+                                                        </button>
+                                                    </div>
+                                                    <div class="draw">
+                                                        <button mat-flat-button #draw color="primary" (click)="clicked(draw, event.strEvent)" value="draw">
+                                                            Draw
+                                                        </button>
+                                                    </div>
+                                                    <div class="">
+                                                        <button mat-flat-button #away color="primary" (click)="clicked(away, event.strEvent)"
+                                                            [value]="event.strAwayTeam">
+                                                            Away
+                                                        </button>
+                                                        <span class="outcome">
+                                                            {{event.strAwayTeam}}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
                         </div>
                     </div>
                 </div>
@@ -435,23 +514,23 @@
                         <mat-card-title>Betslip</mat-card-title>
                     </mat-card-header>
                     <hr>
-                <mat-card-content>
-                    <div *ngIf="!betslip">
-                        No bets
-                    </div>
-                    <div *ngIf="betslip">
-                        <p class="card-title d-flex justify-content-between mb-3">
-                            <span>
-                                {{betslip.outcome | titlecase}}
-                            </span>
-                            <a role="button" (click)="removeBet()">
-                                <i class="fa fa-times-circle text-danger"></i>
-                            </a>
-                        </p>
+                    <mat-card-content>
+                        <div *ngIf="!betslip">
+                            No bets
+                        </div>
+                        <div *ngIf="betslip">
+                            <p class="card-title d-flex justify-content-between mb-3">
+                                <span>
+                                    {{betslip.outcome | titlecase}}
+                                </span>
+                                <a role="button" (click)="removeBet()">
+                                    <i class="fa fa-times-circle text-danger"></i>
+                                </a>
+                            </p>
 
-                        <p class="card-text mb-3">
+                            <p class="card-text mb-3">
                                 {{betslip.match}}</p>
-                        <hr>
+                            <hr>
                             <div class="mt-3 mb-3 tot_stake">
                                 <div class="tot">
                                     Total stake
@@ -482,3 +561,4 @@
         </div>
     </div>
 </section>
+<app-footer></app-footer>
