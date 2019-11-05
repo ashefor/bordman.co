@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
-declare var swal: any
+declare var swal: any;
 @Component({
   selector: 'app-bet-history',
   templateUrl: './bet-history.component.html',
@@ -16,37 +16,38 @@ export class BetHistoryComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   betslip;
   leaguename;
-  multi: boolean = false;
+  multi = false;
+  currentPage;
   allSchedules: Array<any>;
   constructor(private sportservice: SportsService, private authservice: AuthService, private dataservice: DataService,
-    private route: ActivatedRoute,
-    public appcomponent: AppComponent) { }
+              public appcomponent: AppComponent) {
+     }
 
   ngOnInit() {
-    this.getBetHistory()
+    this.getBetHistory();
   }
 
   getBetHistory() {
     this.dataservice.betSlip.subscribe(data => {
       if (data) {
-        this.betslip = data
+        this.betslip = data;
       }
-      const betslip = JSON.parse(localStorage.getItem('bordman-slip'))
+      const betslip = JSON.parse(localStorage.getItem('bordman-slip'));
       if (betslip) {
-        this.betslip = betslip
+        this.betslip = betslip;
       }
-    })
+    });
     if (this.authservice.isLoggedIn) {
       this.subscription = this.sportservice.getAllBets().subscribe((data: any) => {
-        this.allBets = data
-        console.log(this.allBets)
-      })
+        this.allBets = data;
+        console.log(this.allBets);
+      });
     }
   }
 
   ngOnDestroy() {
     if (this.subscription) {
-      this.subscription.unsubscribe()
+      this.subscription.unsubscribe();
     }
   }
 
@@ -54,35 +55,35 @@ export class BetHistoryComponent implements OnInit, OnDestroy {
     const matchevent = {
       match: evnt,
       outcome: event._elementRef.nativeElement.value
-    }
-    localStorage.setItem('bordman-slip', JSON.stringify(matchevent))
-    this.dataservice.viewBetslip(matchevent)
+    };
+    localStorage.setItem('bordman-slip', JSON.stringify(matchevent));
+    this.dataservice.viewBetslip(matchevent);
   }
 
   addToslip(slip) {
     if (this.authservice.isLoggedIn) {
       slip.createdAt = Date.now();
       this.sportservice.addBets(slip).then(res => {
-        this.removeBet()
-      })
+        this.removeBet();
+      });
     } else {
-      swal("You need to be signed in for that", {
-        icon: "info",
+      swal('You need to be signed in for that', {
+        icon: 'info',
         buttons: {
           cancel: true,
           confirm: 'Login',
         },
       }).then(data => {
         if (data) {
-          this.appcomponent.openThisModal()
+          this.appcomponent.openThisModal();
         }
-      })
+      });
     }
   }
   removeBet() {
-    this.betslip = null
-    localStorage.removeItem('bordman-slip')
-    this.dataservice.viewBetslip(null)
+    this.betslip = null;
+    localStorage.removeItem('bordman-slip');
+    this.dataservice.viewBetslip(null);
   }
 
 }

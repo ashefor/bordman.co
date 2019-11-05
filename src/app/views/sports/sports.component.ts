@@ -14,41 +14,41 @@ declare var swal: any;
 export class SportsComponent implements OnInit {
   betslip;
   leaguename;
-  multi: boolean = false;
+  multi = false;
   allSchedules: Array<any>;
   constructor(private router: Router,
-    private authservice: AuthService,
-    private sportservice: SportsService,
-    private dataservice: DataService,
-    private route: ActivatedRoute,
-    public appcomponent: AppComponent) {
+              private authservice: AuthService,
+              private sportservice: SportsService,
+              private dataservice: DataService,
+              private route: ActivatedRoute,
+              public appcomponent: AppComponent) {
   }
   ngOnInit() {
     this.route.queryParams.subscribe(data => {
-      this.getFixtures(data['category'])
-    })
+      this.getFixtures(data.category);
+    });
     this.dataservice.betSlip.subscribe(data => {
       if (data) {
-        this.betslip = data
+        this.betslip = data;
       }
-      const betslip = JSON.parse(localStorage.getItem('bordman-slip'))
+      const betslip = JSON.parse(localStorage.getItem('bordman-slip'));
       if (betslip) {
-        this.betslip = betslip
+        this.betslip = betslip;
       }
-    })
+    });
   }
 
   getFixtures(leagueid) {
     this.sportservice.getSchedules(leagueid).subscribe((data: any) => {
       this.allSchedules = data.events;
       if (this.allSchedules === null) {
-        this.leaguename = 'Fixtures'
+        this.leaguename = 'Fixtures';
       } else {
         this.allSchedules.forEach(elem => {
-          this.leaguename = elem.strLeague
-        })
+          this.leaguename = elem.strLeague;
+        });
       }
-    })
+    });
   }
 
   getBetSlip() {
@@ -58,35 +58,35 @@ export class SportsComponent implements OnInit {
     const matchevent = {
       match: evnt,
       outcome: event._elementRef.nativeElement.value
-    }
-    localStorage.setItem('bordman-slip', JSON.stringify(matchevent))
-    this.dataservice.viewBetslip(matchevent)
+    };
+    localStorage.setItem('bordman-slip', JSON.stringify(matchevent));
+    this.dataservice.viewBetslip(matchevent);
   }
 
   addToslip(slip) {
     if (this.authservice.isLoggedIn) {
       slip.createdAt = Date.now();
       this.sportservice.addBets(slip).then(res => {
-        this.removeBet()
-      })
+        this.removeBet();
+      });
     } else {
-      swal("You need to be signed in for that", {
-        icon: "info",
+      swal('You need to be signed in for that', {
+        icon: 'info',
         buttons: {
           cancel: true,
           confirm: 'Login',
         },
       }).then(data => {
         if (data) {
-          this.appcomponent.openThisModal()
+          this.appcomponent.openThisModal();
         }
-      })
+      });
     }
   }
   removeBet() {
-    this.betslip = null
-    localStorage.removeItem('bordman-slip')
-    this.dataservice.viewBetslip(null)
+    this.betslip = null;
+    localStorage.removeItem('bordman-slip');
+    this.dataservice.viewBetslip(null);
   }
 
 }

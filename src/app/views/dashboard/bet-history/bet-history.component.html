@@ -1,100 +1,102 @@
 <div class="betHistory">
+    <div>
         <div class="card">
-                <div class="card-body">
-                    <div class="example-button-row">
-                        <button mat-flat-button color="primary">All</button>
-                        <button mat-flat-button color="primary">Settled</button>
-                        <button mat-flat-button color="primary">Pending</button>
-                    </div>
-                    <div class="allbets" *ngIf="!allBets">
-                        Fetching bets
-                    </div>
-                    <div *ngIf="allBets" class="allbets">
-                            <div class="card borderedcard" *ngFor="let ticket of allBets">
-                                    <div class="bet-status">Status</div>
-                                <div class="bet-details">
-                                    <div class="bet-selection">
-                                        <div class="matchevent">
-                                            <div>
-                                                {{ticket.createdAt | date: 'dd/MM/yyyy HH:mm'}}
-                                            </div>
-                                            <div>
-                                                    {{ticket.match}}
-                                            </div>
-                                        </div>
-                                        <div class="matchstake">
-                                            <div class="total-stake">Total Stake</div>
-                                            <div class="stake">200</div>
-                                        </div>
-                                        <div class="matchreturn">
-                                            <div class="total-return">Total return</div>
-                                            <div class="stake">200</div>
-                                        </div>
+            <div class="card-body">
+                <div class="example-button-row">
+                    <button mat-flat-button color="primary">All</button>
+                    <button mat-flat-button color="primary">Settled</button>
+                    <button mat-flat-button color="primary">Pending</button>
+                </div>
+                <div class="allbets" *ngIf="!allBets">
+                    Fetching bets
+                </div>
+                <div *ngIf="allBets" class="allbets">
+                    <div class="card borderedcard" *ngFor="let ticket of allBets">
+                        <div class="bet-status">Status</div>
+                        <div class="bet-details">
+                            <div class="bet-selection">
+                                <div class="matchevent">
+                                    <div>
+                                        {{ticket.createdAt | date: 'dd/MM/yyyy HH:mm'}}
                                     </div>
-                                    <hr>
-                                    <div class="bet-players">
-                                            <span>You</span>
-                                            vs 
-                                            <span> User</span>
+                                    <div>
+                                        {{ticket.match}}
                                     </div>
                                 </div>
+                                <div class="matchstake">
+                                    <div class="total-stake">Total Stake</div>
+                                    <div class="stake">200</div>
+                                </div>
+                                <div class="matchreturn">
+                                    <div class="total-return">Total return</div>
+                                    <div class="stake">200</div>
+                                </div>
                             </div>
+                            <hr>
+                            <div class="bet-players">
+                                <span>You</span>
+                                vs
+                                <span> User</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <ng-container *ngIf="allBets">
-                    <pagination-controls *ngIf="allBets.length > 9" class="pagination" responsive="true"
-                        (pageChange)="currentPage = $event"></pagination-controls>
-                </ng-container>
+        </div>
+    </div>
+    <ng-container *ngIf="allBets">
+        <pagination-controls *ngIf="allBets.length > 9" class="pagination" responsive="true"
+            (pageChange)="currentPage = $event"></pagination-controls>
+    </ng-container>
 
-                <div class="d-none d-lg-block">
-                        <mat-card class="example-card border-gray">
-                            <mat-card-header>
-                                <mat-card-title>Betslip</mat-card-title>
-                            </mat-card-header>
-                            <hr>
-                            <mat-card-content>
-                                <div *ngIf="!betslip">
-                                    No bets
-                                </div>
-                                <div *ngIf="betslip">
-                                    <p class="card-title d-flex justify-content-between mb-3">
-                                        <span>
-                                            {{betslip.outcome | titlecase}}
-                                        </span>
-                                        <a role="button" (click)="removeBet()">
-                                            <i class="fa fa-times-circle text-danger"></i>
-                                        </a>
-                                    </p>
-            
-                                    <p class="card-text mb-3">
-                                        {{betslip.match}}</p>
-                                    <hr>
-                                    <div class="mt-3 mb-3 tot_stake">
-                                        <div class="tot">
-                                            Total stake
-                                        </div>
-                                        <div class="stake_input d-flex justify-content-between">
-                                            <span class="align-self-center">NGN</span>
-                                            <input type="number" placeholder="Amount">
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="d-flex justify-content-between mt-3 mb-3">
-                                        <span>
-                                            Potential win
-                                        </span>
-                                        <span>
-                                            Amount
-                                        </span>
-                                    </div>
-                                </div>
-                            </mat-card-content>
-                            <mat-card-actions *ngIf="betslip">
-                                <button mat-flat-button color="primary" class="btn-lg btn-block" (click)="addToslip(betslip)">
-                                    Place bet
-                                </button>
-                            </mat-card-actions>
-                        </mat-card>
+    <div class="d-none d-lg-block">
+        <mat-card class="example-card border-gray">
+            <mat-card-header>
+                <mat-card-title>Betslip</mat-card-title>
+            </mat-card-header>
+            <hr>
+            <mat-card-content>
+                <div *ngIf="!betslip">
+                    No bets
+                </div>
+                <div *ngIf="betslip">
+                    <p class="card-title d-flex justify-content-between mb-3">
+                        <span>
+                            {{betslip.outcome | titlecase}}
+                        </span>
+                        <a role="button" (click)="removeBet()">
+                            <i class="fa fa-times-circle text-danger"></i>
+                        </a>
+                    </p>
+
+                    <p class="card-text mb-3">
+                        {{betslip.match}}</p>
+                    <hr>
+                    <div class="mt-3 mb-3 tot_stake">
+                        <div class="tot">
+                            Total stake
+                        </div>
+                        <div class="stake_input d-flex justify-content-between">
+                            <span class="align-self-center">NGN</span>
+                            <input type="number" placeholder="Amount">
+                        </div>
                     </div>
+                    <hr>
+                    <div class="d-flex justify-content-between mt-3 mb-3">
+                        <span>
+                            Potential win
+                        </span>
+                        <span>
+                            Amount
+                        </span>
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions *ngIf="betslip">
+                <button mat-flat-button color="primary" class="btn-lg btn-block" (click)="addToslip(betslip)">
+                    Place bet
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
 </div>

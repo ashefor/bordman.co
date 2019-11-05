@@ -3,10 +3,31 @@
     font-family: avenir;
     src: url('../assets/fonts/AvenirNextLTPro-Regular.otf')
 }
-
-*{
-    font-family: 'avenir', sans-serif
+.example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
+.example-sidenav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+  }
+.body-content{
+    // background-color: lightgrey;
+    height: 100%;
+}
+
+nav{
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05);
+    border-bottom: 1px solid #dee2e6
+}
+// *{
+//     font-family: 'avenir', sans-serif
+// }
 .dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 0; // remove the gap so it doesn't close
@@ -110,6 +131,12 @@ a{
 }
 :host ::ng-deep .mat-tab-label-active{
     font-size: 30px !important;
+}
+:host ::ng-deep .mat-expansion-panel{
+    box-shadow: none;
+}
+button[type="button"]{ 
+   outline: none
 }
 #logreg-forms{
     width:100%;

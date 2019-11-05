@@ -1,102 +1,201 @@
-<div class="">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light wrapper">
-    <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active">Bordman</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item" *ngIf="!LoggedIn">
-            <form [formGroup]="loginForm" class="form-inline" (ngSubmit)="login(loginForm.value)">
-              <input type="email" formControlName="email" class="form-control mr-sm-2" placeholder="email">
-              <input type="password" formControlName="password" class="form-control mr-sm-2" placeholder="password">
-              <button type="submit" mat-flat-button color="primary" class="mr-sm-2">Submit</button>
-              <a mat-stroked-button color="primary" role="button" (click)="openThisModal()" class="mr-sm-2">Register</a>
-            </form>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav class="example-sidenav" fixedInViewport="true" fixedTopGap="0" fixedBottomGap="0">
+    <div class="mt-3">
+      <button class="ml-3" mat-button color="accent" type="button" (click)="sidenav.close()">Close</button>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="d-flex justify-content-center align-items-center">
+              <i class="fa fa-television"></i>
+              <span class="ml-2">
+                Live
+              </span>
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ul class="list-unstyled text-small">
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">England</a>
           </li>
-          <div class="d-block d-md-flex" *ngIf="LoggedIn">
-            <li class="nav-item">
-              <a class="nav-link">Amount</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link">Deposit</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/dashboard/bet-history']" routerLinkActive="router-link-active">Bet
-                History</a>
-            </li>
-            <li>
-              <div class="btn-group dropdown">
-                <a role="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="false">
-                  <span>My account</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                  <button class="dropdown-item" type="button">My bets</button>
-                  <button class="dropdown-item" type="button">Dashboard</button>
-                  <div class="dropdown-divider"></div>
-                  <button class="dropdown-item" type="button" (click)="authservice.signOut()">Sign Out</button>
-                </div>
-              </div>
-            </li>
-          </div>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">Spain</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">Germany</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">France</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">Italy</a>
+          </li>
         </ul>
-      </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="d-flex justify-content-center align-items-center">
+              <i class="fa fa-soccer-ball-o"></i>
+              <span class="ml-2">
+                Sports
+              </span>
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ul class="list-unstyled text-small">
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">England</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">Spain</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">Germany</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">France</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">Italy</a>
+          </li>
+        </ul>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="d-flex justify-content-center align-items-center">
+              <i class="fa fa-user-secret"></i>
+              <span class="ml-2">
+                Account
+              </span>
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ul class="list-unstyled text-small">
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">Deposit</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">Withdraw</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">Transactions</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" [routerLink]="['/dashboard/bet-history']" routerLinkActive="active" (click)="sidenav.close()">Bet History</a>
+          </li>
+        </ul>
+      </mat-expansion-panel>
     </div>
 
-  </nav>
-  <div #openmodal id="popup1" class="overlay">
-    <div class="popup">
-      <a class="close" role="button" (click)="closeModal()">&times;</a>
-      <div id="logreg-forms">
-        <mat-tab-group mat-align-tabs="center" #tabGroup>
-          <mat-tab label="Register">
-            <form action="/signup/" class="form-signup" [formGroup]="registerForm"
-              (ngSubmit)="register(registerForm.value)">
-              <div class="container">
-                <div class="row social-login mb-3">
-                  <a role="button" class="w-100 btn twitter-btn"><span><i class="fa fa-twitter"></i> &nbsp;
-                      twitter</span></a>
-                </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light wrapper">
+        <div class="container">
+          <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="active">Bordman</a>
+          <a href="" class="d-block d-lg-none d-xl-none">
+            <i class="fa fa-ticket"></i>
+          </a>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item" *ngIf="!LoggedIn">
+                <form [formGroup]="loginForm" class="form-inline" (ngSubmit)="login(loginForm.value)">
+                  <input type="email" formControlName="email" class="form-control mr-sm-2" placeholder="email">
+                  <input type="password" formControlName="password" class="form-control mr-sm-2" placeholder="password">
+                  <button type="submit" mat-flat-button color="primary" class="mr-sm-2">Submit</button>
+                  <a mat-stroked-button color="primary" role="button" (click)="openThisModal()"
+                    class="mr-sm-2">Register</a>
+                </form>
+              </li>
+              <div class="d-block d-md-flex" *ngIf="LoggedIn">
+                <li class="nav-item">
+                  <a class="nav-link">Amount</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link">Deposit</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" [routerLink]="['/dashboard/bet-history']" routerLinkActive="active">Bet
+                    History</a>
+                </li>
+                <li>
+                  <div class="btn-group dropdown">
+                    <a role="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="false">
+                      <span>My account</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <button class="dropdown-item" type="button">My bets</button>
+                      <button class="dropdown-item" type="button">Dashboard</button>
+                      <div class="dropdown-divider"></div>
+                      <button class="dropdown-item" type="button" (click)="authservice.signOut()">Sign Out</button>
+                    </div>
+                  </div>
+                </li>
               </div>
+            </ul>
+          </div>
+        </div>
+        <div class="d-block d-lg-none d-xl-none w-100 d-flex justify-content-between border-top pt-2 pb-2">
+          <span (click)="sidenav.open()"> &#9776; Menu</span>
+          <a href="">NGN20.00</a>
+        </div>
+      </nav>
+      <div #openmodal id="popup1" class="overlay">
+        <div class="popup">
+          <a class="close" role="button" (click)="closeModal()">&times;</a>
+          <div id="logreg-forms">
+            <mat-tab-group mat-align-tabs="center" #tabGroup>
+              <mat-tab label="Register">
+                <form action="/signup/" class="form-signup" [formGroup]="registerForm"
+                  (ngSubmit)="register(registerForm.value)">
+                  <div class="container">
+                    <div class="row social-login mb-3">
+                      <a role="button" class="w-100 btn twitter-btn"><span><i class="fa fa-twitter"></i> &nbsp;
+                          twitter</span></a>
+                    </div>
+                  </div>
 
-              <p style="text-align:center">OR</p>
-              <input type="email" id="user-email" class="form-control mb-2" placeholder="Email address"
-                formControlName="email" required>
-              <input type="password" id="user-pass" class="form-control mb-2" placeholder="Password"
-                formControlName="password" required>
-              <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-user-plus"></i> Sign Up <span
-                  *ngIf="loading"><i class="fa fa-spin fa-spinner"></i></span> </button>
-            </form>
-          </mat-tab>
-          <mat-tab label="Log In" isActive>
-            <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
-              <div class="container">
-                <div class="row social-login mb-3">
-                  <a role="button" class="w-100 btn twitter-btn"><span><i class="fa fa-twitter"></i> &nbsp;
-                      twitter</span></a>
-                </div>
-              </div>
-              <p class="text-center mt-3"> OR </p>
-              <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
-                formControlName="email">
-              <div class="password-area">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password"
-                  formControlName="password" [type]="hide? 'password': 'text'">
-                <a role="button" (click)="togglePwd()">
-                  <i class="{{hide ? 'fa fa-eye-slash' : 'fa fa-eye'}}"></i>
-                </a>
-              </div>
-              <button class="btn btn-success btn-block" type="submit"><i class="fa fa-sign-in"></i> Sign in <span
-                  *ngIf="loading"><i class="fa fa-spin fa-spinner"></i></span> </button>
-            </form>
-          </mat-tab>
-        </mat-tab-group>
+                  <p style="text-align:center">OR</p>
+                  <input type="email" id="user-email" class="form-control mb-2" placeholder="Email address"
+                    formControlName="email" required>
+                  <input type="password" id="user-pass" class="form-control mb-2" placeholder="Password"
+                    formControlName="password" required>
+                  <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-user-plus"></i> Sign Up <span
+                      *ngIf="loading"><i class="fa fa-spin fa-spinner"></i></span> </button>
+                </form>
+              </mat-tab>
+              <mat-tab label="Log In" isActive>
+                <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+                  <div class="container">
+                    <div class="row social-login mb-3">
+                      <a role="button" class="w-100 btn twitter-btn"><span><i class="fa fa-twitter"></i> &nbsp;
+                          twitter</span></a>
+                    </div>
+                  </div>
+                  <p class="text-center mt-3"> OR </p>
+                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
+                    formControlName="email">
+                  <div class="password-area">
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                      formControlName="password" [type]="hide? 'password': 'text'">
+                    <a role="button" (click)="togglePwd()">
+                      <i class="{{hide ? 'fa fa-eye-slash' : 'fa fa-eye'}}"></i>
+                    </a>
+                  </div>
+                  <button class="btn btn-success btn-block" type="submit"><i class="fa fa-sign-in"></i> Sign in <span
+                      *ngIf="loading"><i class="fa fa-spin fa-spinner"></i></span> </button>
+                </form>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+      </div>
+      <div class="body-content">
+        <router-outlet></router-outlet>
       </div>
     </div>
-  </div>
-  <router-outlet></router-outlet>
-</div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
