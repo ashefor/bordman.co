@@ -1,0 +1,55 @@
+<mat-card class="example-card border-gray">
+    <mat-card-header>
+        <mat-card-title>Betslip</mat-card-title>
+    </mat-card-header>
+    <!-- <hr> -->
+    <mat-card-content>
+        <div *ngIf="!betSlip">
+            No bets
+        </div>
+        <div *ngIf="betSlip" class="bet-event">
+            <p class="card-title d-flex justify-content-between mb-3">
+                <span>
+                    {{betSlip.outcome | titlecase}}
+                </span>
+                <a role="button" (click)="removeBet()">
+                    <i class="fa fa-times-circle text-danger"></i>
+                </a>
+            </p>
+
+            <p class="card-text mb-3 bet-match">
+                {{betSlip.match}}</p>
+            <hr>
+            <div class="mt-3 mb-3 tot_stake">
+                <div class="stake_input d-flex justify-content-between">
+                    <div class="align-self-center">Amount</div>
+                    <input type="number" placeholder="amount" size="3" (keyup)="showInput($event)" #stakeamount>
+                </div>
+            </div>
+            <hr>
+            <div class="ny-3">
+                <div class="d-flex justify-content-between tot my-3">
+                    <span>
+                        Total stake
+                    </span>
+                    <span>
+                        {{(stakeamount.value ? stakeamount.value: '0.00') | currency}}
+                    </span>
+                </div>
+                <div class="d-flex justify-content-between mb-3">
+                    <span>
+                        Total stake
+                    </span>
+                    <span>
+                        {{((stakeamount.value * 2) - (stakeamount.value/10) )| currency}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions *ngIf="betSlip">
+        <button mat-flat-button color="primary" class="btn-lg btn-block" (click)="addToslip(betSlip)">
+            Place bet
+        </button>
+    </mat-card-actions>
+</mat-card>

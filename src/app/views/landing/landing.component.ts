@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { AppComponent } from 'src/app/app.component';
 import { Title } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
+import { betslip } from 'src/app/models/betslip';
 declare var swal: any;
 
 @Component({
@@ -17,6 +18,7 @@ declare var swal: any;
 export class LandingComponent implements OnInit {
   betslip;
   nobetslip;
+  matchEvent: betslip;
   slip: Observable<any>;
   multi = true;
   allSchedules: Array<any>;
@@ -36,7 +38,7 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataservice.betSlip.subscribe(data => {
+    this.dataservice.viewBetSlip.subscribe(data => {
       if (data) {
         this.betslip = data;
       }
@@ -90,12 +92,17 @@ export class LandingComponent implements OnInit {
     });
   }
   clicked(event, evnt) {
-    const matchevent = {
+    // const matchevent = {
+    //   match: evnt,
+    //   outcome: event._elementRef.nativeElement.value
+    // };
+    this.matchEvent = {
       match: evnt,
       outcome: event._elementRef.nativeElement.value
     };
-    localStorage.setItem('bordman-slip', JSON.stringify(matchevent));
-    this.dataservice.viewBetslip(matchevent);
+    // console.log(this.matchEvent);
+    localStorage.setItem('bordman-slip', JSON.stringify(this.matchEvent));
+    this.dataservice.shareBetslip(this.matchEvent);
   }
   onValChange(eev) {
     switch (eev) {
@@ -116,29 +123,29 @@ export class LandingComponent implements OnInit {
         break;
     }
   }
-  addToslip(slip) {
-    if (this.authservice.isLoggedIn) {
-      slip.createdAt = Date.now();
-      this.sportservice.addBets(slip).then(res => {
-        this.removeBet();
-      });
-    } else {
-      swal('You need to be signed in for that', {
-        icon: 'info',
-        buttons: {
-          cancel: true,
-          confirm: 'Login',
-        },
-      }).then(data => {
-        if (data) {
-          this.appcomponent.openThisModal();
-        }
-      });
-    }
-  }
-  removeBet() {
-    this.betslip = null;
-    localStorage.removeItem('bordman-slip');
-    this.dataservice.viewBetslip(null);
-  }
+  // addToslip(slip) {
+  //   if (this.authservice.isLoggedIn) {
+  //     slip.createdAt = Date.now();
+  //     this.sportservice.addBets(slip).then(res => {
+  //       this.removeBet();
+  //     });
+  //   } else {
+  //     swal('You need to be signed in for that', {
+  //       icon: 'info',
+  //       buttons: {
+  //         cancel: true,
+  //         confirm: 'Login',
+  //       },
+  //     }).then(data => {
+  //       if (data) {
+  //         this.appcomponent.openThisModal();
+  //       }
+  //     });
+  //   }
+  // }
+  // removeBet() {
+  //   this.betslip = null;
+  //   localStorage.removeItem('bordman-slip');
+  //   this.dataservice.viewBetslip(null);
+  // }
 }

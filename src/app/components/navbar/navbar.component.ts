@@ -1,66 +1,58 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from './services/auth.service';
-import { Router } from '@angular/router';
-import { MatTabChangeEvent } from '@angular/material/tabs';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { DataService } from './services/data.service';
+import { EventEmittersService } from 'src/app/services/event-emitters.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss']
 })
-export class AppComponent implements OnInit {
-  title = 'boardman';
+export class NavbarComponent implements OnInit {
   @ViewChild('openmodal', { static: false }) openModal: ElementRef<HTMLElement>;
   @ViewChild('tabGroup', { static: false }) tabGroup;
-  @ViewChild('sidenav', {static: false}) sideNav;
+  @Output() openSidebar = new EventEmitter();
+  activeTab = 0;
   loginForm: FormGroup;
   registerForm: FormGroup;
   hide = true;
   loading = false;
-  active = true;
-  betslip;
   constructor(public authservice: AuthService,
               private formbuilder: FormBuilder,
-              private router: Router,
               private toastr: ToastrService,
-              public dataservice: DataService) {
-   }
+              private emitterService: EventEmittersService) { }
 
   ngOnInit() {
     this.initialiseForm();
     this.initialiseRegForm();
-    this.dataservice.viewBetSlip.subscribe(data => {
-      if (data) {
-        this.betslip = data;
-      }
-      const betslip = JSON.parse(localStorage.getItem('bordman-slip'));
-      if (betslip) {
-        this.betslip = betslip;
-      } else {
-        this.betslip = null;
-      }
-    });
+    if (this.emitterService.subsVar === undefined) {
+      this.emitterService.subsVar = this.emitterService.invokeLoginFunction.subscribe(() => {
+        this.openThisModal(0);
+      });
+    }
   }
+
   initialiseForm() {
     this.loginForm = this.formbuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.required],
     });
   }
-
   initialiseRegForm() {
     this.registerForm = this.formbuilder.group({
-      // name: ['', Validators.required],
       username: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-      // confirmPassword: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-      // checked: ['', Validators.required]
     });
   }
+  get LoggedIn() {
+    return this.authservice.isLoggedIn;
+  }
+  togglePwd() {
+    this.hide = !this.hide;
+  }
+
   register(formvalue) {
     this.loading = true;
     console.log(formvalue.username, formvalue.email, formvalue.password);
@@ -73,12 +65,6 @@ export class AppComponent implements OnInit {
       this.loading = false;
       this.toastr.error(error.message);
     });
-  }
-  get LoggedIn() {
-    return this.authservice.isLoggedIn;
-  }
-  togglePwd() {
-    this.hide = !this.hide;
   }
 
   login(formvalue) {
@@ -94,19 +80,15 @@ export class AppComponent implements OnInit {
     });
   }
 
-  openThisModal() {
+  openThisModal(selectedindex) {
     this.openModal.nativeElement.classList.add('open');
-    // this.tabGroup.selectedIndex = 0;
+    this.activeTab = selectedindex;
   }
   closeModal() {
     this.openModal.nativeElement.classList.remove('open');
   }
-  // tabChanged(tabChangeEvent: MatTabChangeEvent){
-  //   console.log('tabChangeEvent => ', tabChangeEvent);
-  //   console.log('index => ', tabChangeEvent.index);
-  // }
 
-  openSidebar() {
-    this.sideNav.open();
+  openSiderBar() {
+    this.openSidebar.emit();
   }
 }

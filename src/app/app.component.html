@@ -44,19 +44,19 @@
         </mat-expansion-panel-header>
         <ul class="list-unstyled text-small">
           <li class="mt-3 mb-3">
-            <a class="text-muted" [routerLink]="['/sports/football']" [queryParams]="{category: '4328'}" (click)="sidenav.close()">England</a>
+            <a class="text-muted" href="/sports/football?category=4328">England</a>
           </li>
           <li class="mt-3 mb-3">
-            <a class="text-muted" [routerLink]="['/sports/football']" [queryParams]="{category: '4335'}" (click)="sidenav.close()">Spain</a>
+            <a class="text-muted" href="/sports/football?category=4335">Spain</a>
           </li>
           <li class="mt-3 mb-3">
-            <a class="text-muted" [routerLink]="['/sports/football']" [queryParams]="{category: '4331'}" (click)="sidenav.close()">Germany</a>
+            <a class="text-muted" href="/sports/football?category=4331">Germany</a>
           </li>
           <li class="mt-3 mb-3">
-            <a class="text-muted" [routerLink]="['/sports/football']" [queryParams]="{category: '4334'}" (click)="sidenav.close()">France</a>
+            <a class="text-muted" href="/sports/football?category=4334">France</a>
           </li>
           <li class="mt-3 mb-3">
-            <a class="text-muted" [routerLink]="['/sports/football']" [queryParams]="{category: '4332'}" (click)="sidenav.close()">Italy</a>
+            <a class="text-muted" href="/sports/football?category=4332">Italy</a>
           </li>
         </ul>
       </mat-expansion-panel>
@@ -83,8 +83,7 @@
             <a class="text-muted" href="#">Transactions</a>
           </li>
           <li class="mt-3 mb-3">
-            <a class="text-muted" [routerLink]="['/dashboard/bet-history']" routerLinkActive="active"
-              (click)="sidenav.close()">Bet History</a>
+            <a class="text-muted" href="/dashboard/bet-history">Bet History</a>
           </li>
         </ul>
       </mat-expansion-panel>
@@ -93,9 +92,9 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light wrapper">
+      <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light wrapper">
         <div class="container">
-          <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="active">Bordman</a>
+          <a class="navbar-brand" href="/" routerLinkActive="active">Bordman</a>
           <button mat-flat-button color="warn" *ngIf="LoggedIn" class="d-block d-lg-none d-xl-none"
             (click)="authservice.signOut()">Log Out</button>
           <a [routerLink]="['/bet-slip']" class="d-block d-lg-none d-xl-none">
@@ -203,9 +202,11 @@
             </mat-tab-group>
           </div>
         </div>
-      </div>
+      </div> -->
+      <app-navbar (openSidebar)="openSidebar($event)"></app-navbar>
       <div class="body-content">
         <router-outlet></router-outlet>
+        <app-footer></app-footer>
       </div>
     </div>
   </mat-sidenav-content>

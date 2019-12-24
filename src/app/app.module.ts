@@ -19,12 +19,14 @@ import { TokenInterceptor } from './interceptors/token-interceptor';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ToastrModule } from 'ngx-toastr';
 import { BetslipComponent } from './views/betslip/betslip.component';
+import { ComponentsModule } from './components/components.module';
+import { EventEmittersService } from './services/event-emitters.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BetslipComponent
+    BetslipComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,7 @@ import { BetslipComponent } from './views/betslip/betslip.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    ComponentsModule,
     ReactiveFormsModule,
     SharedModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -43,6 +46,7 @@ import { BetslipComponent } from './views/betslip/betslip.component';
   ],
   providers: [
     // { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
+    EventEmittersService
   ],
   bootstrap: [AppComponent]
 })

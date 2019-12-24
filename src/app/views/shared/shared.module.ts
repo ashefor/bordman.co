@@ -12,11 +12,16 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 
 import {NgxPaginationModule} from 'ngx-pagination';
+import { BetslipComponent } from './betslip/betslip.component';
+import { LeagueComponent } from './league/league.component';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 
 @NgModule({
   declarations: [
-    UtcDatePipe
+    UtcDatePipe,
+    BetslipComponent,
+    LeagueComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +47,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatIconModule,
     MatButtonToggleModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    BetslipComponent,
+    LeagueComponent
   ]
 })
 export class SharedModule { }

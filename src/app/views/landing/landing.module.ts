@@ -14,11 +14,11 @@ import { ComponentsModule } from 'src/app/components/components.module';
 
 
 @NgModule({
-  declarations: [EngLeageComponent, 
-    LandingComponent, 
-    GerLeageComponent, 
-    FrenchLeageComponent, 
-    SpainLeageComponent, 
+  declarations: [EngLeageComponent,
+    LandingComponent,
+    GerLeageComponent,
+    FrenchLeageComponent,
+    SpainLeageComponent,
     ItalyLeageComponent
   ],
   imports: [

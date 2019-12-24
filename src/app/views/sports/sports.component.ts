@@ -13,7 +13,7 @@ declare var swal: any;
 })
 export class SportsComponent implements OnInit {
   betslip;
-  leaguename;
+  leagueName;
   multi = false;
   allSchedules: Array<any>;
   constructor(private router: Router,
@@ -27,7 +27,7 @@ export class SportsComponent implements OnInit {
     this.route.queryParams.subscribe(data => {
       this.getFixtures(data.category);
     });
-    this.dataservice.betSlip.subscribe(data => {
+    this.dataservice.viewBetSlip.subscribe(data => {
       if (data) {
         this.betslip = data;
       }
@@ -41,11 +41,12 @@ export class SportsComponent implements OnInit {
   getFixtures(leagueid) {
     this.sportservice.getSchedules(leagueid).then((data: any) => {
       this.allSchedules = data.events;
+      console.log(this.allSchedules);
       if (this.allSchedules === null) {
-        this.leaguename = 'Fixtures';
+        this.leagueName = 'Fixtures';
       } else {
         this.allSchedules.forEach(elem => {
-          this.leaguename = elem.strLeague;
+          this.leagueName = elem.strLeague;
         });
       }
     });
@@ -60,7 +61,7 @@ export class SportsComponent implements OnInit {
       outcome: event._elementRef.nativeElement.value
     };
     localStorage.setItem('bordman-slip', JSON.stringify(matchevent));
-    this.dataservice.viewBetslip(matchevent);
+    this.dataservice.shareBetslip(matchevent);
   }
 
   addToslip(slip) {
@@ -86,7 +87,7 @@ export class SportsComponent implements OnInit {
   removeBet() {
     this.betslip = null;
     localStorage.removeItem('bordman-slip');
-    this.dataservice.viewBetslip(null);
+    this.dataservice.shareBetslip(null);
   }
 
 }

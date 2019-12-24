@@ -146,7 +146,7 @@
                 </mat-accordion>
             </div>
         </aside>
-        <div class="main">
+        <!-- <div class="main">
             <div class="card">
                 <div class="card-header">
                     {{leaguename}}
@@ -200,9 +200,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
+        <app-league [schedules]="allSchedules" [leagueName]="leagueName"></app-league>
         <aside class="d-none d-lg-block">
-            <mat-card class="example-card border-gray">
+            <!-- <mat-card class="example-card border-gray">
                 <mat-card-header>
                     <mat-card-title>Betslip</mat-card-title>
                 </mat-card-header>
@@ -249,8 +250,8 @@
                         Place bet
                     </button>
                 </mat-card-actions>
-            </mat-card>
+            </mat-card> -->
+        <app-betslip></app-betslip>
         </aside>
     </div>
 </section>
-<app-footer></app-footer>

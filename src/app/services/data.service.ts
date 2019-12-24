@@ -5,12 +5,12 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-  public betSlip = new BehaviorSubject(null);
+  public viewBetSlip = new BehaviorSubject(null);
   public betHistory = new BehaviorSubject(null);
   constructor() { }
 
-  viewBetslip(data: any) {
-    this.betSlip.next(data);
+  shareBetslip(data: any) {
+    this.viewBetSlip.next(data);
   }
 
   viewBetHistory(history: Array<any>) {

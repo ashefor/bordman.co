@@ -1,0 +1,59 @@
+a:hover{
+    cursor: pointer;
+}
+.example-card {
+  background: #151D31;
+  padding: 5px;
+
+  mat-card-header {
+    color: white;
+  }
+
+  mat-card-content {
+    background: white;
+    padding: 10px;
+    margin: 0;
+
+    hr{
+        margin: 0;
+    }
+
+    i{
+        font-size: 20px;
+    }
+    .bet-match{
+     font-weight: 200;   
+    }
+    input {
+      display: inline-block;
+      text-align: right;
+      line-height: 20px;
+      width: 50%;
+      padding: 2px;
+      border: 1px solid #B4B4B4;
+      border-radius: 2px;
+    
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button{
+            -webkit-appearance: none;
+        }
+
+      &:focus{
+          outline: none;
+          border-color: #0D9737;
+      }
+    }
+
+    input[type=number] {
+        -moz-appearance:textfield;
+      }
+  }
+
+  mat-card-actions {
+    margin: 0;
+
+    button {
+      background-color: #F58634
+    }
+  }
+}

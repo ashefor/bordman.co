@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { AppComponent } from 'src/app/app.component';
 declare var swal: any;
 @Component({
-  selector: 'app-betslip',
+  selector: 'app-betslipp',
   templateUrl: './betslip.component.html',
   styleUrls: ['./betslip.component.scss']
 })
@@ -16,7 +16,7 @@ export class BetslipComponent implements OnInit {
               private sportservice: SportsService, private authservice: AuthService, public appcomponent: AppComponent) { }
 
   ngOnInit() {
-    this.dataservice.betSlip.subscribe(data => {
+    this.dataservice.viewBetSlip.subscribe(data => {
       if (data) {
         this.betslip = data;
       }
@@ -50,7 +50,7 @@ export class BetslipComponent implements OnInit {
   removeBet() {
     this.betslip = null;
     localStorage.removeItem('bordman-slip');
-    this.dataservice.viewBetslip(null);
+    this.dataservice.shareBetslip(null);
   }
 
 }
