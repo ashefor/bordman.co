@@ -1,0 +1,67 @@
+:not(i) {
+  font-family: 'avenir', sans-serif;
+}
+
+:host ::ng-deep mat-expansion-panel-header {
+  font-size: 14px;
+  padding: 0 15px !important;
+}
+
+:host ::ng-deep .mat-card-header-text {
+  margin: 0;
+}
+
+:host ::ng-deep .mat-expansion-panel-body {
+  padding: unset;
+  font-size: 12px
+}
+
+:host ::ng-deep .mat-expansion-panel-body:last-of-type {
+    padding-bottom: 15px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: unset;
+}
+
+.border-secondary {
+    border-radius: inherit;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    cursor: pointer;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 15px;
+    height: 30px;
+    line-height: 30px;
+
+    a{
+        border-bottom: 1px solid rgb(204, 204, 204, .6)
+    }
+  }
+}

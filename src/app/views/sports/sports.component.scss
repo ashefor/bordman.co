@@ -19,16 +19,6 @@ section{
 :not(i){
     font-family: 'avenir', sans-serif;
 }
-:host ::ng-deep mat-expansion-panel-header {
-    font-size: 14px
-}
-:host ::ng-deep .mat-card-header-text{
-    margin: 0;
-}
-:host ::ng-deep .mat-expansion-panel-body {
-    padding: 0 15px 16px !important;
-    font-size: 12px
-}
 h1,h2,h3,h4,h5,h6{
     font-weight: bold;
     margin: 0;
@@ -45,16 +35,6 @@ a{
     color: unset;
 }
 
-.card{
-    .card-body{
-        .stake_input{
-            width: 40%;
-            input{
-                width: 100%
-            }
-        }
-    }
-}
 .main_content{
     display: grid;
     grid-template-columns: 180px auto 250px;
@@ -84,6 +64,39 @@ a{
         border-bottom: .1px solid #cccccc;
         // border-bottom-color: #967f40
     }
+
+    .loadingdiv {
+        height: 150px;
+        position: relative;
+    
+        .loadingspinner {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 100%;
+          text-align: center;
+          transform: translate(-50%, -50%);
+        }
+      }
+    
+      .errordiv {
+        height: 150px;
+        position: relative;
+    
+        .errormsg {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 100%;
+          text-align: center;
+          transform: translate(-50%, -50%);
+        }
+      }
+    
+      .fixtures {
+        height: 100%;
+        overflow: hidden;
+      }
 }
 .tot_stake{
     display: flex;

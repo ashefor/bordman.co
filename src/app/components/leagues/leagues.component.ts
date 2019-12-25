@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./leagues.component.scss']
 })
 export class LeaguesComponent implements OnInit {
-
+  multi = true;
   constructor() { }
 
   ngOnInit() {

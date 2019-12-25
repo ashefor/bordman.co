@@ -14,7 +14,8 @@ declare var swal: any;
 export class SportsComponent implements OnInit {
   betslip;
   leagueName;
-  multi = false;
+  errorMsg = false;
+  loading = true;
   allSchedules: Array<any>;
   constructor(private router: Router,
               private authservice: AuthService,
@@ -40,8 +41,8 @@ export class SportsComponent implements OnInit {
 
   getFixtures(leagueid) {
     this.sportservice.getSchedules(leagueid).then((data: any) => {
+      this.loading = false;
       this.allSchedules = data.events;
-      console.log(this.allSchedules);
       if (this.allSchedules === null) {
         this.leagueName = 'Fixtures';
       } else {
@@ -49,6 +50,8 @@ export class SportsComponent implements OnInit {
           this.leagueName = elem.strLeague;
         });
       }
+    }).catch(error => {
+      this.errorMsg = true;
     });
   }
 

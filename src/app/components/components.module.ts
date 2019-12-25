@@ -19,7 +19,8 @@ import { LeaguesComponent } from './leagues/leagues.component';
   ],
   exports: [
     FooterComponent,
-    NavbarComponent
+    NavbarComponent,
+    LeaguesComponent
   ]
 })
 export class ComponentsModule { }

@@ -64,6 +64,10 @@ a{
         border: none;
         border-radius: inherit;
         background-color: #F9FAFF;
+
+        .card-body{
+            padding: .5rem;
+        }
     }
    .main{
         hr{

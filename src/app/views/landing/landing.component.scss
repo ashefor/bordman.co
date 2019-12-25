@@ -30,19 +30,6 @@ a {
   font-family: 'avenir', sans-serif;
 }
 
-:host ::ng-deep mat-expansion-panel-header {
-  font-size: 14px
-}
-
-:host ::ng-deep .mat-card-header-text {
-  margin: 0;
-}
-
-:host ::ng-deep .mat-expansion-panel-body {
-  padding: 0 15px 16px !important;
-  font-size: 12px
-}
-
 :host ::ng-deep .mat-button-toggle-button {
   outline: none;
   text-align: left;
