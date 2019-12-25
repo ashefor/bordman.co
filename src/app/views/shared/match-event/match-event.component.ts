@@ -5,11 +5,11 @@ import { DataService } from 'src/app/services/data.service';
 import { betslip } from 'src/app/models/betslip';
 
 @Component({
-  selector: 'app-league',
-  templateUrl: './league.component.html',
-  styleUrls: ['./league.component.scss']
+  selector: 'app-match-event',
+  templateUrl: './match-event.component.html',
+  styleUrls: ['./match-event.component.scss']
 })
-export class LeagueComponent implements OnInit {
+export class MatchEventComponent implements OnInit {
   @Input() schedules;
   @Input() leagueName;
   addToBetslip = new EventEmitter();

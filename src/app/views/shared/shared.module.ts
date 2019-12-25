@@ -13,7 +13,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 
 import {NgxPaginationModule} from 'ngx-pagination';
 import { BetslipComponent } from './betslip/betslip.component';
-import { LeagueComponent } from './league/league.component';
+import { MatchEventComponent } from './match-event/match-event.component';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 
@@ -21,7 +21,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
   declarations: [
     UtcDatePipe,
     BetslipComponent,
-    LeagueComponent
+    MatchEventComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +49,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
     MatSidenavModule,
     MatToolbarModule,
     BetslipComponent,
-    LeagueComponent
+    MatchEventComponent
   ]
 })
 export class SharedModule { }

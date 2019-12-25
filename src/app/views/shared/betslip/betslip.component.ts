@@ -28,11 +28,6 @@ export class BetslipComponent implements OnInit {
     this.dataservice.viewBetSlip.subscribe(data => {
       if (data) {
         this.betSlip = data;
-      } else {
-        this.betSlip = {
-          match: 'evnt',
-          outcome: 'arsenal'
-        };
       }
     });
   }

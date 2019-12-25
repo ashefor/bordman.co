@@ -58,6 +58,7 @@
                                     England
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
+                            <p>Open log</p>
                             <ul class="list-group">
                                 <li class="list-group-item">
                                     <a [routerLink]="['/sports/football']" [queryParams]="{category: '4328'}"
@@ -510,7 +511,7 @@
                                         </div>
                                         <hr>
                                     </div> -->
-                        <app-league [schedules]="allSchedules"></app-league>
+                        <app-match-event [schedules]="allSchedules"></app-match-event>
                                 </div>
                     </div>
                 </div>

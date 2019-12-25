@@ -4,7 +4,7 @@
       <button mat-flat-button color="warn" *ngIf="LoggedIn" class="d-block d-lg-none d-xl-none"
         (click)="authservice.signOut()">Log Out</button>
       <a [routerLink]="['/bet-slip']" class="d-block d-lg-none d-xl-none">
-        <sub>{{ (betslip)? '1' : '' }}</sub>
+        <!-- <sub>{{ (betslip)? '1' : '' }}</sub> -->
         <i class="fa fa-sticky-note-o"></i>
       </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -14,7 +14,7 @@
               <input type="email" formControlName="email" class="form-control mr-sm-2" placeholder="email">
               <input type="password" formControlName="password" class="form-control mr-sm-2" placeholder="password">
               <button type="submit" mat-flat-button color="primary" class="mr-sm-2 loginbtn">Log In</button>
-              <a mat-stroked-button color="primary" role="button" (click)="openThisModal(selectedindex = 1)"
+              <a mat-stroked-button color="primary" role="button" (click)="openThisModal(1)"
                 class="mr-sm-2 registerbtn">Register</a>
             </form>
           </li>
@@ -52,7 +52,7 @@
       <span (click)="openSiderBar()"> &#9776; Menu</span>
       <span>
         <a *ngIf="LoggedIn" href="">NGN20.00</a>
-        <a *ngIf="!LoggedIn" mat-stroked-button color="primary" role="button" (click)="openThisModal()"
+        <a *ngIf="!LoggedIn" mat-stroked-button color="primary" role="button" (click)="openThisModal(0)"
           class="mr-sm-2">Log In</a>
       </span>
     </div>

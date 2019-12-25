@@ -63,7 +63,7 @@ export class LandingComponent implements OnInit {
       console.log(this.allMatches);
     }, error => {
       this.errorMsg = true;
-      this.toastr.error(error);
+      this.toastr.error('An error has occured');
     });
   }
 
