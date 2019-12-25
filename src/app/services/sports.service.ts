@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ToastrService } from 'ngx-toastr';
+import { forkJoin } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,14 +30,37 @@ export class SportsService {
         }
       }, error => {
         reject(error);
+        this.toastr.error('An errror has occured');
       });
     });
   }
+  getSchedule() {
+    return forkJoin([this.http.get(`${environment.sportsDB}eventsnextleague.php?id=4334`),
+    this.http.get(`${environment.sportsDB}eventsnextleague.php?id=4328`),
+    this.http.get(`${environment.sportsDB}eventsnextleague.php?id=4331`),
+    this.http.get(`${environment.sportsDB}eventsnextleague.php?id=4332`),
+    this.http.get(`${environment.sportsDB}eventsnextleague.php?id=4335`)]);
+  }
 
+  getReference = () => {
+    let text = '';
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    for (let i = 0; i < 7; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+  }
   addBets(betslip) {
     const userid = JSON.parse(localStorage.getItem('user'));
-    return this.db.list(`/allbets/${userid.uid}`).push(betslip);
+    // return this.db.list(`/allbets/${userid.uid}`).push(betslip);
+    console.log(this.getReference());
+    return this.db.object(`/allbets/${this.getReference()}/${userid.uid}`).set(betslip);
   }
+  // addBets(betslip){
+  //   const userid = JSON.parse(localStorage.getItem('user'));
+  //   return this.firestore.collection('tickets').doc(userid.uuid).collection('').add(betslip);
+  // }
   // getAllBetsDatas(){
   //   const userid = JSON.parse(localStorage.getItem('user'))
   //   return this.db.list(`/allbets/${userid.uid}`).snapshotChanges()

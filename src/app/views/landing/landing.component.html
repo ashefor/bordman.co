@@ -1,4 +1,28 @@
-<section class="container">
+<div class="jumbotron">
+    <div class="content">
+        <div class="caption fadeIn">
+            <h2>sports betting with friends</h2>
+            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit augue duis
+                dolore
+                te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue
+                nihil
+                imperdiet doming id quod mazim placerat facer possim assum.</p>
+            <a href="#">Bet now!</a>
+        </div>
+    </div>
+    <div class="imageBox">
+        <div class="caption fadeIn">
+            <h2>sports betting with friends</h2>
+            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit augue duis
+                dolore
+                te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue
+                nihil
+                imperdiet doming id quod mazim placerat facer possim assum.</p>
+            <a href="#">Bet now!</a>
+        </div>
+    </div>
+</div>
+<div class="container">
     <!-- <div class="jumbo">
                 <div class="caption fadeIn" style="visibility: visible; opacity: 1;">
                         <h2>Your guide to sports betting with friends</h2>
@@ -20,32 +44,154 @@
             </div>
         </div>
     </div> -->
-    <div class="jumbotron">
-        <div class="content">
-            <div class="caption fadeIn">
-                <h2>sports betting with friends</h2>
-                <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit augue duis
-                    dolore
-                    te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue
-                    nihil
-                    imperdiet doming id quod mazim placerat facer possim assum.</p>
-                <a href="#">Bet now!</a>
-            </div>
-        </div>
-        <div class="imageBox">
-            <div class="caption fadeIn">
-                <h2>sports betting with friends</h2>
-                <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit augue duis
-                    dolore
-                    te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue
-                    nihil
-                    imperdiet doming id quod mazim placerat facer possim assum.</p>
-                <a href="#">Bet now!</a>
-            </div>
-        </div>
-    </div>
     <div>
         <div class="pt-5 main_content">
+            <aside class="leftside d-none d-lg-block">
+                <div class="card border-secondary">
+                    <div class="card-header">
+                        Leagues
+                    </div>
+                    <mat-accordion [multi]="multi">
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    England
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <a [routerLink]="['/sports/football']" [queryParams]="{category: '4328'}"
+                                        routerLinkActive="router-link-active"
+                                        class="d-flex justify-content-between align-items-center">
+                                        Premier League
+                                        <span class="badge badge-primary badge-pill">14</span>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a [routerLink]="['/sports/football']" [queryParams]="{category: '4329'}"
+                                        class="d-flex justify-content-between align-items-center active">
+                                        Championship
+                                        <span class="badge badge-primary badge-pill">14</span>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a [routerLink]="['/sports/football']" [queryParams]="{category: '4396'}"
+                                        class="d-flex justify-content-between align-items-center">
+                                        League One
+                                        <span class="badge badge-primary badge-pill">14</span>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a [routerLink]="['/sports/football']" [queryParams]="{category: '4397'}"
+                                        class="d-flex justify-content-between align-items-center">
+                                        League Two
+                                        <span class="badge badge-primary badge-pill">14</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Spain
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <a [routerLink]="['/sports/football']" [queryParams]="{category: '4335'}"
+                                        class="d-flex justify-content-between align-items-center">
+                                        La Liga Santander
+                                        <span class="badge badge-primary badge-pill">14</span>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a [routerLink]="['/sports/football']" [queryParams]="{category: '4400'}"
+                                        class="d-flex justify-content-between align-items-center">
+                                        Segunda División
+                                        <span class="badge badge-primary badge-pill">14</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Germany
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <a [routerLink]="['/sports/football']" [queryParams]="{category: '4331'}"
+                                        class="d-flex justify-content-between align-items-center">
+                                        Bundesliga
+                                        <span class="badge badge-primary badge-pill">14</span>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a [routerLink]="['/sports/football']" [queryParams]="{category: '4399'}"
+                                        class="d-flex justify-content-between align-items-center">
+                                        German 2. Bundesliga
+                                        <span class="badge badge-primary badge-pill">14</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Italy
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <a [routerLink]="['/sports/football']" [queryParams]="{category: '4332'}"
+                                        class="d-flex justify-content-between align-items-center">
+                                        Seria A
+                                        <span class="badge badge-primary badge-pill">14</span>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a [routerLink]="['/sports/football']" [queryParams]="{category: '4394'}"
+                                        class="d-flex justify-content-between align-items-center">
+                                        Serie B
+                                        <span class="badge badge-primary badge-pill">14</span>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a [routerLink]="['/sports/football']" [queryParams]="{category: '4398'}"
+                                        class="d-flex justify-content-between align-items-center">
+                                        Serie C
+                                        <span class="badge badge-primary badge-pill">14</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    France
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <a [routerLink]="['/sports/football']" [queryParams]="{category: '4334'}"
+                                        class="d-flex justify-content-between align-items-center">
+                                        Ligue 1
+                                        <span class="badge badge-primary badge-pill">14</span>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a [routerLink]="['/sports/football']" [queryParams]="{category: '4401'}"
+                                        class="d-flex justify-content-between align-items-center">
+                                        Ligue 2
+                                        <span class="badge badge-primary badge-pill">14</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+            </aside>
             <!-- <aside class="leftside d-none d-lg-block">
                 <div class="card border-secondary">
                     <div class="card-header">
@@ -287,38 +433,38 @@
                             #group="matButtonToggleGroup" (change)="onValChange(group.value)">
                             <mat-button-toggle value="epl" [checked]="true">
                                     <span class="buttonToggleDiv-meta">England</span>
-                                    <span class="buttonToggleDiv-meta">EPL</span>
+                                    <span class="buttonToggleDiv-meta font-weight-bolder">EPL</span>
                             </mat-button-toggle>
                             <mat-button-toggle value="la-liga">
                                     <span class="buttonToggleDiv-meta">Spain</span>
-                                    <span class="buttonToggleDiv-meta">La Liga</span>
+                                    <span class="buttonToggleDiv-meta font-weight-bolder">La Liga</span>
                             </mat-button-toggle>
                             <mat-button-toggle value="bundesliga">
                                     <span class="buttonToggleDiv-meta">Germany</span>
-                                    <span class="buttonToggleDiv-meta">Bundesliga</span>
+                                    <span class="buttonToggleDiv-meta font-weight-bolder">Bundesliga</span>
                             </mat-button-toggle>
                             <mat-button-toggle value="ligue-1">
                                     <span class="buttonToggleDiv-meta">France</span>
-                                    <span class="buttonToggleDiv-meta">Ligue 1</span>
+                                    <span class="buttonToggleDiv-meta font-weight-bolder">Ligue 1</span>
                             </mat-button-toggle>
                             <mat-button-toggle value="serie-a">
                                     <span class="buttonToggleDiv-meta">Italy</span>
-                                    <span class="buttonToggleDiv-meta">Serie A</span>
-                            </mat-button-toggle>
-                            <mat-button-toggle value="bold">
-                                    <span class="buttonToggleDiv-meta">Champions</span>
-                                    <span class="buttonToggleDiv-meta">League</span>
-                            </mat-button-toggle>
-                            <mat-button-toggle value="italic">
-                                <span class="buttonToggleDiv-meta">Europa</span>
-                                <span class="buttonToggleDiv-meta">League</span>
-                            </mat-button-toggle>
-                            <mat-button-toggle value="underline">
-                                    <span class="buttonToggleDiv-meta">England</span>
-                                    <span class="buttonToggleDiv-meta">Championship</span>
+                                    <span class="buttonToggleDiv-meta font-weight-bolder">Serie A</span>
                             </mat-button-toggle>
                         </mat-button-toggle-group>
-                        <div class="fixtures">
+                        <div *ngIf="!allSchedules && !errorMsg" class="loadingdiv">
+                           <div class="loadingspinner">
+                            <i class="fa fa-spin fa-spinner"></i>
+                            <span class="d-block">Loading</span>
+                           </div>
+                        </div>
+                        <div *ngIf="!allSchedules && errorMsg" class="errordiv">
+                            <div class="errormsg">
+                             <i class="fa fa-warning"></i>
+                             <span class="d-block">Error. Please try again</span>
+                            </div>
+                         </div>
+                        <div class="fixtures" *ngIf="allSchedules">
                                 <!-- <div *ngFor="let event of allSchedules | paginate: { itemsPerPage: 10, currentPage: 1}">
                                         <p class="match_event">
                                             <span>
@@ -422,4 +568,4 @@
             </aside>
         </div>
     </div>
-</section>
+</div>

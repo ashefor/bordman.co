@@ -28,7 +28,7 @@ export class BetHistoryComponent implements OnInit, OnDestroy {
   }
 
   getBetHistory() {
-    this.dataservice.betSlip.subscribe(data => {
+    this.dataservice.viewBetSlip.subscribe(data => {
       if (data) {
         this.betslip = data;
       }
@@ -57,7 +57,7 @@ export class BetHistoryComponent implements OnInit, OnDestroy {
       outcome: event._elementRef.nativeElement.value
     };
     localStorage.setItem('bordman-slip', JSON.stringify(matchevent));
-    this.dataservice.viewBetslip(matchevent);
+    this.dataservice.shareBetslip(matchevent);
   }
 
   addToslip(slip) {
@@ -83,7 +83,7 @@ export class BetHistoryComponent implements OnInit, OnDestroy {
   removeBet() {
     this.betslip = null;
     localStorage.removeItem('bordman-slip');
-    this.dataservice.viewBetslip(null);
+    this.dataservice.shareBetslip(null);
   }
 
 }

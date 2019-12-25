@@ -8,6 +8,7 @@ import { AppComponent } from 'src/app/app.component';
 import { Title } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 import { betslip } from 'src/app/models/betslip';
+import {forkJoin} from 'rxjs';
 declare var swal: any;
 
 @Component({
@@ -22,6 +23,9 @@ export class LandingComponent implements OnInit {
   slip: Observable<any>;
   multi = true;
   allSchedules: Array<any>;
+  errorMsg = false;
+  loading = true;
+  allMatches: Array<any>;
   allEplSchedules: Array<any>;
   allLigue1Schedules: Array<any>;
   allBundesligaSchedules: Array<any>;
@@ -38,88 +42,93 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataservice.viewBetSlip.subscribe(data => {
-      if (data) {
-        this.betslip = data;
-      }
-      const betslip = JSON.parse(localStorage.getItem('bordman-slip'));
-      if (betslip) {
-        this.betslip = betslip;
-      }
+    // this.dataservice.viewBetSlip.subscribe(data => {
+    //   if (data) {
+    //     this.betslip = data;
+    //   }
+    //   const betslip = JSON.parse(localStorage.getItem('bordman-slip'));
+    //   if (betslip) {
+    //     this.betslip = betslip;
+    //   }
+    // });
+    // this.getNext15Schedules();
+    // this.getLigue1Next15Schedules();
+    // this.getBundesligaNext15Schedules();
+    // this.getSerieANext15Schedules();
+    // this.getLigue1Next15Schedules();
+    // this.getLaLigaNext15Schedules();
+    this.sportservice.getSchedule().subscribe(results => {
+      this.allMatches = results;
+      this.allSchedules = this.allMatches[1].events;
+      console.log(this.allMatches);
+    }, error => {
+      this.errorMsg = true;
+      this.toastr.error(error);
     });
-    this.getNext15Schedules();
-    this.getLigue1Next15Schedules();
-    this.getBundesligaNext15Schedules();
-    this.getSerieANext15Schedules();
-    this.getLigue1Next15Schedules();
-    this.getLaLigaNext15Schedules();
   }
 
-  getNext15Schedules() {
-    this.sportservice.getSchedules('4328').then((data: any) => {
-      this.allEplSchedules = data.events;
-      this.allSchedules = this.allEplSchedules;
-    }).catch((error: any) => {
-      this.toastr.error(error.message);
-    });
-  }
-  getLigue1Next15Schedules() {
-    this.sportservice.getSchedules('4334').then((data: any) => {
-      this.allLigue1Schedules = data.events;
-    }).catch((error: any) => {
-      this.toastr.error(error.message);
-    });
-  }
-  getBundesligaNext15Schedules() {
-    this.sportservice.getSchedules('4331').then((data: any) => {
-      this.allBundesligaSchedules = data.events;
-    }).catch((error: any) => {
-      this.toastr.error(error.message);
-    });
-  }
-  getSerieANext15Schedules() {
-    this.sportservice.getSchedules('4332').then((data: any) => {
-      this.allSerieASchedules = data.events;
-    }).catch((error: any) => {
-      this.toastr.error(error.message);
-    });
-  }
-  getLaLigaNext15Schedules() {
-    this.sportservice.getSchedules('4335').then((data: any) => {
-      this.allLaLigaSchedules = data.events;
-    }).catch((error: any) => {
-      this.toastr.error(error.message);
-    });
-  }
+  // getNext15Schedules() {
+  //   this.sportservice.getSchedules('4328').then((data: any) => {
+  //     this.loading = false;
+  //     this.allEplSchedules = data.events;
+  //     this.allSchedules = this.allEplSchedules;
+  //   }).catch((error: any) => {
+  //     this.errorMsg = true;
+  //     this.toastr.error('An errror has occured');
+  //   });
+  // }
+  // getLigue1Next15Schedules() {
+  //   this.sportservice.getSchedules('4334').then((data: any) => {
+  //     this.allLigue1Schedules = data.events;
+  //   }).catch((error: any) => {
+  //       this.toastr.error('An errror has occured');
+  //   });
+  // }
+  // getBundesligaNext15Schedules() {
+  //   this.sportservice.getSchedules('4331').then((data: any) => {
+  //     this.allBundesligaSchedules = data.events;
+  //   }).catch((error: any) => {
+  //       this.toastr.error('An errror has occured');
+  //   });
+  // }
+  // getSerieANext15Schedules() {
+  //   this.sportservice.getSchedules('4332').then((data: any) => {
+  //     this.allSerieASchedules = data.events;
+  //   }).catch((error: any) => {
+  //       this.toastr.error('An errror has occured');
+  //   });
+  // }
+  // getLaLigaNext15Schedules() {
+  //   this.sportservice.getSchedules('4335').then((data: any) => {
+  //     this.allLaLigaSchedules = data.events;
+  //   }).catch((error: any) => {
+  //       this.toastr.error('An errror has occured');
+  //   });
+  // }
   clicked(event, evnt) {
-    // const matchevent = {
-    //   match: evnt,
-    //   outcome: event._elementRef.nativeElement.value
-    // };
     this.matchEvent = {
       match: evnt,
       outcome: event._elementRef.nativeElement.value
     };
-    // console.log(this.matchEvent);
     localStorage.setItem('bordman-slip', JSON.stringify(this.matchEvent));
     this.dataservice.shareBetslip(this.matchEvent);
   }
   onValChange(eev) {
     switch (eev) {
       case 'epl':
-        this.allSchedules = this.allEplSchedules;
+        this.allSchedules = this.allMatches[1].events;
         break;
       case 'ligue-1':
-        this.allSchedules = this.allLigue1Schedules;
+        this.allSchedules = this.allMatches[0].events;
         break;
       case 'la-liga':
-        this.allSchedules = this.allLaLigaSchedules;
+        this.allSchedules = this.allMatches[4].events;
         break;
       case 'bundesliga':
-        this.allSchedules = this.allBundesligaSchedules;
+        this.allSchedules = this.allMatches[2].events;
         break;
       case 'serie-a':
-        this.allSchedules = this.allSerieASchedules;
+        this.allSchedules = this.allMatches[3].events;
         break;
     }
   }

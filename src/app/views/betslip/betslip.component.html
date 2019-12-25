@@ -39,15 +39,14 @@
             </div>
         </mat-card-content>
         <mat-card-actions *ngIf="betslip">
-               <div class="d-flex justify-content-between">
-                    <button mat-stroked-button style="width: 45%" class="btn-lg" (click)="removeBet()">
-                            Cancel
-                        </button>
-                    <button mat-flat-button color="primary" style="width: 45%" class="btn-lg" (click)="addToslip(betslip)">
-                            Place Bet
-                        </button>
-                
-               </div>
+            <div class="d-flex justify-content-between">
+                <button mat-stroked-button style="width: 45%" class="btn-lg" (click)="removeBet()">
+                    Cancel
+                </button>
+                <button mat-flat-button color="primary" style="width: 45%" class="btn-lg" (click)="addToslip(betslip)">
+                    Place Bet
+                </button>
+            </div>
         </mat-card-actions>
     </mat-card>
 </section>

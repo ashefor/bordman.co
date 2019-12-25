@@ -14,7 +14,10 @@ declare var swal: any;
 
 export class BetslipComponent implements OnInit {
   betSlip: any;
-  @ViewChild('navbar', {static: false}) navbar: NavbarComponent;
+  invalidamt = false;
+  disabled: boolean;
+  @ViewChild('navbar', { static: false }) navbar: NavbarComponent;
+  @ViewChild('stakeamount', { static: false }) stakeamount;
   constructor(
     private authservice: AuthService,
     private sportservice: SportsService,
@@ -25,34 +28,46 @@ export class BetslipComponent implements OnInit {
     this.dataservice.viewBetSlip.subscribe(data => {
       if (data) {
         this.betSlip = data;
+      } else {
+        this.betSlip = {
+          match: 'evnt',
+          outcome: 'arsenal'
+        };
       }
     });
   }
 
   addToslip(slip) {
-    if (this.authservice.isLoggedIn) {
-      slip.createdAt = Date.now();
-      this.sportservice.addBets(slip).then(() => {
-        this.removeBet();
-      });
+    const amount = this.stakeamount.nativeElement.value;
+    if (amount < 1000) {
+      this.invalidamt = true;
+      this.disabled = true;
     } else {
-      swal('You need to be signed in for that', {
-        icon: 'info',
-        buttons: {
-          cancel: true,
-          confirm: 'Login',
-        },
-      }).then((data: any) => {
-        if (data) {
-          this.emitterService.openLoginModal();
-        }
-      });
+      if (this.authservice.isLoggedIn) {
+        slip.createdAt = Date.now();
+        // this.sportservice.addBets(slip).then(() => {
+        //   this.removeBet();
+        // });
+      } else {
+        swal('You need to be signed in for that', {
+          icon: 'info',
+          buttons: {
+            cancel: true,
+            confirm: 'Login',
+          },
+        }).then((data: any) => {
+          if (data) {
+            this.emitterService.openLoginModal(0);
+          }
+        });
+      }
     }
   }
   removeBet() {
     this.betSlip = null;
   }
-  showInput(event){
-    console.log(event.target.value);
+  showInput(event) {
+    this.invalidamt = false;
+    this.disabled = false;
   }
 }

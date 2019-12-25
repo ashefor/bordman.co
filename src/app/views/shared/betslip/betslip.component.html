@@ -25,6 +25,7 @@
                     <div class="align-self-center">Amount</div>
                     <input type="number" placeholder="amount" size="3" (keyup)="showInput($event)" #stakeamount>
                 </div>
+                <p *ngIf="invalidamt" class="erroramt">Please enter a value no less than 1000</p>
             </div>
             <hr>
             <div class="ny-3">
@@ -48,7 +49,7 @@
         </div>
     </mat-card-content>
     <mat-card-actions *ngIf="betSlip">
-        <button mat-flat-button color="primary" class="btn-lg btn-block" (click)="addToslip(betSlip)">
+        <button mat-flat-button color="primary" [disabled]="disabled" class="btn-lg btn-block" (click)="addToslip(betSlip)">
             Place bet
         </button>
     </mat-card-actions>

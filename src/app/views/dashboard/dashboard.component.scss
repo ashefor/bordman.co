@@ -47,7 +47,7 @@ a{
 }
 .main_content{
     display: grid;
-    grid-template-columns: 200px auto;
+    grid-template-columns: 180px auto;
     grid-gap: 20px;
 
     hr{
@@ -87,12 +87,12 @@ a{
     a{
         &:hover{
             background: rgba(0, 0, 255, 0.3);
-            color: white;
+            color: #F9FAFF;
         }
     }
 }
 .activelink{
-    color: white;
+    color: #F9FAFF;
     background: rgba(0, 0, 255)
 }
 @media (max-width: 767px){

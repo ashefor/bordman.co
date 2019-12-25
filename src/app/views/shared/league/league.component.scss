@@ -60,6 +60,11 @@ a{
     // grid-template-columns: 200px auto 200px;
     // grid-gap: 20px;
 
+    .card{
+        border: none;
+        border-radius: inherit;
+        background-color: #F9FAFF;
+    }
    .main{
         hr{
             margin-top: 0.25rem;
@@ -69,13 +74,16 @@ a{
     .betCollection{
         display: grid;
         grid-template-columns: 2fr .5fr 2fr;
-        // grid-gap: 10px;
+        grid-gap: 5px;
     
         .home{
             text-align: right
         }
         .draw{
             text-align: center
+        }
+        button{
+            background-color: #F58634;
         }
     }
 

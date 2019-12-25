@@ -11,10 +11,7 @@ export class EventEmittersService {
   subsVar: Subscription;
   constructor() { }
 
-  openLoginModal() {
-    this.invokeLoginFunction.emit();
-  }
-  openSidebar() {
-    this.invokeSidebarFunction.emit();
+  openLoginModal(selectedindex: number) {
+    this.invokeLoginFunction.emit(selectedindex);
   }
 }

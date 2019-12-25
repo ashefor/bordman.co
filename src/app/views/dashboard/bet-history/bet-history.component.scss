@@ -23,7 +23,7 @@
 }
 .betHistory{
     display: grid;
-    grid-template-columns: auto  200px;
+    grid-template-columns: auto 250px;
     grid-gap: 20px;
 
     .main{
@@ -67,7 +67,7 @@
 .bet-status{
     margin: 10px 0;
     background: black;
-    color: white;
+    color: #F9FAFF;
     padding: 5px 10px;
     width: 100%;
     text-align: right

@@ -4,13 +4,14 @@ a:hover{
 .example-card {
   background: #151D31;
   padding: 5px;
+  border-radius: inherit;
 
   mat-card-header {
-    color: white;
+    color: #F9FAFF;
   }
 
   mat-card-content {
-    background: white;
+    background: #F9FAFF;
     padding: 10px;
     margin: 0;
 
@@ -47,6 +48,12 @@ a:hover{
     input[type=number] {
         -moz-appearance:textfield;
       }
+    .erroramt{
+        font-size: 10px;
+        text-align: right;
+        margin: 0;
+        color: red;
+    }
   }
 
   mat-card-actions {

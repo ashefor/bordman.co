@@ -27,8 +27,8 @@ export class NavbarComponent implements OnInit {
     this.initialiseForm();
     this.initialiseRegForm();
     if (this.emitterService.subsVar === undefined) {
-      this.emitterService.subsVar = this.emitterService.invokeLoginFunction.subscribe(() => {
-        this.openThisModal(0);
+      this.emitterService.subsVar = this.emitterService.invokeLoginFunction.subscribe((selectedindex) => {
+        this.openThisModal(selectedindex);
       });
     }
   }
