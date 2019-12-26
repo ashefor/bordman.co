@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   title = 'boardman';
   @ViewChild('openmodal', { static: false }) openModal: ElementRef<HTMLElement>;
   @ViewChild('tabGroup', { static: false }) tabGroup;
-  @ViewChild('sidenav', {static: false}) sideNav;
+  @ViewChild('sidenav', { static: false }) sideNav;
   loginForm: FormGroup;
   registerForm: FormGroup;
   hide = true;
@@ -23,15 +23,10 @@ export class AppComponent implements OnInit {
   active = true;
   betslip;
   constructor(public authservice: AuthService,
-              private formbuilder: FormBuilder,
-              private router: Router,
-              private toastr: ToastrService,
               public dataservice: DataService) {
-   }
+  }
 
   ngOnInit() {
-    this.initialiseForm();
-    this.initialiseRegForm();
     this.dataservice.viewBetSlip.subscribe(data => {
       if (data) {
         this.betslip = data;
@@ -44,68 +39,9 @@ export class AppComponent implements OnInit {
       }
     });
   }
-  initialiseForm() {
-    this.loginForm = this.formbuilder.group({
-      email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', Validators.required],
-    });
-  }
-
-  initialiseRegForm() {
-    this.registerForm = this.formbuilder.group({
-      // name: ['', Validators.required],
-      username: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-      // confirmPassword: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-      // checked: ['', Validators.required]
-    });
-  }
-  register(formvalue) {
-    this.loading = true;
-    console.log(formvalue.username, formvalue.email, formvalue.password);
-    this.authservice.signUp(formvalue.username, formvalue.email, formvalue.password).then((value: any) => {
-      if (value.user) {
-        this.loading = false;
-        this.closeModal();
-      }
-    }).catch((error) => {
-      this.loading = false;
-      this.toastr.error(error.message);
-    });
-  }
   get LoggedIn() {
     return this.authservice.isLoggedIn;
   }
-  togglePwd() {
-    this.hide = !this.hide;
-  }
-
-  login(formvalue) {
-    this.loading = true;
-    this.authservice.signIn(formvalue.email, formvalue.password).then((value: any) => {
-      if (value.user) {
-        this.loading = false;
-        this.closeModal();
-      }
-    }).catch((error) => {
-      this.loading = false;
-      this.toastr.error(error.message);
-    });
-  }
-
-  openThisModal() {
-    this.openModal.nativeElement.classList.add('open');
-    // this.tabGroup.selectedIndex = 0;
-  }
-  closeModal() {
-    this.openModal.nativeElement.classList.remove('open');
-  }
-  // tabChanged(tabChangeEvent: MatTabChangeEvent){
-  //   console.log('tabChangeEvent => ', tabChangeEvent);
-  //   console.log('index => ', tabChangeEvent.index);
-  // }
-
   openSidebar() {
     this.sideNav.open();
   }

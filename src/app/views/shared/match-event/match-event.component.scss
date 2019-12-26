@@ -77,14 +77,25 @@ a{
    }
     .betCollection{
         display: grid;
-        grid-template-columns: 2fr .5fr 2fr;
+        grid-template-columns: 2.5fr .5fr 2.5fr;
         grid-gap: 5px;
     
         .home{
-            text-align: right
+            text-align: right;
+            line-height: 18px;
+            display: flex;
+            margin-left: auto;
+            align-items: center
         }
         .draw{
-            text-align: center
+            text-align: center;
+            line-height: 18px;
+            display: flex
+        }
+        .away{
+            line-height: 18px;
+            display: flex;
+            align-items: center
         }
         button{
             background-color: #F58634;

@@ -67,30 +67,5 @@ export class SportsComponent implements OnInit {
     this.dataservice.shareBetslip(matchevent);
   }
 
-  addToslip(slip) {
-    if (this.authservice.isLoggedIn) {
-      slip.createdAt = Date.now();
-      this.sportservice.addBets(slip).then(res => {
-        this.removeBet();
-      });
-    } else {
-      swal('You need to be signed in for that', {
-        icon: 'info',
-        buttons: {
-          cancel: true,
-          confirm: 'Login',
-        },
-      }).then(data => {
-        if (data) {
-          this.appcomponent.openThisModal();
-        }
-      });
-    }
-  }
-  removeBet() {
-    this.betslip = null;
-    localStorage.removeItem('bordman-slip');
-    this.dataservice.shareBetslip(null);
-  }
 
 }

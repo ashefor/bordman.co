@@ -22,8 +22,8 @@
                         </div>
                         <div class="col-lg-10">
                             <div class="betCollection">
-                                <div class="home">
-                                    <span class="outcome">
+                                <div class="home d-flex">
+                                    <span class="outcome mr-1">
                                         {{event.strHomeTeam}}
                                     </span>
                                     <button mat-flat-button #win color="primary" class="betoutcome"
@@ -37,12 +37,12 @@
                                         Draw
                                     </button>
                                 </div>
-                                <div class="">
+                                <div class="away">
                                     <button mat-flat-button #away color="primary" class="betoutcome"
                                         (click)="clicked(away, event.strEvent)" [value]="event.strAwayTeam">
                                         Away
                                     </button>
-                                    <span class="outcome">
+                                    <span class="outcome ml-1">
                                         {{event.strAwayTeam}}
                                     </span>
                                 </div>

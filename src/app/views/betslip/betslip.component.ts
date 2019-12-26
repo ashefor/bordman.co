@@ -42,7 +42,7 @@ export class BetslipComponent implements OnInit {
         },
       }).then(data => {
         if (data) {
-          this.appcomponent.openThisModal();
+          // this.appcomponent.openThisModal();
         }
       });
     }

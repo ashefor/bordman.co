@@ -60,7 +60,6 @@ export class LandingComponent implements OnInit {
     this.sportservice.getSchedule().subscribe(results => {
       this.allMatches = results;
       this.allSchedules = this.allMatches[1].events;
-      console.log(this.allMatches);
     }, error => {
       this.errorMsg = true;
       this.toastr.error('An error has occured');

@@ -49,19 +49,20 @@ export class DashboardComponent implements OnInit {
       this.sportservice.addBets(slip).then(res => {
         this.removeBet();
       });
-    } else {
-      swal('You need to be signed in for that', {
-        icon: 'info',
-        buttons: {
-          cancel: true,
-          confirm: 'Login',
-        },
-      }).then(data => {
-        if (data) {
-          this.appcomponent.openThisModal();
-        }
-      });
-    }
+    } 
+    // else {
+    //   swal('You need to be signed in for that', {
+    //     icon: 'info',
+    //     buttons: {
+    //       cancel: true,
+    //       confirm: 'Login',
+    //     },
+    //   }).then(data => {
+    //     if (data) {
+    //       this.appcomponent.openThisModal();
+    //     }
+    //   });
+    // }
   }
   removeBet() {
     this.betslip = null;
