@@ -112,6 +112,10 @@ p {
   .border-secondary {
     border-radius: inherit;
   }
+
+  .availablebets {
+    border: 1px solid;
+  }
 }
 
 mat-button-toggle.mat-button-toggle-checked {
@@ -449,6 +453,34 @@ mat-button-toggle.mat-button-toggle-checked {
   }
 }
 
+.loadingdiv {
+  height: 150px;
+  position: relative;
+
+  .loadingspinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.errordiv {
+  height: 150px;
+  position: relative;
+
+  .errormsg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+  }
+}
+
 .av_bets {
   background-color: inherit;
 
@@ -461,33 +493,33 @@ mat-button-toggle.mat-button-toggle-checked {
     }
   }
 
-  .loadingdiv {
-    height: 150px;
-    position: relative;
+  //   .loadingdiv {
+  //     height: 150px;
+  //     position: relative;
 
-    .loadingspinner {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 100%;
-      text-align: center;
-      transform: translate(-50%, -50%);
-    }
-  }
+  //     .loadingspinner {
+  //       position: absolute;
+  //       left: 50%;
+  //       top: 50%;
+  //       width: 100%;
+  //       text-align: center;
+  //       transform: translate(-50%, -50%);
+  //     }
+  //   }
 
-  .errordiv {
-    height: 150px;
-    position: relative;
+  //   .errordiv {
+  //     height: 150px;
+  //     position: relative;
 
-    .errormsg {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 100%;
-      text-align: center;
-      transform: translate(-50%, -50%);
-    }
-  }
+  //     .errormsg {
+  //       position: absolute;
+  //       left: 50%;
+  //       top: 50%;
+  //       width: 100%;
+  //       text-align: center;
+  //       transform: translate(-50%, -50%);
+  //     }
+  //   }
 
   .fixtures {
     height: 100%;

@@ -53,18 +53,40 @@ export class SportsService {
   }
   addBets(betslip) {
     const userid = JSON.parse(localStorage.getItem('user'));
-    // return this.db.list(`/allbets/${userid.uid}`).push(betslip);
-    console.log(this.getReference());
-    return this.db.object(`/allbets/${this.getReference()}/${userid.uid}`).set(betslip);
+    const pushId = this.db.createPushId();
+    // const item = {...betslip, id: pushId};
+    const ticket = {
+      id: pushId,
+      match: betslip.match,
+      outcome: betslip.outcome,
+      stake: betslip.stake,
+      creatorId: userid.uid,
+      createdAt: betslip.createdAt
+    };
+    const userticket = {
+      ticketId: pushId,
+      outcome: betslip.outcome,
+      stake: betslip.stake,
+      createdAt: betslip.createdAt
+    };
+    // return this.db.list(`usertickets/${userid.uid}`).push(betslip).then(res => console.log(res));
+    // return this.db.list('tickets').push(betslip).then(res => {
+    //   return this.db.list(`usertickets/${userid.uid}`).set(res.key, {ticketID: res.key});
+    //   // return this.db.list(`usertickets/${userid.uid}`).set('.', res.key);
+    // });
+    return this.db.list('tickets').set(ticket.id, ticket).then(() => {
+      return this.db.list(`usertickets/${userid.uid}`).set(ticket.id, {...userticket});
+    });
+    // return this.db.object('tickets').set(betslip);
   }
   // addBets(betslip){
   //   const userid = JSON.parse(localStorage.getItem('user'));
   //   return this.firestore.collection('tickets').doc(userid.uuid).collection('').add(betslip);
   // }
-  // getAllBetsDatas(){
-  //   const userid = JSON.parse(localStorage.getItem('user'))
-  //   return this.db.list(`/allbets/${userid.uid}`).snapshotChanges()
-  // }
+  getAllBetsDatas() {
+    const userid = JSON.parse(localStorage.getItem('user'));
+    return this.db.list('tickets').valueChanges();
+  }
   getAllBets() {
     const userid = JSON.parse(localStorage.getItem('user'));
     return this.db.list(`/allbets/${userid.uid}`).valueChanges();

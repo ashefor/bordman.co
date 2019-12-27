@@ -11,8 +11,15 @@
   margin: 0;
 }
 
+:host ::ng-deep mat-accordion{
+    background: #F9FAFF;
+}
+:host ::ng-deep mat-expansion-panel {
+    background-color: inherit;
+  }
 :host ::ng-deep .mat-expansion-panel-body {
   padding: unset;
+  background-color: inherit;
   font-size: 12px
 }
 

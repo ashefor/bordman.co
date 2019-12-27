@@ -15,13 +15,15 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { BetslipComponent } from './betslip/betslip.component';
 import { MatchEventComponent } from './match-event/match-event.component';
 import { ComponentsModule } from 'src/app/components/components.module';
-
+import { TimeAgoPipe } from 'src/app/pipes/time-ago.pipe';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
   declarations: [
     UtcDatePipe,
     BetslipComponent,
-    MatchEventComponent
+    MatchEventComponent,
+    TimeAgoPipe
   ],
   imports: [
     CommonModule,
@@ -34,10 +36,12 @@ import { ComponentsModule } from 'src/app/components/components.module';
     MatIconModule,
     MatButtonToggleModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    SlickCarouselModule
   ],
   exports: [
     UtcDatePipe,
+    TimeAgoPipe,
     NgxPaginationModule,
     MatButtonModule,
     MatExpansionModule,
@@ -49,7 +53,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     MatSidenavModule,
     MatToolbarModule,
     BetslipComponent,
-    MatchEventComponent
+    MatchEventComponent,
+    SlickCarouselModule
   ]
 })
 export class SharedModule { }

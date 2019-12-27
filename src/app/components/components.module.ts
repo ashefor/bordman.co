@@ -6,11 +6,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../views/shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { LeaguesComponent } from './leagues/leagues.component';
+import { AvailableBetsComponent } from './available-bets/available-bets.component';
 
 
 
 @NgModule({
-  declarations: [FooterComponent, NavbarComponent, LeaguesComponent],
+  declarations: [FooterComponent, NavbarComponent, LeaguesComponent, AvailableBetsComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -20,7 +21,8 @@ import { LeaguesComponent } from './leagues/leagues.component';
   exports: [
     FooterComponent,
     NavbarComponent,
-    LeaguesComponent
+    LeaguesComponent,
+    AvailableBetsComponent
   ]
 })
 export class ComponentsModule { }

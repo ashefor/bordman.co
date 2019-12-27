@@ -8,7 +8,6 @@ import { AppComponent } from 'src/app/app.component';
 import { Title } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 import { betslip } from 'src/app/models/betslip';
-import {forkJoin} from 'rxjs';
 declare var swal: any;
 
 @Component({
@@ -17,6 +16,21 @@ declare var swal: any;
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
+  slides = [
+    {img: 'http://placehold.it/350x150/777777'},
+    {img: 'http://placehold.it/350x150/777777'},
+    {img: 'http://placehold.it/350x150/777777'},
+    {img: 'http://placehold.it/350x150/777777'},
+    {img: 'http://placehold.it/350x150/777777'}
+  ];
+  slideConfig = {
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    dots: true,
+    loop: true,
+    autoplay: true,
+    infinite: false,
+  };
   betslip;
   nobetslip;
   matchEvent: betslip;
@@ -26,6 +40,7 @@ export class LandingComponent implements OnInit {
   errorMsg = false;
   loading = true;
   allMatches: Array<any>;
+  availableBets: Array<any>;
   allEplSchedules: Array<any>;
   allLigue1Schedules: Array<any>;
   allBundesligaSchedules: Array<any>;
@@ -57,8 +72,15 @@ export class LandingComponent implements OnInit {
     // this.getSerieANext15Schedules();
     // this.getLigue1Next15Schedules();
     // this.getLaLigaNext15Schedules();
+    this.sportservice.getAllBetsDatas().subscribe(res => {
+      this.availableBets = res;
+      console.log(this.availableBets);
+    }, error => {
+      this.toastr.error('An error has occured');
+    });
     this.sportservice.getSchedule().subscribe(results => {
       this.allMatches = results;
+      // console.log(results);
       this.allSchedules = this.allMatches[1].events;
     }, error => {
       this.errorMsg = true;

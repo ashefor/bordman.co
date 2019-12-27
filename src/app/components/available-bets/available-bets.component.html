@@ -1,0 +1,28 @@
+<div class="allbets">
+    <div class="availablebets-header my-2">Available bets</div>
+    <div class="availablebets loadingdiv" *ngIf="!availableBets">
+        <div class="loadingspinner">
+            <i class="fa fa-spin fa-spinner"></i>
+            <span class="d-block">Loading</span>
+        </div>
+    </div>
+    <div class="availablebets loadingdiv" *ngIf="availableBets && availableBets.length === 0">
+        <div class="loadingspinner">
+            <span class="d-block">No Bets</span>
+        </div>
+    </div>
+    <div *ngIf="availableBets && availableBets.length">
+        <a href="" *ngFor="let bet of availableBets.reverse()">
+            <div class="card">
+                <div class="card-body bet-results">
+                    <div class="small-text">{{bet.createdAt | timeAgo}}</div>
+                    <p>{{bet.match}}</p>
+                    <div class="bet-outcome">
+                        <span class="float-letf">User</span>
+                        <span class="text-right float-right" style="color: #2BD55C;">{{bet.outcome}}</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
