@@ -1,0 +1,111 @@
+<div class="container">
+    <div class="pt-5 tickets_wrapper">
+        <div>
+            <app-leagues></app-leagues>
+        </div>
+        <div style="border: 1px solid;">
+            <div *ngIf="!ticket" class="loadingdiv">
+                <div class="loadingspinner">
+                    <i class="fa fa-spin fa-spinner"></i>
+                    <span class="d-block">Loading</span>
+                </div>
+            </div>
+            <div *ngIf="ticket">
+                <div *ngIf="userId !== ticket.creatorId" class="card border-secondary"
+                    style="background-color: inherit;">
+                    <div class="card-header">
+                        Ticket Details
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <h4 class="card-title">
+                                    {{ticket.match}}
+                                </h4>
+                                <span class="username">User</span>
+                            </div>
+                            <div class="col-3">
+                                <span>{{ticket.createdAt | timeAgo}}</span>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="row my-3">
+                            <dt class="col-5 card-text">Outcome</dt>
+                            <div class="col-7 card-text lead">{{ticket.outcome | titlecase}}</div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-5 card-text m-auto">Your Counter Outcome</div>
+                            <div class="col-7 card-text">
+                                <select (change)="counterOption($event)" class="form-control">
+                                    <option selected disabled>Choose one</option>
+                                    <option *ngFor="let outcome of availableoptions" [value]="outcome">
+                                        {{outcome | titlecase}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-5 card-text">Stake amount</div>
+                            <div class="col-7 card-text lead">
+                                {{ticket.stake}}
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-5 card-text">Total Prize money</div>
+                            <div class="col-7 card-text lead">
+                                {{ticket.potPrice}}
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="bet-check my-3">
+                            <input type="checkbox" class="bet-check-input" id="betcheck">
+                            <label class="bet-check-label ml-1" for="betcheck">I agree to all</label>
+                        </div>
+                        <button class="btn btn-primary float-right">Join</button>
+                    </div>
+                </div>
+
+                <div *ngIf="userId === ticket.creatorId" class="card border-secondary"
+                    style="background-color: inherit;">
+                    <div class="card-header">
+                        Ticket Details
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <h4 class="card-title">
+                                    {{ticket.match}}
+                                </h4>
+                                <span class="username">User</span>
+                            </div>
+                            <div class="col-3">
+                                <span>{{ticket.createdAt | timeAgo}}</span>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="row my-3">
+                            <div class="col-5 card-text">Outcome</div>
+                            <div class="col-7 card-text lead">{{ticket.outcome | titlecase}}</div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-5 card-text">Stake amount</div>
+                            <div class="col-7 card-text lead">
+                                {{ticket.stake}}
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-5 card-text">Total Prize money</div>
+                            <div class="col-7 card-text lead">
+                                {{ticket.potPrice}}
+                            </div>
+                        </div>
+                        <hr/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <app-betslip></app-betslip>
+        </div>
+    </div>
+</div>

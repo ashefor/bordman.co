@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { BetslipComponent } from './views/betslip/betslip.component';
 import { LoggedInGuard } from './guards/logged-in.guard';
 import { AuthGuard } from './guards/auth.guard';
+import { TicketsComponent } from './views/tickets/tickets.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,9 @@ const routes: Routes = [
   },
   {
     path: 'bet-slip', component: BetslipComponent
+  },
+  {
+    path: 'tickets/:id', component: TicketsComponent
   },
   {
     path: '**', loadChildren: () => import('./views/pagenotfound/pagenotfound.module').then((m) => m.PagenotfoundModule)

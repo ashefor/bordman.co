@@ -21,12 +21,14 @@ import { ToastrModule } from 'ngx-toastr';
 import { BetslipComponent } from './views/betslip/betslip.component';
 import { ComponentsModule } from './components/components.module';
 import { EventEmittersService } from './services/event-emitters.service';
+import { TicketsComponent } from './views/tickets/tickets.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     BetslipComponent,
+    TicketsComponent,
   ],
   imports: [
     BrowserModule,

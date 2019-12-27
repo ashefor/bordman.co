@@ -7,11 +7,19 @@ import { SharedModule } from '../views/shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { LeaguesComponent } from './leagues/leagues.component';
 import { AvailableBetsComponent } from './available-bets/available-bets.component';
+import { BetslipComponent } from './betslip/betslip.component';
+import { MatchEventComponent } from './match-event/match-event.component';
 
 
 
 @NgModule({
-  declarations: [FooterComponent, NavbarComponent, LeaguesComponent, AvailableBetsComponent],
+  declarations: [
+    FooterComponent,
+    NavbarComponent,
+    LeaguesComponent,
+    AvailableBetsComponent,
+    BetslipComponent,
+    MatchEventComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -22,6 +30,8 @@ import { AvailableBetsComponent } from './available-bets/available-bets.componen
     FooterComponent,
     NavbarComponent,
     LeaguesComponent,
+    BetslipComponent,
+    MatchEventComponent,
     AvailableBetsComponent
   ]
 })

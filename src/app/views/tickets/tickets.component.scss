@@ -1,0 +1,72 @@
+.loadingdiv {
+  height: 100%;
+  background: #F9FAFF;
+  position: relative;
+
+  .loadingspinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.errordiv {
+  height: 100%;
+  position: relative;
+
+  .errormsg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+select.form-control {
+  width: 300px;
+  appearance: none;
+  -webkit-appearance: none;
+  background: #F9FAFF url(../../../assets/img/caret.svg) no-repeat;
+  background-position: calc(100% - 10px) center;
+  background-size: 12px;
+  padding-right: 30px !important;
+}
+
+.tickets_wrapper {
+  display: grid;
+  grid-template-columns: 180px auto 250px;
+  grid-gap: 20px;
+  font-family: 'avenir', sans-serif;
+
+  hr {
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .border-secondary {
+    border-radius: inherit;
+  }
+
+  .card {
+    .username {
+      color: #2BD55C;
+    }
+  }
+
+  button {
+    background-color: #2BD55C;
+    border: none;
+    outline: none;
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
+}
