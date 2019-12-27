@@ -12,14 +12,14 @@
         </div>
     </div>
     <div *ngIf="availableBets && availableBets.length">
-        <a href="" *ngFor="let bet of availableBets.reverse()">
+        <a [routerLink]="['/tickets/' + bet.id]" *ngFor="let bet of availableBets.reverse()">
             <div class="card">
                 <div class="card-body bet-results">
                     <div class="small-text">{{bet.createdAt | timeAgo}}</div>
                     <p>{{bet.match}}</p>
                     <div class="bet-outcome">
                         <span class="float-letf">User</span>
-                        <span class="text-right float-right" style="color: #2BD55C;">{{bet.outcome}}</span>
+                        <span class="text-right float-right" style="color: #2BD55C;">{{bet.outcome | titlecase}}</span>
                     </div>
                 </div>
             </div>

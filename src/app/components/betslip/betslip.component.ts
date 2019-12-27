@@ -34,17 +34,10 @@ export class BetslipComponent implements OnInit {
     });
   }
 
-  getTicketId = () => {
-    let text = '';
-    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-    for (let i = 0; i < 7; i++) {
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    return text;
-  }
   addToslip(slip) {
     const amount = this.stakeamount.nativeElement.value;
+    const potprice = (amount * 2) - (amount / 10);
+    console.log(potprice);
     if (amount < 1000) {
       this.invalidamt = true;
       this.disabled = true;
@@ -52,6 +45,7 @@ export class BetslipComponent implements OnInit {
       if (this.authservice.isLoggedIn) {
         slip.createdAt = Date.now();
         slip.stake = amount;
+        slip.potPrice = potprice;
         console.log(slip);
         this.sportservice.addBets(slip).then(() => {
           this.removeBet();

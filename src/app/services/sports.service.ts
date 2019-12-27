@@ -61,7 +61,8 @@ export class SportsService {
       outcome: betslip.outcome,
       stake: betslip.stake,
       creatorId: userid.uid,
-      createdAt: betslip.createdAt
+      createdAt: betslip.createdAt,
+      potPrice: betslip.potPrice
     };
     const userticket = {
       ticketId: pushId,
@@ -86,6 +87,9 @@ export class SportsService {
   getAllBetsDatas() {
     const userid = JSON.parse(localStorage.getItem('user'));
     return this.db.list('tickets').valueChanges();
+  }
+  viewSingleTicket(ticketId) {
+    return this.db.object(`tickets/${ticketId}`).valueChanges();
   }
   getAllBets() {
     const userid = JSON.parse(localStorage.getItem('user'));
