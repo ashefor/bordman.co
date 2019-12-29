@@ -38,8 +38,9 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/']);
         }
       }
-    }).catch((error: any) => {
+    }).catch((err: any) => {
       this.loading = false;
+      this.toastr.error(err.message);
     });
   }
 }

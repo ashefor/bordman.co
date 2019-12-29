@@ -30,6 +30,8 @@ export class BetslipComponent implements OnInit {
     this.dataservice.viewBetSlip.subscribe(data => {
       if (data) {
         this.betSlip = data;
+      } else {
+        this.betSlip = null;
       }
     });
   }
@@ -37,16 +39,15 @@ export class BetslipComponent implements OnInit {
   addToslip(slip) {
     const amount = this.stakeamount.nativeElement.value;
     const potprice = (amount * 2) - (amount / 10);
-    console.log(potprice);
     if (amount < 1000) {
       this.invalidamt = true;
       this.disabled = true;
     } else {
       if (this.authservice.isLoggedIn) {
         slip.createdAt = Date.now();
-        slip.stake = amount;
+        slip.openingStake = amount;
         slip.potPrice = potprice;
-        console.log(slip);
+        slip.open = true;
         this.sportservice.addBets(slip).then(() => {
           this.removeBet();
         });
@@ -67,6 +68,7 @@ export class BetslipComponent implements OnInit {
   }
   removeBet() {
     this.betSlip = null;
+    this.dataservice.shareBetslip(this.betSlip);
   }
   showInput(event) {
     this.invalidamt = false;

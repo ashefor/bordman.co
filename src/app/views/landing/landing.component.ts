@@ -74,14 +74,14 @@ export class LandingComponent implements OnInit {
     // this.getLaLigaNext15Schedules();
     this.sportservice.getAllBetsDatas().subscribe(res => {
       this.availableBets = res;
-      console.log(this.availableBets);
     }, error => {
       this.toastr.error('An error has occured');
     });
     this.sportservice.getSchedule().subscribe(results => {
-      this.allMatches = results;
-      // console.log(results);
-      this.allSchedules = this.allMatches[1].events;
+      if(results) {
+        this.allMatches = results;
+        this.allSchedules = this.allMatches[1].events;
+      }
     }, error => {
       this.errorMsg = true;
       this.toastr.error('An error has occured');

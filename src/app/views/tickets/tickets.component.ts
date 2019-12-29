@@ -14,6 +14,8 @@ export class TicketsComponent implements OnInit {
   ticket: any;
   availableoptions = [];
   userId: string;
+  newBetOutcome: string;
+  disableSelect: boolean;
   constructor(private route: ActivatedRoute, private sportservice: SportsService, private authservice: AuthService) {
     if (this.authservice.isLoggedIn) {
       this.userId = JSON.parse(localStorage.getItem('user')).uid;
@@ -35,16 +37,23 @@ export class TicketsComponent implements OnInit {
         const options = this.ticket.match.split(' vs ');
         this.availableoptions.push('draw', options[0], options[1]);
         this.availableoptions = this.availableoptions.filter(opt => opt !== this.ticket.outcome);
-        console.log(this.availableoptions);
       } else if (this.ticket.outcome === 'draw') {
         const options = this.ticket.match.split(' vs ');
         this.availableoptions.push(options[0], options[1]);
-        console.log(this.availableoptions);
       }
     });
   }
 
   counterOption(event) {
     console.log(event.target.value);
+    this.newBetOutcome = event.target.value;
+  }
+
+  joinBet(ticket) {
+    if (this.newBetOutcome) {
+      this.sportservice.addUserToBet(ticket, this.newBetOutcome).then(() => {
+        this.disableSelect = true;
+      });
+    }
   }
 }

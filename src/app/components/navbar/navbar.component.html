@@ -61,51 +61,113 @@
     <div class="popup">
       <a class="close" role="button" (click)="closeModal()">&times;</a>
       <div id="logreg-forms">
-        <mat-tab-group mat-align-tabs="center" #tabGroup [selectedIndex]="activeTab">
-          <mat-tab label="Log In" isActive>
+        <!-- <mat-tab-group mat-align-tabs="center" #tabGroup [selectedIndex]="activeTab" (selectedIndexChange)="tabChange($event)">
+          <mat-tab label="Log In">
+          <ng-template matTabContent>
             <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
-              <div class="container">
-                <div class="row social-login mb-3">
-                  <a role="button" class="w-100 btn twitter-btn"><span><i class="fa fa-twitter"></i> &nbsp;
-                      twitter</span></a>
+                <div class="container">
+                  <div class="row social-login mb-3">
+                    <a role="button" class="w-100 btn twitter-btn"><span><i class="fa fa-twitter"></i> &nbsp;
+                        twitter</span></a>
+                  </div>
                 </div>
-              </div>
-              <p class="text-center mt-3"> OR </p>
-              <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
-                formControlName="email">
-              <div class="password-area">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password"
-                  formControlName="password" [type]="hide? 'password': 'text'">
-                <a role="button" (click)="togglePwd()">
-                  <i class="{{hide ? 'fa fa-eye-slash' : 'fa fa-eye'}}"></i>
-                </a>
-              </div>
-              <button class="btn btn-success btn-block" type="submit" [disabled]="loginForm.invalid"><i
-                  class="fa fa-sign-in"></i> Sign in <span *ngIf="loading"><i
-                    class="fa fa-spin fa-spinner"></i></span> </button>
-            </form>
+                <p class="text-center mt-3"> OR </p>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
+                  formControlName="email">
+                <div class="password-area">
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                    formControlName="password" [type]="hide? 'password': 'text'">
+                  <a role="button" (click)="togglePwd()">
+                    <i class="{{hide ? 'fa fa-eye-slash' : 'fa fa-eye'}}"></i>
+                  </a>
+                </div>
+                <button class="btn btn-success btn-block" type="submit" [disabled]="loginForm.invalid"><i
+                    class="fa fa-sign-in"></i> Sign in <span *ngIf="loading"><i
+                      class="fa fa-spin fa-spinner"></i></span> </button>
+              </form>
+          </ng-template>
           </mat-tab>
           <mat-tab label="Register">
+          <ng-template matTabContent>
             <form action="/signup/" class="form-signup" [formGroup]="registerForm"
-              (ngSubmit)="register(registerForm.value)">
-              <div class="container">
-                <div class="row social-login mb-3">
-                  <a role="button" class="w-100 btn twitter-btn"><span><i class="fa fa-twitter"></i> &nbsp;
-                      twitter</span></a>
-                </div>
+            (ngSubmit)="register(registerForm.value)">
+            <div class="container">
+              <div class="row social-login mb-3">
+                <a role="button" class="w-100 btn twitter-btn"><span><i class="fa fa-twitter"></i> &nbsp;
+                    twitter</span></a>
               </div>
+            </div>
 
-              <p style="text-align:center">OR</p>
-              <input type="email" id="user-email" class="form-control mb-2" placeholder="Email address"
-                formControlName="email" required>
-              <input type="password" id="user-pass" class="form-control mb-2" placeholder="Password"
-                formControlName="password" required>
-              <button class="btn btn-primary btn-block" type="submit" [disabled]="registerForm.invalid"><i
-                  class="fa fa-user-plus"></i> Sign Up <span *ngIf="loading"><i
-                    class="fa fa-spin fa-spinner"></i></span> </button>
-            </form>
+            <p style="text-align:center">OR</p>
+            <input type="email" id="user-email" class="form-control mb-2" placeholder="Email address"
+              formControlName="email">
+              <input type="text" id="user-name" class="form-control mb-2" placeholder="Choose username"
+              formControlName="username">
+            <input type="password" id="user-pass" class="form-control mb-2" placeholder="Password"
+              formControlName="password">
+            <button class="btn btn-primary btn-block" type="submit" [disabled]="registerForm.invalid"><i
+                class="fa fa-user-plus"></i> Sign Up <span *ngIf="loading"><i
+                  class="fa fa-spin fa-spinner"></i></span> </button>
+          </form>
+          </ng-template>
           </mat-tab>
-        </mat-tab-group>
-      </div>
+        </mat-tab-group> -->
+        <section class="auth-tabs">
+            <div class="tabs-wrapper">
+                <div class="page-nav-tabs">
+                    <div class="page-tab" (click)="selectIndex(0)" #activeTab [ngClass]="{active: mode === 0}">Login</div>
+                    <div class="page-tab" (click)="selectIndex(1)" #activeTab [ngClass]="{active: mode === 1}">Register</div>
+                </div>
+
+                <div class="nav-tab-body">
+                    <ng-container *ngIf="mode === 0">
+                    <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+                        <div class="container">
+                          <div class="row social-login mb-3">
+                            <a role="button" class="w-100 btn twitter-btn"><span><i class="fa fa-twitter"></i> &nbsp;
+                                twitter</span></a>
+                          </div>
+                        </div>
+                        <p class="text-center mt-3"> OR </p>
+                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
+                          formControlName="email">
+                        <div class="password-area">
+                          <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                            formControlName="password" [type]="hide? 'password': 'text'">
+                          <a role="button" (click)="togglePwd()">
+                            <i class="{{hide ? 'fa fa-eye-slash' : 'fa fa-eye'}}"></i>
+                          </a>
+                        </div>
+                        <button class="btn btn-success btn-block" type="submit" [disabled]="loginForm.invalid || loggingIn"><i
+                            class="fa fa-sign-in"></i> Sign in <span *ngIf="loggingIn"><i
+                              class="fa fa-spin fa-spinner"></i></span> </button>
+                      </form>
+                    </ng-container>
+                      <ng-container *ngIf="mode === 1" >
+                      <form action="/signup/" class="form-signup" [formGroup]="registerForm"
+                      (ngSubmit)="register(registerForm.value)">
+                      <div class="container">
+                        <div class="row social-login mb-3">
+                          <a role="button" class="w-100 btn twitter-btn"><span><i class="fa fa-twitter"></i> &nbsp;
+                              twitter</span></a>
+                        </div>
+                      </div>
+          
+                      <p style="text-align:center">OR</p>
+                      <input type="email" id="user-email" class="form-control mb-2" placeholder="Email address"
+                        formControlName="email">
+                        <input type="text" id="user-name" class="form-control mb-2" placeholder="Choose username"
+                        formControlName="username">
+                      <input type="password" id="user-pass" class="form-control mb-2" placeholder="Password"
+                        formControlName="password">
+                      <button class="btn btn-primary btn-block" type="submit" [disabled]="registerForm.invalid || registering"><i
+                          class="fa fa-user-plus"></i> Sign Up <span *ngIf="registering"><i
+                            class="fa fa-spin fa-spinner"></i></span> </button>
+                    </form>
+                </ng-container>
+                </div>
+            </div>
+        </section>
+    </div>
     </div>
   </div>

@@ -11,8 +11,7 @@
                 </div>
             </div>
             <div *ngIf="ticket">
-                <div *ngIf="userId !== ticket.creatorId" class="card border-secondary"
-                    style="background-color: inherit;">
+                <div class="card border-secondary" style="background-color: inherit;">
                     <div class="card-header">
                         Ticket Details
                     </div>
@@ -28,7 +27,7 @@
                                 <span>{{ticket.createdAt | timeAgo}}</span>
                             </div>
                         </div>
-                        <hr/>
+                        <hr />
                         <div class="row my-3">
                             <dt class="col-5 card-text">Outcome</dt>
                             <div class="col-7 card-text lead">{{ticket.outcome | titlecase}}</div>
@@ -36,7 +35,8 @@
                         <div class="row my-3">
                             <div class="col-5 card-text m-auto">Your Counter Outcome</div>
                             <div class="col-7 card-text">
-                                <select (change)="counterOption($event)" class="form-control">
+                                <select (change)="counterOption($event)" class="form-control"
+                                    [disabled]="disableSelect">
                                     <option selected disabled>Choose one</option>
                                     <option *ngFor="let outcome of availableoptions" [value]="outcome">
                                         {{outcome | titlecase}}
@@ -56,16 +56,18 @@
                                 {{ticket.potPrice}}
                             </div>
                         </div>
-                        <hr/>
-                        <div class="bet-check my-3">
-                            <input type="checkbox" class="bet-check-input" id="betcheck">
-                            <label class="bet-check-label ml-1" for="betcheck">I agree to all</label>
+                        <hr />
+                        <div *ngIf="(userId !== ticket.creatorId) && (ticket.open)">
+                            <div class="bet-check my-3">
+                                <input type="checkbox" class="bet-check-input" id="betcheck">
+                                <label class="bet-check-label ml-1" for="betcheck">I agree to all</label>
+                            </div>
+                            <button class="btn btn-primary float-right" (click)="joinBet(ticket)">Join</button>
                         </div>
-                        <button class="btn btn-primary float-right">Join</button>
                     </div>
                 </div>
 
-                <div *ngIf="userId === ticket.creatorId" class="card border-secondary"
+                <!-- <div *ngIf="(userId === ticket.creatorId) && (!ticket.open)" class="card border-secondary"
                     style="background-color: inherit;">
                     <div class="card-header">
                         Ticket Details
@@ -101,7 +103,7 @@
                         </div>
                         <hr/>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div>

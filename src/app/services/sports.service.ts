@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { ToastrService } from 'ngx-toastr';
 import { forkJoin } from 'rxjs';
 
@@ -12,7 +11,7 @@ import { forkJoin } from 'rxjs';
 export class SportsService {
 
   constructor(public http: HttpClient,
-              private db: AngularFireDatabase, private firestore: AngularFirestore, private toastr: ToastrService) { }
+              private db: AngularFireDatabase, private toastr: ToastrService) { }
 
   // postData(){
   //   return this.http.get('https://bord-manbets.firebaseio.com/allbets')
@@ -54,39 +53,30 @@ export class SportsService {
   addBets(betslip) {
     const userid = JSON.parse(localStorage.getItem('user'));
     const pushId = this.db.createPushId();
-    // const item = {...betslip, id: pushId};
-    const ticket = {
-      id: pushId,
-      match: betslip.match,
-      outcome: betslip.outcome,
-      stake: betslip.stake,
-      creatorId: userid.uid,
-      createdAt: betslip.createdAt,
-      potPrice: betslip.potPrice
-    };
-    const userticket = {
-      ticketId: pushId,
-      outcome: betslip.outcome,
-      stake: betslip.stake,
-      createdAt: betslip.createdAt
-    };
-    // return this.db.list(`usertickets/${userid.uid}`).push(betslip).then(res => console.log(res));
-    // return this.db.list('tickets').push(betslip).then(res => {
-    //   return this.db.list(`usertickets/${userid.uid}`).set(res.key, {ticketID: res.key});
-    //   // return this.db.list(`usertickets/${userid.uid}`).set('.', res.key);
-    // });
-    return this.db.list('tickets').set(ticket.id, ticket).then(() => {
-      return this.db.list(`usertickets/${userid.uid}`).set(ticket.id, {...userticket});
-    });
-    // return this.db.object('tickets').set(betslip);
+    const ticket = {...betslip,  id: pushId, creatorId: userid.uid};
+    return this.db.list('tickets').set(ticket.id, ticket);
   }
-  // addBets(betslip){
-  //   const userid = JSON.parse(localStorage.getItem('user'));
-  //   return this.firestore.collection('tickets').doc(userid.uuid).collection('').add(betslip);
-  // }
+
+  addUserToBet(betslip, betOutcome) {
+    const userid = JSON.parse(localStorage.getItem('user'));
+    const ticket = {
+      ticketId: betslip.id,
+      outcome: betOutcome,
+      stake: betslip.openingStake,
+      createdAt: Date.now(),
+    };
+    return this.db.list(`triggers/JOINBETS/`).set(userid.uid, {...ticket});
+  }
+
   getAllBetsDatas() {
     const userid = JSON.parse(localStorage.getItem('user'));
     return this.db.list('tickets').valueChanges();
+    // return new Promise((resolve, reject) => {
+    //   this.db.list('tickets').snapshotChanges(['child_added']).subscribe(actions => {
+    //     const newarr = actions.map(action => action.payload.val());
+    //     resolve(newarr);
+    // });
+    // });
   }
   viewSingleTicket(ticketId) {
     return this.db.object(`tickets/${ticketId}`).valueChanges();
