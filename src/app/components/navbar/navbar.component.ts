@@ -23,9 +23,9 @@ export class NavbarComponent implements OnInit {
   loggingIn: boolean;
   registering: boolean;
   constructor(public authservice: AuthService,
-    private formbuilder: FormBuilder,
-    private toastr: ToastrService,
-    private emitterService: EventEmittersService) { }
+              private formbuilder: FormBuilder,
+              private toastr: ToastrService,
+              private emitterService: EventEmittersService) { }
 
   ngOnInit() {
     this.initialiseForm();
@@ -90,6 +90,8 @@ export class NavbarComponent implements OnInit {
   }
   closeModal() {
     this.openModal.nativeElement.classList.remove('open');
+    this.registerForm.reset();
+    this.loginForm.reset();
   }
 
   openSiderBar() {
@@ -97,7 +99,6 @@ export class NavbarComponent implements OnInit {
   }
 
   selectIndex(index) {
-    // this.activeTab.nativeElement.classList.add('active');
     if (index === 1) {
       this.mode = 1;
     } else {

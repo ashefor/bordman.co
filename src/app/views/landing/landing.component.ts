@@ -78,7 +78,7 @@ export class LandingComponent implements OnInit {
       this.toastr.error('An error has occured');
     });
     this.sportservice.getSchedule().subscribe(results => {
-      if(results) {
+      if (results) {
         this.allMatches = results;
         this.allSchedules = this.allMatches[1].events;
       }
@@ -135,22 +135,24 @@ export class LandingComponent implements OnInit {
     this.dataservice.shareBetslip(this.matchEvent);
   }
   onValChange(eev) {
-    switch (eev) {
-      case 'epl':
-        this.allSchedules = this.allMatches[1].events;
-        break;
-      case 'ligue-1':
-        this.allSchedules = this.allMatches[0].events;
-        break;
-      case 'la-liga':
-        this.allSchedules = this.allMatches[4].events;
-        break;
-      case 'bundesliga':
-        this.allSchedules = this.allMatches[2].events;
-        break;
-      case 'serie-a':
-        this.allSchedules = this.allMatches[3].events;
-        break;
+    if(this.allMatches) {
+      switch (eev) {
+        case 'epl':
+          this.allSchedules = this.allMatches[1].events;
+          break;
+        case 'ligue-1':
+          this.allSchedules = this.allMatches[0].events;
+          break;
+        case 'la-liga':
+          this.allSchedules = this.allMatches[4].events;
+          break;
+        case 'bundesliga':
+          this.allSchedules = this.allMatches[2].events;
+          break;
+        case 'serie-a':
+          this.allSchedules = this.allMatches[3].events;
+          break;
+      }
     }
   }
   // addToslip(slip) {
