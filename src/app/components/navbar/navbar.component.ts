@@ -4,6 +4,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { EventEmittersService } from 'src/app/services/event-emitters.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ThemeService } from 'src/app/services/theme.service';
+import {
+  faLightbulb as faSolidLightbulb, IconDefinition
+} from '@fortawesome/free-solid-svg-icons';
+import { faLightbulb as faRegularLightbulb } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-navbar',
@@ -15,6 +21,7 @@ export class NavbarComponent implements OnInit {
   @ViewChild('tabGroup', { static: false }) tabGroup;
   @ViewChild('activeTab', { static: false }) activeTab: ElementRef<HTMLElement>;
   @Output() openSidebar = new EventEmitter();
+  faLightbulb: IconDefinition;
   // activeTab = 0;
   loginForm: FormGroup;
   registerForm: FormGroup;
@@ -25,9 +32,11 @@ export class NavbarComponent implements OnInit {
   constructor(public authservice: AuthService,
               private formbuilder: FormBuilder,
               private toastr: ToastrService,
-              private emitterService: EventEmittersService) { }
+              private emitterService: EventEmittersService,
+              private themeService: ThemeService) { }
 
   ngOnInit() {
+    this.setLightbulb();
     this.initialiseForm();
     this.initialiseRegForm();
     if (this.emitterService.subsVar === undefined) {
@@ -104,5 +113,23 @@ export class NavbarComponent implements OnInit {
     } else {
       this.mode = 0;
     }
+  }
+
+  setLightbulb() {
+    if (this.themeService.isDarkTheme()) {
+      this.faLightbulb = faRegularLightbulb;
+    } else {
+      this.faLightbulb = faSolidLightbulb;
+    }
+  }
+
+  toggleTheme() {
+    if (this.themeService.isDarkTheme()) {
+      this.themeService.setLightTheme();
+    } else {
+      this.themeService.setDarkTheme();
+    }
+
+    this.setLightbulb();
   }
 }

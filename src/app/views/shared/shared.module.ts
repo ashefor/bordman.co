@@ -15,6 +15,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { TimeAgoPipe } from 'src/app/pipes/time-ago.pipe';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     MatExpansionModule,
     MatFormFieldModule,
     MatCardModule,
+    ReactiveFormsModule,
     MatTabsModule,
     MatIconModule,
     MatButtonToggleModule,
@@ -48,7 +50,8 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     MatButtonToggleModule,
     MatSidenavModule,
     MatToolbarModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

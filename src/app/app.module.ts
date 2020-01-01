@@ -11,7 +11,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { environment } from 'src/environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './views/shared/shared.module';
@@ -44,6 +44,7 @@ import { TicketsComponent } from './views/tickets/tickets.component';
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
+    AngularFireMessagingModule,
     ToastrModule.forRoot()
   ],
   providers: [

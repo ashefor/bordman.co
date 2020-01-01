@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from './services/data.service';
+import { FirebaseNotificationsService } from './services/firebase-notifications.service';
 
 @Component({
   selector: 'app-root',
@@ -22,11 +23,22 @@ export class AppComponent implements OnInit {
   loading = false;
   active = true;
   betslip;
+  message: any;
   constructor(public authservice: AuthService,
-              public dataservice: DataService) {
+              public dataservice: DataService,
+              private fs: FirebaseNotificationsService,
+              private toastr: ToastrService
+              ) {
   }
 
   ngOnInit() {
+    this.fs.getPermission();
+    this.fs.receiveMsg();
+    this.message = this.fs.alert;
+    // if (this.message) {
+    //   console.log(this.message)
+    //   this.toastr.success('this.message.body');
+    // }
     this.dataservice.viewBetSlip.subscribe(data => {
       if (data) {
         this.betslip = data;

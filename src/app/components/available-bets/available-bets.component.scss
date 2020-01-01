@@ -43,7 +43,8 @@
 
   .card {
     border-radius: inherit;
-    background: #F9FAFF;
+    background: var(--background-light);
+    color: var(--foreground-tertiary);
     padding: 10px;
 
 

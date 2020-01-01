@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { SportsService } from 'src/app/services/sports.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { FirebaseNotificationsService } from 'src/app/services/firebase-notifications.service';
 
 @Component({
   selector: 'app-tickets',
@@ -16,7 +17,8 @@ export class TicketsComponent implements OnInit {
   userId: string;
   newBetOutcome: string;
   disableSelect: boolean;
-  constructor(private route: ActivatedRoute, private sportservice: SportsService, private authservice: AuthService) {
+  constructor(private route: ActivatedRoute,
+              private sportservice: SportsService, private authservice: AuthService, private fs: FirebaseNotificationsService, ) {
     if (this.authservice.isLoggedIn) {
       this.userId = JSON.parse(localStorage.getItem('user')).uid;
     }
@@ -41,6 +43,8 @@ export class TicketsComponent implements OnInit {
         const options = this.ticket.match.split(' vs ');
         this.availableoptions.push(options[0], options[1]);
       }
+    }, err => {
+      console.log('can not load ticket right now');
     });
   }
 

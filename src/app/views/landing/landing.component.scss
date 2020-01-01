@@ -1,172 +1,171 @@
-.wrapper {
-  max-width: 1400px;
-  margin: auto;
-  padding: 10px;
+.main-wrapper{
+  .landing{
+    min-height: 100vh;
+
+    .sidebar{
+      padding: 0;
+    }
+  }
+
+  .loginform{
+
+    button{
+      background-color: #000;
+      color: #f4faff;
+    }
+    .registerbtn{
+      background-color: #4fb1f7;
+      color: #dce0e6;;
+    }
+  }
+}
+.loadingdiv {
+  height: 150px;
+  position: relative;
+
+  .loadingspinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+  }
 }
 
-a {
-  text-decoration: none;
-  color: unset;
-  cursor: pointer;
+.errordiv {
+  height: 150px;
+  position: relative;
+
+  .errormsg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+  }
 }
 
-@font-face {
-  font-family: font1;
-  src: url('../../../assets/fonts/Graphik-Semibold.woff2')
-}
-
-@font-face {
-  font-family: avenir;
-  src: url('../../../assets/fonts/AvenirNextLTPro-Regular.otf')
-}
-
-@font-face {
-  font-family: lato;
-  src: url('../../../assets/fonts/Lato-Regular.ttf')
-}
+.jumbotron {
+  height: 350px;
+  background: #151D31;
+  max-width: 1920px;
+  margin: 0 auto;
 
 
-:not(i) {
-  font-family: 'avenir', sans-serif;
+  .content {
+    width: 55%;
+    height: 100%;
+    background: #52bcec;
+    box-sizing: border-box;
+    background: url(../../../assets/img/friendsbet.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    // box-shadow: 0 0 8px 8px #52bcec inset;
+
+    .caption {
+      width: 100%;
+      max-width: 400px;
+      margin: auto;
+      padding-top: 20px;
+      color: #fff;
+      text-align: center;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -o-box-sizing: border-box;
+      box-sizing: border-box;
+
+      h2 {
+        color: #fff;
+        font-family: font2;
+        text-transform: uppercase;
+        text-shadow: 2px 2px #606941;
+        margin-bottom: 16px
+      }
+
+      p {
+        // padding-bottom: 22px;
+        text-shadow: 2px 2px #606941;
+        // margin-bottom: 21px
+      }
+
+      a {
+        color: #52bcec;
+        background: #fff;
+        text-decoration: none;
+        text-transform: uppercase;
+        padding: 5px 67px 7px;
+        display: inline-block;
+        border-radius: 17px;
+        text-shadow: 0 -1px #4093b8
+      }
+    }
+  }
+
+  .imageBox {
+    height: 100%;
+    background: #151D31;
+    box-sizing: border-box;
+    z-index: 0;
+
+    .caption {
+      color: #fff;
+      text-align: center;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -o-box-sizing: border-box;
+      box-sizing: border-box;
+
+      h2 {
+        color: #fff;
+        font-family: font2;
+        text-transform: uppercase;
+        text-shadow: 2px 2px #606941;
+        margin-bottom: 16px
+      }
+
+      p {
+        // padding-bottom: 22px;
+        text-shadow: 2px 2px #606941;
+        // margin-bottom: 21px
+      }
+
+      a {
+        color: #52bcec;
+        background: #fff;
+        text-decoration: none;
+        text-transform: uppercase;
+        padding: 5px 67px 7px;
+        display: inline-block;
+        border-radius: 17px;
+        text-shadow: 0 -1px #4093b8
+      }
+    }
+  }
 }
 
 :host ::ng-deep .mat-button-toggle-button {
   outline: none;
   text-align: left;
-  background-color: #F9FAFF;
+  background: var(--background-light);
+    color: var(--foreground-tertiary);
 
   &:focus {
     outline: none;
   }
 }
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ul,
-ol,
-hr {
-  margin: 0;
-  padding: 0;
-}
-
-hr {
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
-}
-
-.betCollection {
-  display: grid;
-  grid-template-columns: 2fr .5fr 2fr;
-  // grid-gap: 10px;
-
-  .home {
-    text-align: right
-  }
-
-  .draw {
-    text-align: center
-  }
-}
-
-section {
-  font-size: 14px;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: bold;
-  margin: 0;
-  padding: 0;
-}
-
-p {
-  margin: 0;
-  padding: 0;
-}
-
-.logoarea {
-  width: 50px;
-  height: 50px;
-}
-
-.main_content {
-  display: grid;
-  grid-template-columns: 180px auto 250px;
-  grid-gap: 20px;
-  font-family: 'avenir', sans-serif;
-
-  hr {
-    margin-top: 0.25rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .border-secondary {
-    border-radius: inherit;
-  }
-
-  .availablebets {
-    border: 1px solid;
-  }
-}
-
-mat-button-toggle.mat-button-toggle-checked {
-  border: 2px solid #F58634 !important;
-  background-color: inherit !important;
-}
-
-.leftside {
-  // position: fixed;
-  // left: 0;
-  top: 100px;
-  // width: 250px;
-}
-
-.border-gray {
-  border: 1px solid #6c757d;
-}
-
-.leaguesitem {
-  padding: 10px 0;
-  border-bottom: .1px solid #cccccc;
-  // border-bottom-color: #967f40
-}
-
-.tot_stake {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-
-  .tot {
-    width: 50%;
-  }
-
-  .stake_input {
-    width: 50%;
-
-    input {
-      width: 100%;
-    }
-  }
-}
-
-.buttonToggleDiv {
+.match-events-wrapper{
+  .buttonToggleDiv {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
 
   .mat-button-toggle {
     width: 20%;
-    border: 1px solid #cccccc;
+    // border: 1px solid #cccccc;
+    border: none;
 
     span {
       line-height: 2;
@@ -174,12 +173,24 @@ mat-button-toggle.mat-button-toggle-checked {
     }
   }
 }
+}
 
 .popular_bets {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 
+  #leagues{
+    cursor: pointer;
+
+    .logoarea {
+  width: 50px;
+  height: 50px;
+}
+  }
+  #leagues.active{
+    border: 2px solid;
+  }
   .epl {
     background: #05f0ff;
     border-radius: 10px;
@@ -310,215 +321,7 @@ mat-button-toggle.mat-button-toggle-checked {
   }
 }
 
-
-
-// .jumbo{
-//     position: relative;
-//     background-image: url(../../../assets/img/friendsbet.jpg);
-//     background-size: cover;
-//     background-position: top center;
-//     background-repeat: no-repeat;
-//     height: 570px;
-//     opacity: 0.7;
-
-
-//     .caption{
-//         color: #fff;
-//         -moz-box-sizing: border-box;
-//         -webkit-box-sizing: border-box;
-//         -o-box-sizing: border-box;
-//         box-sizing: border-box;
-
-//         h2{
-//             color: #fff;
-//             text-transform: uppercase;
-//             text-shadow: 2px 2px #606941;
-//             margin-bottom: 16px
-//         }
-
-//         p{
-//             padding-bottom: 22px;
-//             text-shadow: 2px 2px #606941;
-//             margin-bottom: 21px
-//         }
-//         a{
-//             color: #fff;
-//             background: #52bcec;
-//             text-decoration: none;
-//             text-transform: uppercase;
-//             padding: 5px 67px 7px;
-//             display: inline-block;
-//             border-radius: 17px;
-//             text-shadow: 0 -1px #4093b8
-//         }
-//     }
-// }
-.jumbotron {
-  height: 350px;
-  background: #151D31;
-  border-radius: inherit;
-  max-width: 1920px;
-  margin: 0 auto;
-
-
-  .content {
-    width: 55%;
-    height: 100%;
-    background: #52bcec;
-    box-sizing: border-box;
-    background: url(../../../assets/img/friendsbet.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    // box-shadow: 0 0 8px 8px #52bcec inset;
-
-    .caption {
-      width: 100%;
-      max-width: 400px;
-      margin: auto;
-      padding-top: 20px;
-      color: #fff;
-      text-align: center;
-      -moz-box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      -o-box-sizing: border-box;
-      box-sizing: border-box;
-
-      h2 {
-        color: #fff;
-        font-family: font2;
-        text-transform: uppercase;
-        text-shadow: 2px 2px #606941;
-        margin-bottom: 16px
-      }
-
-      p {
-        // padding-bottom: 22px;
-        text-shadow: 2px 2px #606941;
-        // margin-bottom: 21px
-      }
-
-      a {
-        color: #52bcec;
-        background: #fff;
-        text-decoration: none;
-        text-transform: uppercase;
-        padding: 5px 67px 7px;
-        display: inline-block;
-        border-radius: 17px;
-        text-shadow: 0 -1px #4093b8
-      }
-    }
-  }
-
-  .imageBox {
-    height: 100%;
-    background: #151D31;
-    box-sizing: border-box;
-    z-index: 0;
-
-    .caption {
-      color: #fff;
-      text-align: center;
-      -moz-box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      -o-box-sizing: border-box;
-      box-sizing: border-box;
-
-      h2 {
-        color: #fff;
-        font-family: font2;
-        text-transform: uppercase;
-        text-shadow: 2px 2px #606941;
-        margin-bottom: 16px
-      }
-
-      p {
-        // padding-bottom: 22px;
-        text-shadow: 2px 2px #606941;
-        // margin-bottom: 21px
-      }
-
-      a {
-        color: #52bcec;
-        background: #fff;
-        text-decoration: none;
-        text-transform: uppercase;
-        padding: 5px 67px 7px;
-        display: inline-block;
-        border-radius: 17px;
-        text-shadow: 0 -1px #4093b8
-      }
-    }
-  }
-}
-
-.loadingdiv {
-  height: 150px;
-  position: relative;
-
-  .loadingspinner {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 100%;
-    text-align: center;
-    transform: translate(-50%, -50%);
-  }
-}
-
-.errordiv {
-  height: 150px;
-  position: relative;
-
-  .errormsg {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 100%;
-    text-align: center;
-    transform: translate(-50%, -50%);
-  }
-}
-
-.av_bets {
-  background-color: inherit;
-
-  nav {
-
-    .activenav {
-      border: 1px solid #0D9737;
-      -webkit-box-shadow: 0px 0px 0px 1px #0D9737 inset;
-      box-shadow: 0px 0px 0px 1px #0D9737 inset;
-    }
-  }
-
-  .fixtures {
-    height: 100%;
-    overflow: hidden;
-  }
-
-}
-
 @media (max-width: 767px) {
-  .outcome {
-    display: none;
-  }
-
-  .betCollection {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .main_content {
-    display: grid;
-    grid-template-columns: 1fr
-  }
-
-  .match_event {
-    display: flex;
-    justify-content: space-between
-  }
 
   .jumbotron {
     display: block;
@@ -558,27 +361,8 @@ mat-button-toggle.mat-button-toggle-checked {
   }
 }
 
-@media(max-width: 991px) {
-  .main_content {
-    display: grid;
-    grid-template-columns: 1fr
-  }
-}
 
 @media(min-width: 768px) and (max-width: 1199px) {
-  .outcome {
-    display: none;
-  }
-
-  .betCollection {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .match_event {
-    display: flex;
-    justify-content: space-between
-  }
 
   .jumbotron {
     // display: flex;
@@ -608,9 +392,8 @@ mat-button-toggle.mat-button-toggle-checked {
     .content {
       display: block;
       width: 55%;
-
-      // border-top-left-radius: 5px;
-      // border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
       .caption {
         display: none;
       }
@@ -650,7 +433,7 @@ mat-button-toggle.mat-button-toggle-checked {
         left: 0;
         // margin-right: -470px;
         // top: 40%;
-        margin-top: 55px;
+        margin-top: 15px;
 
         h2 {
           font-size: 25px;
@@ -669,3 +452,680 @@ mat-button-toggle.mat-button-toggle-checked {
   }
 
 }
+
+
+
+
+
+// .wrapper {
+//   max-width: 1400px;
+//   margin: auto;
+//   padding: 10px;
+// }
+
+// a {
+//   text-decoration: none;
+//   color: unset;
+//   cursor: pointer;
+// }
+
+// @font-face {
+//   font-family: font1;
+//   src: url('../../../assets/fonts/Graphik-Semibold.woff2')
+// }
+
+// @font-face {
+//   font-family: avenir;
+//   src: url('../../../assets/fonts/AvenirNextLTPro-Regular.otf')
+// }
+
+// @font-face {
+//   font-family: lato;
+//   src: url('../../../assets/fonts/Lato-Regular.ttf')
+// }
+
+
+// :not(i) {
+//   font-family: 'avenir', sans-serif;
+// }
+
+// :host ::ng-deep .mat-button-toggle-button {
+//   outline: none;
+//   text-align: left;
+//   background: var(--background-light);
+//     color: var(--foreground-tertiary);
+
+//   &:focus {
+//     outline: none;
+//   }
+// }
+
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6,
+// p,
+// ul,
+// ol,
+// hr {
+//   margin: 0;
+//   padding: 0;
+// }
+
+// hr {
+//   margin-top: 0.25rem;
+//   margin-bottom: 0.25rem;
+// }
+
+// .betCollection {
+//   display: grid;
+//   grid-template-columns: 2fr .5fr 2fr;
+//   // grid-gap: 10px;
+
+//   .home {
+//     text-align: right
+//   }
+
+//   .draw {
+//     text-align: center
+//   }
+// }
+
+// section {
+//   font-size: 14px;
+// }
+
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//   font-weight: bold;
+//   margin: 0;
+//   padding: 0;
+// }
+
+// p {
+//   margin: 0;
+//   padding: 0;
+// }
+
+// .logoarea {
+//   width: 50px;
+//   height: 50px;
+// }
+
+// .main_content {
+//   display: grid;
+//   grid-template-columns: 180px auto 250px;
+//   grid-gap: 20px;
+//   font-family: 'avenir', sans-serif;
+
+//   hr {
+//     margin-top: 0.25rem;
+//     margin-bottom: 0.25rem;
+//   }
+
+//   .border-secondary {
+//     border-radius: inherit;
+//   }
+
+//   .availablebets {
+//     border: 1px solid;
+//   }
+// }
+
+// mat-button-toggle.mat-button-toggle-checked {
+//   border: 2px solid #F58634 !important;
+//   background-color: inherit !important;
+// }
+
+// .leftside {
+//   // position: fixed;
+//   // left: 0;
+//   top: 100px;
+//   // width: 250px;
+// }
+
+// .border-gray {
+//   border: 1px solid #6c757d;
+// }
+
+// .leaguesitem {
+//   padding: 10px 0;
+//   border-bottom: .1px solid #cccccc;
+//   // border-bottom-color: #967f40
+// }
+
+// .tot_stake {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   flex-wrap: wrap;
+
+//   .tot {
+//     width: 50%;
+//   }
+
+//   .stake_input {
+//     width: 50%;
+
+//     input {
+//       width: 100%;
+//     }
+//   }
+// }
+
+// .buttonToggleDiv {
+//   display: flex;
+//   width: 100%;
+//   flex-wrap: wrap;
+
+//   .mat-button-toggle {
+//     width: 20%;
+//     border: 1px solid #cccccc;
+
+//     span {
+//       line-height: 2;
+//       display: block;
+//     }
+//   }
+// }
+
+// .popular_bets {
+//   display: grid;
+//   grid-gap: 10px;
+//   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+//   .epl {
+//     background: #05f0ff;
+//     border-radius: 10px;
+//     display: flex;
+//     flex-direction: column;
+//     height: 150px;
+
+//     .league_title {
+//       margin-top: auto;
+//       margin-left: 15px;
+//       margin-bottom: 15px;
+
+//       span {
+//         font-weight: bold
+//       }
+//     }
+//   }
+
+//   .ligue-1 {
+//     background: #43A8E8;
+//     border-radius: 10px;
+//     display: flex;
+//     flex-direction: column;
+//     height: 150px;
+
+//     .league_title {
+//       margin-top: auto;
+//       margin-left: 15px;
+//       margin-bottom: 15px;
+
+//       span {
+//         font-weight: bold
+//       }
+//     }
+//   }
+
+//   .laliga {
+//     background: #ffe501;
+//     border-radius: 10px;
+//     display: flex;
+//     flex-direction: column;
+//     height: 150px;
+
+//     .league_title {
+//       margin-top: auto;
+//       margin-left: 15px;
+//       margin-bottom: 15px;
+
+//       span {
+//         font-weight: bold
+//       }
+//     }
+//   }
+
+//   .bundesliga {
+//     background: #D3010C;
+//     border-radius: 10px;
+//     display: flex;
+//     flex-direction: column;
+//     height: 150px;
+
+//     .league_title {
+//       margin-top: auto;
+//       margin-left: 15px;
+//       margin-bottom: 15px;
+
+//       span {
+//         font-weight: bold
+//       }
+//     }
+//   }
+
+//   .seriea {
+//     background: #967f40;
+//     border-radius: 10px;
+//     display: flex;
+//     flex-direction: column;
+//     height: 150px;
+
+//     .league_title {
+//       margin-top: auto;
+//       margin-left: 15px;
+//       margin-bottom: 15px;
+
+//       span {
+//         font-weight: bold
+//       }
+//     }
+//   }
+
+//   .p_l {
+//     margin-left: 10px;
+//     background: url(../../../assets/img/Premier-League-logo-2016.png);
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     background-size: contain
+//   }
+
+//   .f_l {
+//     margin-left: 10px;
+//     background: url(../../../assets/img/Ligue-1-logo-france-880x660.png);
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     background-size: contain
+//   }
+
+//   .l_l {
+//     margin-left: 10px;
+//     background: url(../../../assets/img/Liga-BBVA-logo-1024x768.png);
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     background-size: contain
+//   }
+
+//   .g_l {
+//     margin-left: 10px;
+//     background: url(../../../assets/img/Bundesliga-logo-2010-1024x762.png);
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     background-size: contain
+//   }
+
+//   .i_l {
+//     background: url(../../../assets/img/Serie-a-logo.png);
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     background-size: contain
+//   }
+// }
+
+
+
+// // .jumbo{
+// //     position: relative;
+// //     background-image: url(../../../assets/img/friendsbet.jpg);
+// //     background-size: cover;
+// //     background-position: top center;
+// //     background-repeat: no-repeat;
+// //     height: 570px;
+// //     opacity: 0.7;
+
+
+// //     .caption{
+// //         color: #fff;
+// //         -moz-box-sizing: border-box;
+// //         -webkit-box-sizing: border-box;
+// //         -o-box-sizing: border-box;
+// //         box-sizing: border-box;
+
+// //         h2{
+// //             color: #fff;
+// //             text-transform: uppercase;
+// //             text-shadow: 2px 2px #606941;
+// //             margin-bottom: 16px
+// //         }
+
+// //         p{
+// //             padding-bottom: 22px;
+// //             text-shadow: 2px 2px #606941;
+// //             margin-bottom: 21px
+// //         }
+// //         a{
+// //             color: #fff;
+// //             background: #52bcec;
+// //             text-decoration: none;
+// //             text-transform: uppercase;
+// //             padding: 5px 67px 7px;
+// //             display: inline-block;
+// //             border-radius: 17px;
+// //             text-shadow: 0 -1px #4093b8
+// //         }
+// //     }
+// // }
+// .jumbotron {
+//   height: 350px;
+//   background: #151D31;
+//   border-radius: inherit;
+//   max-width: 1920px;
+//   margin: 0 auto;
+
+
+//   .content {
+//     width: 55%;
+//     height: 100%;
+//     background: #52bcec;
+//     box-sizing: border-box;
+//     background: url(../../../assets/img/friendsbet.jpg);
+//     background-position: center;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     // box-shadow: 0 0 8px 8px #52bcec inset;
+
+//     .caption {
+//       width: 100%;
+//       max-width: 400px;
+//       margin: auto;
+//       padding-top: 20px;
+//       color: #fff;
+//       text-align: center;
+//       -moz-box-sizing: border-box;
+//       -webkit-box-sizing: border-box;
+//       -o-box-sizing: border-box;
+//       box-sizing: border-box;
+
+//       h2 {
+//         color: #fff;
+//         font-family: font2;
+//         text-transform: uppercase;
+//         text-shadow: 2px 2px #606941;
+//         margin-bottom: 16px
+//       }
+
+//       p {
+//         // padding-bottom: 22px;
+//         text-shadow: 2px 2px #606941;
+//         // margin-bottom: 21px
+//       }
+
+//       a {
+//         color: #52bcec;
+//         background: #fff;
+//         text-decoration: none;
+//         text-transform: uppercase;
+//         padding: 5px 67px 7px;
+//         display: inline-block;
+//         border-radius: 17px;
+//         text-shadow: 0 -1px #4093b8
+//       }
+//     }
+//   }
+
+//   .imageBox {
+//     height: 100%;
+//     background: #151D31;
+//     box-sizing: border-box;
+//     z-index: 0;
+
+//     .caption {
+//       color: #fff;
+//       text-align: center;
+//       -moz-box-sizing: border-box;
+//       -webkit-box-sizing: border-box;
+//       -o-box-sizing: border-box;
+//       box-sizing: border-box;
+
+//       h2 {
+//         color: #fff;
+//         font-family: font2;
+//         text-transform: uppercase;
+//         text-shadow: 2px 2px #606941;
+//         margin-bottom: 16px
+//       }
+
+//       p {
+//         // padding-bottom: 22px;
+//         text-shadow: 2px 2px #606941;
+//         // margin-bottom: 21px
+//       }
+
+//       a {
+//         color: #52bcec;
+//         background: #fff;
+//         text-decoration: none;
+//         text-transform: uppercase;
+//         padding: 5px 67px 7px;
+//         display: inline-block;
+//         border-radius: 17px;
+//         text-shadow: 0 -1px #4093b8
+//       }
+//     }
+//   }
+// }
+
+// .loadingdiv {
+//   height: 150px;
+//   position: relative;
+
+//   .loadingspinner {
+//     position: absolute;
+//     left: 50%;
+//     top: 50%;
+//     width: 100%;
+//     text-align: center;
+//     transform: translate(-50%, -50%);
+//   }
+// }
+
+// .errordiv {
+//   height: 150px;
+//   position: relative;
+
+//   .errormsg {
+//     position: absolute;
+//     left: 50%;
+//     top: 50%;
+//     width: 100%;
+//     text-align: center;
+//     transform: translate(-50%, -50%);
+//   }
+// }
+
+// .av_bets {
+//   background-color: inherit;
+
+//   nav {
+
+//     .activenav {
+//       border: 1px solid #0D9737;
+//       -webkit-box-shadow: 0px 0px 0px 1px #0D9737 inset;
+//       box-shadow: 0px 0px 0px 1px #0D9737 inset;
+//     }
+//   }
+
+//   .fixtures {
+//     height: 100%;
+//     overflow: hidden;
+//   }
+
+// }
+
+// @media (max-width: 767px) {
+//   .outcome {
+//     display: none;
+//   }
+
+//   .betCollection {
+//     display: flex;
+//     justify-content: flex-end;
+//   }
+
+//   .main_content {
+//     display: grid;
+//     grid-template-columns: 1fr
+//   }
+
+//   .match_event {
+//     display: flex;
+//     justify-content: space-between
+//   }
+
+//   .jumbotron {
+//     display: block;
+//     border-radius: 0;
+
+//     .content {
+//       display: none
+//     }
+
+//     .imageBox {
+//       width: 100%;
+//       height: 100%;
+//       display: flex;
+//       align-content: center;
+//       justify-content: center;
+//       background: #151D31;
+//       box-sizing: border-box;
+//       z-index: 0;
+
+//       .caption {
+//         position: unset;
+//         width: 100%;
+//         margin-right: 0;
+//         margin: auto;
+
+//         h2 {
+//           font-size: 20px;
+//           line-height: 30px;
+//         }
+
+//         a {
+//           margin-top: 1rem;
+//         }
+//       }
+
+//     }
+//   }
+// }
+
+// @media(max-width: 991px) {
+//   .main_content {
+//     display: grid;
+//     grid-template-columns: 1fr
+//   }
+// }
+
+// @media(min-width: 768px) and (max-width: 1199px) {
+//   .outcome {
+//     display: none;
+//   }
+
+//   .betCollection {
+//     display: flex;
+//     justify-content: flex-end;
+//   }
+
+//   .match_event {
+//     display: flex;
+//     justify-content: space-between
+//   }
+
+//   .jumbotron {
+//     // display: flex;
+//     padding: 0;
+
+//     .content {
+//       display: block;
+//       width: 100%;
+//       border-top-left-radius: 5px;
+//       border-bottom-left-radius: 5px;
+//       border-top-right-radius: 5px;
+//       border-bottom-right-radius: 5px;
+//     }
+
+//     .imageBox {
+//       display: none;
+//     }
+//   }
+// }
+
+// @media (min-width: 1200px) {
+
+//   .jumbotron {
+//     display: flex;
+//     padding: 0;
+
+//     .content {
+//       display: block;
+//       width: 55%;
+
+//       // border-top-left-radius: 5px;
+//       // border-bottom-left-radius: 5px;
+//       .caption {
+//         display: none;
+//       }
+//     }
+
+//     .imageBox {
+//       display: block;
+//       position: relative;
+//       width: 45%;
+//       height: 100%;
+//       background: #151D31;
+//       box-sizing: border-box;
+//       z-index: 0;
+//       border-top-right-radius: 5px;
+//       border-bottom-right-radius: 5px;
+
+//       &::before {
+//         position: absolute;
+//         width: 100%;
+//         height: 100%;
+//         content: "";
+//         background: inherit;
+//         z-index: -1;
+//         top: 0;
+//         left: 0;
+//         right: 0;
+//         bottom: 0;
+//         transform-origin: top left;
+//         transform: skewX(-20deg);
+//         border-top-right-radius: 5px;
+//       }
+
+//       .caption {
+//         position: absolute;
+//         width: 100%;
+//         max-width: 470px;
+//         left: 0;
+//         // margin-right: -470px;
+//         // top: 40%;
+//         margin-top: 55px;
+
+//         h2 {
+//           font-size: 25px;
+//           // line-height: 50px;
+//         }
+
+//         p {
+//           font-size: 16px
+//         }
+
+//         a {
+//           font-size: 20px;
+//         }
+//       }
+//     }
+//   }
+
+// }

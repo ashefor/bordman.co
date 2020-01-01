@@ -49,7 +49,7 @@
         </div>
     </mat-card-content>
     <mat-card-actions *ngIf="betSlip">
-        <button mat-flat-button color="primary" [disabled]="disabled" class="btn-lg btn-block" (click)="addToslip(betSlip)">
+        <button mat-flat-button [disabled]="disabled" class="btn-lg btn-block" (click)="addToslip(betSlip)">
             Place bet
         </button>
     </mat-card-actions>

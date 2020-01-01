@@ -11,7 +11,8 @@ a:hover{
   }
 
   mat-card-content {
-    background: #F9FAFF;
+    background: var(--background-light);
+    color: var(--foreground-tertiary);
     padding: 10px;
     margin: 0;
 
@@ -60,7 +61,8 @@ a:hover{
     margin: 0;
 
     button {
-      background-color: #F58634
+      background-color: #4fb1f7;
+      // color: #dce0e6;;
     }
   }
 }

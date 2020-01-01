@@ -29,10 +29,13 @@
 
 
 select.form-control {
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   appearance: none;
   -webkit-appearance: none;
-  background: #F9FAFF url(../../../assets/img/caret.svg) no-repeat;
+  background: var(--background-light) url(../../../assets/img/caret.svg) no-repeat;
+  // background: var(--background-light);
+  color: var(--foreground-tertiary);
   background-position: calc(100% - 10px) center;
   background-size: 12px;
   padding-right: 30px !important;
@@ -56,6 +59,11 @@ select.form-control {
   .card {
     .username {
       color: #2BD55C;
+    }
+
+    .bet-outcome{
+      font-size: 25px;
+      font-weight: 700;
     }
   }
 

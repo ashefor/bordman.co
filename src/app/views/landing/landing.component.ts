@@ -8,6 +8,8 @@ import { AppComponent } from 'src/app/app.component';
 import { Title } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 import { betslip } from 'src/app/models/betslip';
+import { FirebaseNotificationsService } from 'src/app/services/firebase-notifications.service';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 declare var swal: any;
 
 @Component({
@@ -16,21 +18,18 @@ declare var swal: any;
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
-  slides = [
-    {img: 'http://placehold.it/350x150/777777'},
-    {img: 'http://placehold.it/350x150/777777'},
-    {img: 'http://placehold.it/350x150/777777'},
-    {img: 'http://placehold.it/350x150/777777'},
-    {img: 'http://placehold.it/350x150/777777'}
-  ];
   slideConfig = {
     slidesToShow: 1,
     slidesToScroll: 1,
     dots: true,
     loop: true,
+    arrows: false,
     autoplay: true,
     infinite: false,
   };
+
+  loginForm: FormGroup;
+  registerForm: FormGroup;
   betslip;
   nobetslip;
   matchEvent: betslip;
@@ -46,17 +45,27 @@ export class LandingComponent implements OnInit {
   allBundesligaSchedules: Array<any>;
   allSerieASchedules: Array<any>;
   allLaLigaSchedules: Array<any>;
+  message;
+  // activeLeague = true;
+  selectedLeagueIndex = 0;
   constructor(private router: Router,
               private sportservice: SportsService,
               private dataservice: DataService,
               private authservice: AuthService,
               public appcomponent: AppComponent,
               title: Title,
-              private toastr: ToastrService) {
+              private fs: FirebaseNotificationsService,
+              private toastr: ToastrService,
+              private formbuilder: FormBuilder) {
     title.setTitle('BordmanBets');
+    this.initialiseForm();
+    this.initialiseRegForm();
   }
 
   ngOnInit() {
+    // this.fs.getPermission();
+    // this.fs.receiveMsg();
+    // this.message = this.fs.alert;
     // this.dataservice.viewBetSlip.subscribe(data => {
     //   if (data) {
     //     this.betslip = data;
@@ -88,44 +97,19 @@ export class LandingComponent implements OnInit {
     });
   }
 
-  // getNext15Schedules() {
-  //   this.sportservice.getSchedules('4328').then((data: any) => {
-  //     this.loading = false;
-  //     this.allEplSchedules = data.events;
-  //     this.allSchedules = this.allEplSchedules;
-  //   }).catch((error: any) => {
-  //     this.errorMsg = true;
-  //     this.toastr.error('An errror has occured');
-  //   });
-  // }
-  // getLigue1Next15Schedules() {
-  //   this.sportservice.getSchedules('4334').then((data: any) => {
-  //     this.allLigue1Schedules = data.events;
-  //   }).catch((error: any) => {
-  //       this.toastr.error('An errror has occured');
-  //   });
-  // }
-  // getBundesligaNext15Schedules() {
-  //   this.sportservice.getSchedules('4331').then((data: any) => {
-  //     this.allBundesligaSchedules = data.events;
-  //   }).catch((error: any) => {
-  //       this.toastr.error('An errror has occured');
-  //   });
-  // }
-  // getSerieANext15Schedules() {
-  //   this.sportservice.getSchedules('4332').then((data: any) => {
-  //     this.allSerieASchedules = data.events;
-  //   }).catch((error: any) => {
-  //       this.toastr.error('An errror has occured');
-  //   });
-  // }
-  // getLaLigaNext15Schedules() {
-  //   this.sportservice.getSchedules('4335').then((data: any) => {
-  //     this.allLaLigaSchedules = data.events;
-  //   }).catch((error: any) => {
-  //       this.toastr.error('An errror has occured');
-  //   });
-  // }
+  initialiseForm() {
+    this.loginForm = this.formbuilder.group({
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: ['', Validators.required],
+    });
+  }
+  initialiseRegForm() {
+    this.registerForm = this.formbuilder.group({
+      username: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+    });
+  }
   clicked(event, evnt) {
     this.matchEvent = {
       match: evnt,
@@ -135,21 +119,22 @@ export class LandingComponent implements OnInit {
     this.dataservice.shareBetslip(this.matchEvent);
   }
   onValChange(eev) {
-    if(this.allMatches) {
+    this.selectedLeagueIndex = eev;
+    if (this.allMatches) {
       switch (eev) {
-        case 'epl':
+        case 0:
           this.allSchedules = this.allMatches[1].events;
           break;
-        case 'ligue-1':
+        case 1:
           this.allSchedules = this.allMatches[0].events;
           break;
-        case 'la-liga':
+        case 2:
           this.allSchedules = this.allMatches[4].events;
           break;
-        case 'bundesliga':
+        case 3:
           this.allSchedules = this.allMatches[2].events;
           break;
-        case 'serie-a':
+        case 4:
           this.allSchedules = this.allMatches[3].events;
           break;
       }

@@ -28,20 +28,20 @@ export class RegisterComponent implements OnInit {
       // checked: ['', Validators.required]
     });
   }
-  // register(formvalue) {
-  //   this.loading = true;
-  //   this.authservice.signUp(formvalue.username, formvalue.email, formvalue.password).then(() => {
-  //     if (this.authservice.user) {
-  //       this.loading = false;
-  //       if (this.authservice.redirectUrl) {
-  //         this.router.navigateByUrl(this.authservice.redirectUrl);
-  //       } else {
-  //         this.router.navigate(['/']);
-  //       }
-  //     }
-  //   }).catch((error: any) => {
-  //     this.toastr.error(error.message);
-  //     this.loading = false;
-  //   });
-  // }
+  register(formvalue) {
+    this.loading = true;
+    this.authservice.createUser(formvalue.username, formvalue.email, formvalue.password).then(() => {
+      if (this.authservice.user) {
+        this.loading = false;
+        if (this.authservice.redirectUrl) {
+          this.router.navigateByUrl(this.authservice.redirectUrl);
+        } else {
+          this.router.navigate(['/']);
+        }
+      }
+    }).catch((error: any) => {
+      this.toastr.error(error.message);
+      this.loading = false;
+    });
+  }
 }

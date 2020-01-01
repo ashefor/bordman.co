@@ -63,13 +63,22 @@ a{
     .card{
         border: none;
         border-radius: inherit;
-        background-color: #F9FAFF;
+        background: var(--background-light);
+        color: var(--foreground-tertiary);
 
         .card-body{
             padding: .5rem;
         }
     }
    .main{
+        .single-match{
+            background: var(--background-light);
+            color: var(--foreground-tertiary);
+            padding: .5rem .75rem;
+            border-radius: 5px;
+            margin-bottom: 1.5px;
+            // border-bottom: 1px solid #000;
+        }
         hr{
             margin-top: 0.25rem;
             margin-bottom: 0.25rem;
@@ -77,7 +86,7 @@ a{
    }
     .betCollection{
         display: grid;
-        grid-template-columns: 2.5fr .5fr 2.5fr;
+        grid-template-columns: auto auto auto;
         grid-gap: 5px;
     
         .home{
@@ -98,7 +107,10 @@ a{
             align-items: center
         }
         button{
-            background-color: #F58634;
+            // background-color: #4fb1f7;
+            background-color: #08090a;
+            color: #dce0e6;
+            min-height: 45px;
         }
     }
 

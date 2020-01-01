@@ -12,14 +12,19 @@
 }
 
 :host ::ng-deep mat-accordion{
-    background: #F9FAFF;
+  background: var(--background-light);
+  color: var(--foreground-tertiary);
 }
 :host ::ng-deep mat-expansion-panel {
-    background-color: inherit;
+  background: var(--background-light);
+  color: var(--foreground-tertiary);
+  border-radius: unset;
+  margin: 0;
   }
 :host ::ng-deep .mat-expansion-panel-body {
   padding: unset;
-  background-color: inherit;
+  background: var(--background-light);
+  color: var(--foreground-tertiary);
   font-size: 12px
 }
 
@@ -71,4 +76,9 @@ ul {
         border-bottom: 1px solid rgb(204, 204, 204, .6)
     }
   }
+}
+
+.card-header{
+  background: var(--background-light);
+    color: var(--foreground-tertiary);
 }

@@ -19,7 +19,9 @@
 .body-content{
     // background-color: lightgrey;
     height: 100%;
-    background-color:#F9FAFF;
+    // background-color:#F9FAFF;
+    background: var(--background-light);
+    color: var(--foreground-tertiary);
 }
 
 nav{
