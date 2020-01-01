@@ -53,8 +53,27 @@ exports.addUserToBet = functions.database.ref('triggers/JOINBETS/{userId}').onCr
                 ticketWasOpen = true;//we reset our variable
                 transaction['contenderId'] = userId;
                 transaction['open'] = false;
+                transaction['contendingOutcome'] = newUserTicket.betOutcome;
+                const senderId = transaction.creatorId;
                 //we update the transaction and return it
 
+                  const payload = {
+                    notification:{
+                        "title":"New Contender",
+                        "body": "New user has successfully joined your bet"
+                    }
+                  };
+                admin.database()
+                    .ref(`/fcmTokens/${senderId}`)
+                    .once('value')
+                    .then(token => token.val())
+                    .then(userFcmToken => {
+                        return admin.messaging().sendToDevice(userFcmToken, payload)
+                    })
+                    .then(res => console.log("Sent Successfully", res))
+                    .catch(err => {
+                        console.log(err);
+                    });
 
             } else {
                 // return transaction; 
@@ -67,10 +86,10 @@ exports.addUserToBet = functions.database.ref('triggers/JOINBETS/{userId}').onCr
         .then(() => {
             if (ticketWasOpen) {//we used it here
                 return snapshot.ref.parent.parent.parent
-                .child(`usertickets/${userId}/${ticketid}`)
-                .set(newUserTicket).then(()=> {
-                    return admin.database().ref(`triggers/JOINBETS/${userId}`).remove()
-                })
+                    .child(`usertickets/${userId}/${ticketid}`)
+                    .set(newUserTicket).then(() => {
+                        return admin.database().ref(`triggers/JOINBETS/${userId}`).remove()
+                    })
             } else {
                 return null
             }
