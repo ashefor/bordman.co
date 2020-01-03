@@ -202,7 +202,12 @@
           <div class="col-lg-10 col-md-12 col-12 ml-auto no-padding-sm px-md-0">
               <div class="d-flex flex-wrap">
                   <div class="col-12 d-flex justify-content-between">
-                    <fa-icon class="d-md-none mt-auto mb-auto" [icon]="faHamburger" (click)="sidenav.open()"></fa-icon>
+                    <span class="d-md-none mt-auto mb-auto mobileDiv">
+                      <fa-icon [icon]="faHamburger" (click)="sidenav.open()"></fa-icon>
+                      <a class="ml-2" routerLink="/" >
+                        Bordman
+                      </a>
+                    </span>
                       <form [formGroup]="loginForm" class="form-inline d-block float-right ml-auto my-2 loginform" (ngSubmit)="login(loginForm.value)">
                           <input type="email" formControlName="email" class="form-control mr-sm-2 d-none d-md-inline-block" placeholder="Email">
                           <input type="password" formControlName="password" class="form-control mr-sm-2 d-none d-md-inline-block" placeholder="Password">
@@ -219,7 +224,9 @@
                          </div>
                          <div class="col-lg-3 col-3 col-md-3 mt-3 sidebar d-none d-md-block">
                              <app-betslip></app-betslip>
-                             <app-available-bets [availableBets]="availableBets" [errorMsg]="errorMsg"></app-available-bets>
+                             <div class="mt-4">
+                              <app-available-bets [availableBets]="availableBets" [errorMsg]="errorMsg"></app-available-bets>
+                             </div>
                          </div>
                      </div>
                   </div>

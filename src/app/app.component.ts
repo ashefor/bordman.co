@@ -32,6 +32,8 @@ export class AppComponent implements OnInit {
   availableBets: Array<any>;
   errorMsg = false;
   showBetslip: boolean;
+  loggingIn: boolean;
+  registering: boolean;
   constructor(public authservice: AuthService,
               public dataservice: DataService,
               private fs: FirebaseNotificationsService,
@@ -118,5 +120,36 @@ export class AppComponent implements OnInit {
 
   toggleBetslip() {
     this.showBetslip = ! this.showBetslip;
+  }
+
+  register(formvalue) {
+    this.registering = true;
+    const { username, email, password } = formvalue;
+    this.authservice.createUser(username, email, password).then(() => {
+      this.registering = false;
+      this.closeModal();
+      this.registerForm.reset();
+    }).catch(error => {
+      console.log(error);
+      this.registering = false;
+      this.toastr.error(error);
+    });
+  }
+
+  login(formvalue) {
+    this.loggingIn = true;
+    this.authservice.signIn(formvalue.email, formvalue.password).then((value: any) => {
+      if (value.user) {
+        this.loggingIn = false;
+        this.closeModal();
+      }
+    }).catch((error) => {
+      this.loggingIn = false;
+      this.toastr.error(error.message);
+    });
+  }
+
+  togglePwd() {
+    this.hide = !this.hide;
   }
 }
