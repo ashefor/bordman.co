@@ -103,8 +103,15 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav class="example-sidenav" fixedInViewport="true" fixedTopGap="0" fixedBottomGap="0">
     <div class="mt-3">
-      <a class="ml-3" mat-button color="accent" role="button" (click)="sidenav.close()">Close</a>
-      <mat-expansion-panel [expanded]="true">
+      <div class="d-flex justify-content-between px-3">
+        <a (click)="sidenav.close()">
+          <fa-icon class="" [icon]="faTimes"></fa-icon>
+        </a>
+      <a href="">
+        <fa-icon class="" [icon]="faHome"></fa-icon>
+      </a>
+      </div>
+      <!-- <mat-expansion-panel [expanded]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <div class="d-flex justify-content-center align-items-center">
@@ -188,7 +195,92 @@
             <a class="text-muted" href="/dashboard/bet-history">Bet History</a>
           </li>
         </ul>
-      </mat-expansion-panel>
+      </mat-expansion-panel> -->
+      <div class="nav-links-wrapper">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <fa-icon class="" [icon]="faTicketAlt"></fa-icon>
+            Available Bets
+          </li>
+      <li>
+        <div class="">
+          <div class="" id="headingOne">
+      <li class="list-group-item league-item" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+        aria-controls="collapseTwo">
+        <fa-icon class="" [icon]="faFutbol"></fa-icon>
+        Sports
+        <fa-icon class="float-right caret" [icon]="faCaretDown"></fa-icon>
+      </li>
+      </div>
+    
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
+        <div class="league-details">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <a>
+                England
+              </a>
+            </li>
+            <li class="list-group-item">
+              <a>
+                Spain
+              </a>
+            </li>
+            <li class="list-group-item">
+              <a>
+                Germany
+              </a>
+            </li>
+            <li class="list-group-item">
+              <a>
+                Italy
+              </a>
+            </li>
+            <li class="list-group-item">
+              <a>
+                France
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+      </li>
+      <li>
+        <div class="">
+          <div class="" id="headingOne">
+      <li class="list-group-item league-item" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true"
+        aria-controls="collapseThree">
+        <fa-icon class="" [icon]="faUser"></fa-icon>
+        Accounts
+        <fa-icon class="float-right caret" [icon]="faCaretDown"></fa-icon>
+      </li>
+      </div>
+    
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree">
+        <div class="league-details">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <a>
+                Withdraw
+              </a>
+            </li>
+            <li class="list-group-item">
+              <a>
+                Bet History
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+      </li>
+      <li class="list-group-item league-item">
+        <fa-icon class="" [icon]="faStar"></fa-icon>
+        Promotions
+      </li>
+      </ul>
+      </div>
     </div>
 
   </mat-sidenav>

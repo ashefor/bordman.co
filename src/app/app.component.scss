@@ -5,6 +5,38 @@
   left: 0;
   right: 0;
   background: var(--background-default) !important;
+
+  .nav-links-wrapper{
+    margin-top: 2rem;
+
+    .list-group{
+      list-style-type: none;
+
+      .league-details{
+        padding: .75rem 1.25rem;
+      }
+
+      .list-group-item{
+        border-radius: unset;
+        cursor: pointer;
+        border: none;
+        // background-color: var(--background-tertiary);
+        // color: var(--foreground-quaternary);
+      }
+
+    }
+    .list-group-item.open{
+      .caret{
+        transform: rotate(180deg);
+      }
+    }
+
+  }
+  a{
+    text-decoration: none;
+    color: #797c80;
+    // color: var(--foreground-quaternary);
+  }
 }
 
 .example-sidenav {

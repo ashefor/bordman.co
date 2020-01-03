@@ -8,7 +8,7 @@ import { DataService } from './services/data.service';
 import { FirebaseNotificationsService } from './services/firebase-notifications.service';
 import { SportsService } from './services/sports.service';
 import { EventEmittersService } from './services/event-emitters.service';
-import { faHamburger, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faHamburger, faBars, faCaretDown, faUser, faTv, faTicketAlt, faFutbol, faStar, faHome, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +23,14 @@ export class AppComponent implements OnInit {
   loginForm: FormGroup;
   registerForm: FormGroup;
   faHamburger = faBars;
+  faCaretDown = faCaretDown;
+  faUser = faUser;
+  faTicketAlt = faTicketAlt;
+  faTv = faTv;
+  faStar = faStar;
+  faHome = faHome;
+  faTimes = faTimes;
+  faFutbol = faFutbol;
   hide = true;
   loading = false;
   active = true;
