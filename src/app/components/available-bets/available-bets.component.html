@@ -1,9 +1,15 @@
 <div class="allbets">
     <div class="availablebets-header my-2">Available bets</div>
-    <div class="availablebets loadingdiv" *ngIf="!availableBets">
+    <div class="availablebets loadingdiv" *ngIf="!availableBets && !errorMsg">
         <div class="loadingspinner">
             <i class="fa fa-spin fa-spinner"></i>
             <span class="d-block">Loading</span>
+        </div>
+    </div>
+    <div *ngIf="!availableBets && errorMsg" class="errordiv">
+        <div class="errormsg">
+            <i class="fa fa-warning"></i>
+            <span class="d-block">Error. Please try again</span>
         </div>
     </div>
     <div class="availablebets loadingdiv" *ngIf="availableBets && availableBets.length === 0">

@@ -1,174 +1,135 @@
-<section class="">
-    <div class="main-wrapper">
-        <div class="d-flex flex-wrap landing">
-            <div class="col-3 sidebar">
-                <app-navbar (openSidebar)="openSidebar()"></app-navbar>
-            </div>
-            <div class="col-9">
-                <div class="d-flex flex-wrap">
-                    <div class="col-12">
-                        <form [formGroup]="loginForm" class="form-inline d-block float-right my-2 loginform" (ngSubmit)="login(loginForm.value)">
-                            <input type="email" formControlName="email" class="form-control mr-sm-2" placeholder="Email">
-                            <input type="password" formControlName="password" class="form-control mr-sm-2" placeholder="Password">
-                            <button type="submit" mat-flat-button class="mr-sm-2 loginbtn">Log In</button>
-                            <a mat-stroked-button color="primary" role="button" (click)="openThisModal(1)"
-                              class="registerbtn">Register</a>
-                          </form>
+<div>
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+        <div ngxSlickItem class="slide">
+            <div class="jumbotron">
+                <div class="content">
+                    <div class="caption fadeIn">
+                        <h2>sports betting with friends</h2>
+                        <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit augue duis
+                            dolore
+                            te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue
+                            nihil
+                            imperdiet doming id quod mazim placerat facer possim assum.</p>
+                        <a href="#">Bet now!</a>
                     </div>
-                    <div class="col-12">
-                       <div class="d-flex flex-wrap">
-                           <div class="col-9">
-                            <!-- <app-leagues></app-leagues> -->
-                            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
-                                <div ngxSlickItem class="slide">
-                                    <div class="jumbotron">
-                                        <div class="content">
-                                            <div class="caption fadeIn">
-                                                <h2>sports betting with friends</h2>
-                                                <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit augue duis
-                                                    dolore
-                                                    te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue
-                                                    nihil
-                                                    imperdiet doming id quod mazim placerat facer possim assum.</p>
-                                                <a href="#">Bet now!</a>
-                                            </div>
-                                        </div>
-                                        <div class="imageBox">
-                                            <div class="caption fadeIn">
-                                                <h2>sports betting with friends</h2>
-                                                <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit augue duis
-                                                    dolore
-                                                    te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue
-                                                    nihil
-                                                    imperdiet doming id quod mazim placerat facer possim assum.</p>
-                                                <a href="#" class="mt-4">Bet now!</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div ngxSlickItem class="slide">
-                                    <div class="jumbotron">
-                                        <div class="content">
-                                            <div class="caption">
-                                                <h2>sports betting with friends</h2>
-                                                <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit augue duis
-                                                    dolore
-                                                    te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue
-                                                    nihil
-                                                    imperdiet doming id quod mazim placerat facer possim assum.</p>
-                                                <a href="#">Bet now!</a>
-                                            </div>
-                                        </div>
-                                        <div class="imageBox">
-                                            <div class="caption">
-                                                <h2>sports betting with friends</h2>
-                                                <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit augue duis
-                                                    dolore
-                                                    te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue
-                                                    nihil
-                                                    imperdiet doming id quod mazim placerat facer possim assum.</p>
-                                                <a href="#" class="mt-4">Bet now!</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ngx-slick-carousel>
-                            <div class="match-events-wrapper">
-                            <div class="popular_bets mb-3">
-                                <div class="epl"
-                                    (click)="onValChange(0)"
-                                    [ngClass]="{active: selectedLeagueIndex === 0}"
-                                    id="leagues">
-                                    <div class="logoarea p_l">
-    
-                                    </div>
-                                    <div class="league_title">
-                                        <small>England</small><br>
-                                        <span>
-                                            Premier
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="laliga"
-                                    (click)="onValChange(2)"
-                                    [ngClass]="{active: selectedLeagueIndex === 2}"
-                                    id="leagues">
-                                    <div class="logoarea l_l">
-                                    </div>
-    
-                                    <div class="league_title">
-                                        <small>Spain</small><br>
-                                        <span>
-                                            La Liga
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="bundesliga"
-                                    (click)="onValChange(3)"
-                                    [ngClass]="{active: selectedLeagueIndex === 3}"
-                                    id="leagues">
-                                    <div class="logoarea g_l">
-                                    </div>
-                                    <div class="league_title">
-                                        <small>Germany</small><br>
-                                        <span>
-                                            Bundesliga
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="ligue-1"
-                                    (click)="onValChange(1)"
-                                    [ngClass]="{active: selectedLeagueIndex === 1}"
-                                    id="leagues">
-                                    <div class="logoarea f_l">
-    
-                                    </div>
-                                    <div class="league_title">
-                                        <small>France</small><br>
-                                        <span>
-                                            Ligue 1
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="seriea"
-                                [ngClass]="{active: selectedLeagueIndex === 4}"
-                                    (click)="onValChange(4)"
-                                    id="leagues">
-                                    <div class="logoarea i_l">
-                                    </div>
-    
-                                    <div class="league_title">
-                                        <small>Italy</small><br>
-                                        <span>
-                                            Serie A
-                                        </span>
-                                    </div>
-                                </div>
-                            </div> 
-                                <div *ngIf="!allSchedules && !errorMsg" class="loadingdiv">
-                                    <div class="loadingspinner">
-                                        <i class="fa fa-spin fa-spinner"></i>
-                                        <span class="d-block">Loading</span>
-                                    </div>
-                                </div>
-                                <div *ngIf="!allSchedules && errorMsg" class="errordiv">
-                                    <div class="errormsg">
-                                        <i class="fa fa-warning"></i>
-                                        <span class="d-block">Error. Please try again</span>
-                                    </div>
-                                </div>
-                                <div class="fixtures" *ngIf="allSchedules">
-                                    <app-match-event [schedules]="allSchedules"></app-match-event>
-                                </div>
-                            </div>
-                           </div>
-                           <div class="col-3 sidebar">
-                               <app-betslip></app-betslip>
-                           </div>
-                       </div>
+                </div>
+                <div class="imageBox">
+                    <div class="caption fadeIn">
+                        <h2>sports betting with friends</h2>
+                        <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit augue duis
+                            dolore
+                            te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue
+                            nihil
+                            imperdiet doming id quod mazim placerat facer possim assum.</p>
+                        <a href="#" class="mt-4">Bet now!</a>
                     </div>
                 </div>
             </div>
         </div>
+        <div ngxSlickItem class="slide">
+            <div class="jumbotron">
+                <div class="content">
+                    <div class="caption">
+                        <h2>sports betting with friends</h2>
+                        <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit augue duis
+                            dolore
+                            te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue
+                            nihil
+                            imperdiet doming id quod mazim placerat facer possim assum.</p>
+                        <a href="#">Bet now!</a>
+                    </div>
+                </div>
+                <div class="imageBox">
+                    <div class="caption">
+                        <h2>sports betting with friends</h2>
+                        <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit augue duis
+                            dolore
+                            te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue
+                            nihil
+                            imperdiet doming id quod mazim placerat facer possim assum.</p>
+                        <a href="#" class="mt-4">Bet now!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ngx-slick-carousel>
+    <div class="match-events-wrapper">
+        <div class="d-none d-lg-block">
+            <div class="popular_bets mb-3">
+                <div class="epl" (click)="onValChange(0)" [ngClass]="{active: selectedLeagueIndex === 0}" id="leagues">
+                    <div class="logoarea p_l">
+
+                    </div>
+                    <div class="league_title">
+                        <small>England</small><br>
+                        <span>
+                            Premier
+                        </span>
+                    </div>
+                </div>
+                <div class="laliga" (click)="onValChange(2)" [ngClass]="{active: selectedLeagueIndex === 2}"
+                    id="leagues">
+                    <div class="logoarea l_l">
+                    </div>
+
+                    <div class="league_title">
+                        <small>Spain</small><br>
+                        <span>
+                            La Liga
+                        </span>
+                    </div>
+                </div>
+                <div class="bundesliga" (click)="onValChange(3)" [ngClass]="{active: selectedLeagueIndex === 3}"
+                    id="leagues">
+                    <div class="logoarea g_l">
+                    </div>
+                    <div class="league_title">
+                        <small>Germany</small><br>
+                        <span>
+                            Bundesliga
+                        </span>
+                    </div>
+                </div>
+                <div class="ligue-1" (click)="onValChange(1)" [ngClass]="{active: selectedLeagueIndex === 1}"
+                    id="leagues">
+                    <div class="logoarea f_l">
+
+                    </div>
+                    <div class="league_title">
+                        <small>France</small><br>
+                        <span>
+                            Ligue 1
+                        </span>
+                    </div>
+                </div>
+                <div class="seriea" [ngClass]="{active: selectedLeagueIndex === 4}" (click)="onValChange(4)"
+                    id="leagues">
+                    <div class="logoarea i_l">
+                    </div>
+
+                    <div class="league_title">
+                        <small>Italy</small><br>
+                        <span>
+                            Serie A
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!allSchedules && !errorMsg" class="loadingdiv">
+            <div class="loadingspinner">
+                <i class="fa fa-spin fa-spinner"></i>
+                <span class="d-block">Loading</span>
+            </div>
+        </div>
+        <div *ngIf="!allSchedules && errorMsg" class="errordiv">
+            <div class="errormsg">
+                <i class="fa fa-warning"></i>
+                <span class="d-block">Error. Please try again</span>
+            </div>
+        </div>
+        <div class="fixtures" *ngIf="allSchedules">
+            <app-match-event [schedules]="allSchedules"></app-match-event>
+        </div>
     </div>
-</section>
+</div>

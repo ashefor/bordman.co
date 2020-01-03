@@ -16,6 +16,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { TimeAgoPipe } from 'src/app/pipes/time-ago.pipe';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonToggleModule,
     MatSidenavModule,
     MatToolbarModule,
+    FontAwesomeModule,
     SlickCarouselModule
   ],
   exports: [
@@ -51,6 +53,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSidenavModule,
     MatToolbarModule,
     SlickCarouselModule,
+    FontAwesomeModule,
     ReactiveFormsModule
   ]
 })

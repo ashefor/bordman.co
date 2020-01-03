@@ -40,6 +40,7 @@ export class SportsComponent implements OnInit {
   }
 
   getFixtures(leagueid) {
+    this.allSchedules = null;
     this.sportservice.getSchedules(leagueid).then((data: any) => {
       this.loading = false;
       this.allSchedules = data.events;

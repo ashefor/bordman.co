@@ -17,6 +17,7 @@ export class TicketsComponent implements OnInit {
   userId: string;
   newBetOutcome: string;
   disableSelect: boolean;
+  errorMsg = false;
   constructor(private route: ActivatedRoute,
               private sportservice: SportsService, private authservice: AuthService, private fs: FirebaseNotificationsService, ) {
     if (this.authservice.isLoggedIn) {
@@ -44,6 +45,7 @@ export class TicketsComponent implements OnInit {
         this.availableoptions.push(options[0], options[1]);
       }
     }, err => {
+      this.errorMsg = true;
       console.log('can not load ticket right now');
     });
   }

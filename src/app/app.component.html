@@ -100,4 +100,205 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container> -->
-<router-outlet></router-outlet>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav class="example-sidenav" fixedInViewport="true" fixedTopGap="0" fixedBottomGap="0">
+    <div class="mt-3">
+      <a class="ml-3" mat-button color="accent" role="button" (click)="sidenav.close()">Close</a>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="d-flex justify-content-center align-items-center">
+              <i class="fa fa-television"></i>
+              <span class="ml-2">
+                Live
+              </span>
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ul class="list-unstyled text-small">
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">England</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">Spain</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">Germany</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">France</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">Italy</a>
+          </li>
+        </ul>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="d-flex justify-content-center align-items-center">
+              <i class="fa fa-soccer-ball-o"></i>
+              <span class="ml-2">
+                Sports
+              </span>
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ul class="list-unstyled text-small">
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="/sports/football?category=4328">England</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="/sports/football?category=4335">Spain</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="/sports/football?category=4331">Germany</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="/sports/football?category=4334">France</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="/sports/football?category=4332">Italy</a>
+          </li>
+        </ul>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="true" *ngIf="LoggedIn">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="d-flex justify-content-center align-items-center">
+              <i class="fa fa-user-secret"></i>
+              <span class="ml-2">
+                Account
+              </span>
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ul class="list-unstyled text-small">
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">Deposit</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">Withdraw</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="#">Transactions</a>
+          </li>
+          <li class="mt-3 mb-3">
+            <a class="text-muted" href="/dashboard/bet-history">Bet History</a>
+          </li>
+        </ul>
+      </mat-expansion-panel>
+    </div>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+<section class="">
+  <div class="main-wrapper">
+      <div class="d-flex flex-wrap landing">
+          <div class="col-lg-2 sidebar position-fixed h-100 d-none d-lg-block">
+              <app-navbar (openSidebar)="openSidebar()"></app-navbar>
+          </div>
+          <div class="col-lg-10 col-md-12 col-12 ml-auto no-padding-sm px-md-0">
+              <div class="d-flex flex-wrap">
+                  <div class="col-12 d-flex justify-content-between">
+                    <fa-icon class="d-md-none mt-auto mb-auto" [icon]="faHamburger" (click)="sidenav.open()"></fa-icon>
+                      <form [formGroup]="loginForm" class="form-inline d-block float-right ml-auto my-2 loginform" (ngSubmit)="login(loginForm.value)">
+                          <input type="email" formControlName="email" class="form-control mr-sm-2 d-none d-md-inline-block" placeholder="Email">
+                          <input type="password" formControlName="password" class="form-control mr-sm-2 d-none d-md-inline-block" placeholder="Password">
+                          <button type="submit" mat-flat-button class="mr-2 loginbtn d-none d-md-inline-block">Log In</button>
+                          <a role="button" mat-flat-button class="mr-2 loginbtn d-md-none" (click)="openThisModal(0)">Log In</a>
+                          <a mat-stroked-button color="primary" role="button" (click)="openThisModal(1)"
+                            class="registerbtn">Register</a>
+                        </form>
+                  </div>
+                  <div class="col-12 no-padding-sm">
+                     <div class="d-flex flex-wrap">
+                         <div class="col-12 col-lg-9 col-md-9 mt-3">
+                          <router-outlet></router-outlet>
+                         </div>
+                         <div class="col-lg-3 col-3 col-md-3 mt-3 sidebar d-none d-md-block">
+                             <app-betslip></app-betslip>
+                             <app-available-bets [availableBets]="availableBets" [errorMsg]="errorMsg"></app-available-bets>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+              <div class="fixed-bottom d-md-none">
+                <div *ngIf="showBetslip" class="togglebetslip">
+                  <app-betslip></app-betslip>
+                </div>
+                <div class="show-betslip">
+                  <button class="btn btn-lg btn-block" (click)="toggleBetslip()"> {{showBetslip? 'Hide' : 'Show'}} Betslip</button>
+                </div>
+              </div>
+              <app-footer></app-footer>
+          </div>
+      </div>
+  </div>
+  <div #openmodal id="popup1" class="overlay">
+    <div class="popup">
+      <a class="close" role="button" (click)="closeModal()">&times;</a>
+      <div id="logreg-forms">
+        <section class="auth-tabs">
+            <div class="tabs-wrapper">
+                <div class="page-nav-tabs">
+                    <div class="page-tab" (click)="selectIndex(0)" #activeTab [ngClass]="{active: mode === 0}">Login</div>
+                    <div class="page-tab" (click)="selectIndex(1)" #activeTab [ngClass]="{active: mode === 1}">Register</div>
+                </div>
+
+                <div class="nav-tab-body">
+                    <ng-container *ngIf="mode === 0">
+                    <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+                        <div class="container">
+                          <div class="row social-login mb-3">
+                            <a role="button" class="w-100 btn twitter-btn"><span><i class="fa fa-twitter"></i> &nbsp;
+                                twitter</span></a>
+                          </div>
+                        </div>
+                        <p class="text-center mt-3"> OR </p>
+                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
+                          formControlName="email">
+                        <div class="password-area">
+                          <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                            formControlName="password" [type]="hide? 'password': 'text'">
+                          <a role="button" (click)="togglePwd()">
+                            <i class="{{hide ? 'fa fa-eye-slash' : 'fa fa-eye'}}"></i>
+                          </a>
+                        </div>
+                        <button class="btn btn-success btn-block" type="submit" [disabled]="loginForm.invalid || loggingIn"><i
+                            class="fa fa-sign-in"></i> Sign in <span *ngIf="loggingIn"><i
+                              class="fa fa-spin fa-spinner"></i></span> </button>
+                      </form>
+                    </ng-container>
+                      <ng-container *ngIf="mode === 1" >
+                      <form class="form-signup" [formGroup]="registerForm"
+                      (ngSubmit)="register(registerForm.value)">
+                      <div class="container">
+                        <div class="row social-login mb-3">
+                          <a role="button" class="w-100 btn twitter-btn"><span><i class="fa fa-twitter"></i> &nbsp;
+                              twitter</span></a>
+                        </div>
+                      </div>
+          
+                      <p style="text-align:center">OR</p>
+                      <input type="email" id="user-email" class="form-control mb-2" placeholder="Email address"
+                        formControlName="email">
+                        <input type="text" id="user-name" class="form-control mb-2" placeholder="Choose username"
+                        formControlName="username">
+                      <input type="password" id="user-pass" class="form-control mb-2" placeholder="Password"
+                        formControlName="password">
+                      <button class="btn btn-primary btn-block" type="submit" [disabled]="registerForm.invalid || registering"><i
+                          class="fa fa-user-plus"></i> Sign Up <span *ngIf="registering"><i
+                            class="fa fa-spin fa-spinner"></i></span> </button>
+                    </form>
+                </ng-container>
+                </div>
+            </div>
+        </section>
+    </div>
+    </div>
+  </div>
+</section>
+</mat-sidenav-content>
+</mat-sidenav-container> 

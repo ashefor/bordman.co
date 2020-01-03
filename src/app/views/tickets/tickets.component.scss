@@ -1,5 +1,5 @@
 .loadingdiv {
-  height: 100%;
+  min-height: 250px;
   background: #F9FAFF;
   position: relative;
 
@@ -14,7 +14,7 @@
 }
 
 .errordiv {
-  height: 100%;
+  min-height: 250px;
   position: relative;
 
   .errormsg {
@@ -42,21 +42,23 @@ select.form-control {
 }
 
 .tickets_wrapper {
-  display: grid;
-  grid-template-columns: 180px auto 250px;
-  grid-gap: 20px;
-  font-family: 'avenir', sans-serif;
 
   hr {
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
   }
 
-  .border-secondary {
-    border-radius: inherit;
-  }
-
-  .card {
+  .ticket-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    background: var(--background-light);
+    color: var(--foreground-tertiary);
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 10px;
     .username {
       color: #2BD55C;
     }
@@ -66,9 +68,11 @@ select.form-control {
       font-weight: 700;
     }
   }
+.betactions{
+  border-top: 1px solid rgba(0,0,0,.1);
 
   button {
-    background-color: #2BD55C;
+    background-color: #4fb1f7;
     border: none;
     outline: none;
 
@@ -77,4 +81,6 @@ select.form-control {
       border: none;
     }
   }
+}
+  
 }

@@ -8,7 +8,7 @@ import { ThemeService } from 'src/app/services/theme.service';
 import {
   faLightbulb as faSolidLightbulb, IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
-import { faLightbulb as faRegularLightbulb } from '@fortawesome/free-solid-svg-icons';
+import { faLightbulb as faRegularLightbulb, faCaretDown, faFutbol } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -22,6 +22,8 @@ export class NavbarComponent implements OnInit {
   @ViewChild('activeTab', { static: false }) activeTab: ElementRef<HTMLElement>;
   @Output() openSidebar = new EventEmitter();
   faLightbulb: IconDefinition;
+  faCaretDown = faCaretDown;
+  faFootballBall = faFutbol;
   // activeTab = 0;
   loginForm: FormGroup;
   registerForm: FormGroup;
@@ -33,19 +35,29 @@ export class NavbarComponent implements OnInit {
               private formbuilder: FormBuilder,
               private toastr: ToastrService,
               private emitterService: EventEmittersService,
-              private themeService: ThemeService) { }
+              private themeService: ThemeService) {
+               }
 
   ngOnInit() {
+    this.toggleCaret();
     this.setLightbulb();
     this.initialiseForm();
     this.initialiseRegForm();
-    if (this.emitterService.subsVar === undefined) {
-      this.emitterService.subsVar = this.emitterService.invokeLoginFunction.subscribe((selectedindex) => {
-        this.openThisModal(selectedindex);
-      });
-    }
+    // if (this.emitterService.subsVar === undefined) {
+    //   this.emitterService.subsVar = this.emitterService.invokeLoginFunction.subscribe((selectedindex) => {
+    //     this.openThisModal(selectedindex);
+    //   });
+    // }
   }
 
+  toggleCaret() {
+    const listItems = Array.from(document.querySelectorAll('.league-item'));
+    listItems.forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('open');
+      });
+    });
+  }
   initialiseForm() {
     this.loginForm = this.formbuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],

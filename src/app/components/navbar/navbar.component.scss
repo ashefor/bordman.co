@@ -1,5 +1,6 @@
 nav{
-  height: 100%;
+  height: 100vh;
+  overflow: scroll;
   background-color: var(--background-tertiary);
   color: var(--foreground-quaternary);
 
@@ -16,6 +17,10 @@ nav{
     .list-group{
       list-style-type: none;
 
+      .league-details{
+        padding: .75rem 1.25rem;
+      }
+
       .list-group-item{
         border-radius: unset;
         cursor: pointer;
@@ -23,7 +28,14 @@ nav{
         background-color: var(--background-tertiary);
         color: var(--foreground-quaternary);
       }
+
     }
+    .list-group-item.open{
+      .caret{
+        transform: rotate(180deg);
+      }
+    }
+
   }
   a{
     text-decoration: none;

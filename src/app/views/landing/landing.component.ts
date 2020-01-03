@@ -58,8 +58,8 @@ export class LandingComponent implements OnInit {
               private toastr: ToastrService,
               private formbuilder: FormBuilder) {
     title.setTitle('BordmanBets');
-    this.initialiseForm();
-    this.initialiseRegForm();
+    // this.initialiseForm();
+    // this.initialiseRegForm();
   }
 
   ngOnInit() {
@@ -97,19 +97,19 @@ export class LandingComponent implements OnInit {
     });
   }
 
-  initialiseForm() {
-    this.loginForm = this.formbuilder.group({
-      email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', Validators.required],
-    });
-  }
-  initialiseRegForm() {
-    this.registerForm = this.formbuilder.group({
-      username: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-    });
-  }
+  // initialiseForm() {
+  //   this.loginForm = this.formbuilder.group({
+  //     email: ['', Validators.compose([Validators.required, Validators.email])],
+  //     password: ['', Validators.required],
+  //   });
+  // }
+  // initialiseRegForm() {
+  //   this.registerForm = this.formbuilder.group({
+  //     username: ['', Validators.required],
+  //     email: ['', Validators.required],
+  //     password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+  //   });
+  // }
   clicked(event, evnt) {
     this.matchEvent = {
       match: evnt,

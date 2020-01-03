@@ -1,155 +1,85 @@
-<div class="container">
-    <div class="pt-5 tickets_wrapper">
-        <div>
-            <app-leagues></app-leagues>
+<div class="tickets_wrapper">
+    <div *ngIf="!ticket && !errorMsg" class="loadingdiv ticket-card">
+        <div class="loadingspinner">
+            <i class="fa fa-spin fa-spinner"></i>
+            <span class="d-block">Loading</span>
         </div>
-        <div style="border: 1px solid;">
-            <div *ngIf="!ticket" class="loadingdiv">
-                <div class="loadingspinner">
-                    <i class="fa fa-spin fa-spinner"></i>
-                    <span class="d-block">Loading</span>
-                </div>
+    </div>
+    <div *ngIf="!ticket && errorMsg" class="errordiv">
+        <div class="errormsg">
+            <i class="fa fa-warning"></i>
+            <span class="d-block">Error. Please try again</span>
+        </div>
+    </div>
+    <div *ngIf="ticket">
+        <div class="ticket-card">
+            <div class="card-header">
+                Ticket Details
             </div>
-            <div *ngIf="ticket">
-                <div class="card border-secondary" style="background-color: inherit;">
-                    <div class="card-header">
-                        Ticket Details
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-9">
-                                <h6 class="card-title">
-                                    {{ticket.match}}
-                                </h6>
-                               <span class="d-block">Bet owner: <span>User</span></span>
-                            </div>
-                            <div class="col-3">
-                                <span class="d-block text-right">{{ticket.createdAt | timeAgo}}</span>
-                                <span class="d-block text-right" [ngStyle]="{color: (ticket.open? 'green' : 'red')}">{{(ticket.open? 'Open' : 'Closed')}}</span>
-                            </div>
-                        </div>
-                        <hr />
-                        <!-- <div class="row my-3">
-                            <dt class="col-5 card-text"><span>Your</span> Outcome</dt>
-                            <div class="col-7 card-text lead"></div>
-                        </div> -->
-                        <div class="row my-3">
-                            <div class="col-6 card-text text-center">
-                                <div>
-                                    <div class="bet-outcome">
-                                        {{ticket.outcome | titlecase}}
-                                    </div>
-                                    <div *ngIf="ticket.creatorId" class="username">User</div>
-                                </div>
-                            </div>
-                            <!-- <div class="col-2 card-text"></div> -->
-                            <div class="col-6 card-text text-center">
-                                <div>
-                                    <div *ngIf="!ticket.open" class="bet-outcome">
-                                        {{ticket.contendingOutcome | titlecase}}
-                                    </div>
-                                    <div *ngIf="(userId !== ticket.creatorId) && (ticket.open)">
-                                        <select (change)="counterOption($event)" class="form-control"
-                                        [disabled]="disableSelect">
-                                        <option selected disabled>Choose one</option>
-                                        <option *ngFor="let outcome of availableoptions" [value]="outcome">
-                                            {{outcome | titlecase}}
-                                        </option>
-                                    </select>
-                                    </div>
-                                    <div *ngIf="ticket.contenderId" class="username">User2</div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <!-- <div class="row my-3" *ngIf="!ticket.open">
-                            <dt class="col-5 card-text">Your Counter Outcome</dt>
-                            <div class="col-7 card-text lead">{{ticket.contendingOutcome | titlecase}}</div>
-                        </div> -->
-                        <!-- <div class="row my-3" *ngIf="(userId !== ticket.creatorId) && (ticket.open)">
-                            <div class="col-5 card-text m-auto">Your Counter Outcome</div>
-                            <div class="col-7 card-text">
-                                <select (change)="counterOption($event)" class="form-control"
-                                    [disabled]="disableSelect">
-                                    <option selected disabled>Choose one</option>
-                                    <option *ngFor="let outcome of availableoptions" [value]="outcome">
-                                        {{outcome | titlecase}}
-                                    </option>
-                                </select>
-                            </div>
-                        </div> -->
-                        <div class="row my-3 ">
-                            <div class="col-6 card-text text-left">
-                                <div>
-                                    <span class="d-block">Individual Stake</span>
-                                    <span class="d-block">{{ticket.openingStake | currency}}</span>
-                                </div>
-                            </div>
-                            <div class="col-6 card-text text-right">
-                                <div>
-                                    <span class="d-block">Winning Prize money</span>
-                                    <span class="d-block">{{ticket.potPrice | currency}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <div class="row my-3">
-                            <div class="col-5 card-text">Total Prize money</div>
-                            <div class="col-7 card-text lead">
-                                {{ticket.potPrice}}
-                            </div>
-                        </div> -->
-                        <hr />
-                        <div *ngIf="(userId !== ticket.creatorId) && (ticket.open)">
-                            <div class="bet-check my-3">
-                                <input type="checkbox" class="bet-check-input" id="betcheck">
-                                <label class="bet-check-label ml-1" for="betcheck">I agree to all</label>
-                            </div>
-                            <button class="btn btn-primary float-right" (click)="joinBet(ticket)">Join</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="card-body">
+                <div class="d-flex flex-wrap justify-content-between">
+                    <span class="d-block">{{ticket.createdAt | timeAgo}}</span>
+                    <span class="d-block" [ngStyle]="{color: (ticket.open? '#2BD55C' : 'red')}">{{(ticket.open? 'Open' : 'Closed')}}</span>
 
-                <!-- <div *ngIf="(userId === ticket.creatorId) && (!ticket.open)" class="card border-secondary"
-                    style="background-color: inherit;">
-                    <div class="card-header">
-                        Ticket Details
+                </div>
+                <div class="p-2">
+                    <h3 class="card-title text-center">
+                        {{ticket.match}}
+                    </h3>
+                </div>
+                <hr />
+                <div class="row my-3">
+                    <div class="col-6 card-text text-center">
+                        <div>
+                            <div class="bet-outcome">
+                                {{ticket.outcome | titlecase}}
+                            </div>
+                            <div *ngIf="ticket.creatorId" class="username">User</div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-9">
-                                <h4 class="card-title">
-                                    {{ticket.match}}
-                                </h4>
-                                <span class="username">User</span>
+                    <div class="col-6 card-text text-center">
+                        <div>
+                            <div *ngIf="!ticket.open" class="bet-outcome">
+                                {{ticket.contendingOutcome | titlecase}}
                             </div>
-                            <div class="col-3">
-                                <span>{{ticket.createdAt | timeAgo}}</span>
+                            <div *ngIf="(userId !== ticket.creatorId) && (ticket.open)">
+                                <select (change)="counterOption($event)" class="form-control"
+                                [disabled]="disableSelect">
+                                <option selected disabled>Choose an outcome</option>
+                                <option *ngFor="let outcome of availableoptions" [value]="outcome">
+                                    {{outcome | titlecase}}
+                                </option>
+                            </select>
                             </div>
+                            <div *ngIf="ticket.contenderId" class="username">User2</div>
                         </div>
-                        <hr/>
-                        <div class="row my-3">
-                            <div class="col-5 card-text">Outcome</div>
-                            <div class="col-7 card-text lead">{{ticket.outcome | titlecase}}</div>
-                        </div>
-                        <div class="row my-3">
-                            <div class="col-5 card-text">Stake amount</div>
-                            <div class="col-7 card-text lead">
-                                {{ticket.stake}}
-                            </div>
-                        </div>
-                        <div class="row my-3">
-                            <div class="col-5 card-text">Total Prize money</div>
-                            <div class="col-7 card-text lead">
-                                {{ticket.potPrice}}
-                            </div>
-                        </div>
-                        <hr/>
                     </div>
-                </div> -->
+                </div>
+                <hr>
+                <div class="row my-3 ">
+                    <div class="col-12 col-md-6 card-text text-left">
+                        <div>
+                            <span class="d-block">Individual Stake</span>
+                            <span class="d-block">{{ticket.openingStake | currency}}</span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 card-text text-right">
+                        <div>
+                            <span class="d-block">Winning Prize money</span>
+                            <span class="d-block">{{ticket.potPrice | currency}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="(userId !== ticket.creatorId) && (ticket.open)">
+                   <div class="d-flex flex-wrap justify-content-between py-3 betactions">
+                    <div class="bet-check">
+                        <input type="checkbox" class="bet-check-input" id="betcheck">
+                        <label class="bet-check-label ml-1" for="betcheck">I agree to all</label>
+                    </div>
+                    <button class="btn" (click)="joinBet(ticket)">Join Bet</button>
+                   </div>
+                </div>
             </div>
-        </div>
-        <div>
-            <app-betslip></app-betslip>
         </div>
     </div>
 </div>

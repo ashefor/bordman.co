@@ -35,122 +35,31 @@ a{
     color: unset;
 }
 
-.main_content{
-    display: grid;
-    grid-template-columns: 180px auto 250px;
-    grid-gap: 20px;
+.loadingdiv {
+    height: 150px;
+    position: relative;
 
-   .main{
-        hr{
-            margin-top: 0.25rem;
-            margin-bottom: 0.25rem;
-        }
-   }
-    .betCollection{
-        display: grid;
-        grid-template-columns: 2fr .5fr 2fr;
-        // grid-gap: 10px;
-    
-        .home{
-            text-align: right
-        }
-        .draw{
-            text-align: center
-        }
+    .loadingspinner {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 100%;
+      text-align: center;
+      transform: translate(-50%, -50%);
     }
-
-    .leaguesitem{
-        padding: 10px 0;
-        border-bottom: .1px solid #cccccc;
-        // border-bottom-color: #967f40
-    }
-
-    .loadingdiv {
-        height: 150px;
-        position: relative;
-    
-        .loadingspinner {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          width: 100%;
-          text-align: center;
-          transform: translate(-50%, -50%);
-        }
-      }
-    
-      .errordiv {
-        height: 150px;
-        position: relative;
-    
-        .errormsg {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          width: 100%;
-          text-align: center;
-          transform: translate(-50%, -50%);
-        }
-      }
-    
-      .fixtures {
-        height: 100%;
-        overflow: hidden;
-      }
-}
-.tot_stake{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
-    .tot{
-        width: 50%;
-    }
-    .stake_input{
-        width: 50%;
-
-        input{
-            width: 100%;
-        }
-    }
-}
-.border-gray{
-    border: 1px solid #6c757d;
-}
-.swal-button {
-    padding: 7px 19px;
-    border-radius: 2px;
-    background-color: #4962B3;
-    font-size: 12px;
-    border: 1px solid #3e549a;
-    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
   }
-@media (max-width: 767px){
-    .main_content{
-        display: grid;
-        grid-template-columns: 1fr;
+
+  .errordiv {
+    height: 150px;
+    position: relative;
+
+    .errormsg {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 100%;
+      text-align: center;
+      transform: translate(-50%, -50%);
     }
-}
-@media(max-width: 991px){
-    .main_content{
-        display: grid;
-        grid-template-columns: 1fr;
-    }
-}
-@media all and (max-width: 1199px){
-    .match_event{
-        display: flex;
-        justify-content: space-between
-    }
-    .outcome{
-        display: none;
-    }
-    .main_content{
-        .betCollection{
-            display: flex;
-            justify-content: flex-end;
-        }
-    }
-}
+  }
 

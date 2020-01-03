@@ -78,34 +78,27 @@ a{
             border-radius: 5px;
             margin-bottom: 1.5px;
             // border-bottom: 1px solid #000;
+
+            &:last-child{
+                border-radius: unset;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
         }
-        hr{
-            margin-top: 0.25rem;
-            margin-bottom: 0.25rem;
+        .leaguename{
+            padding: .5rem .75rem;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            background-color: #08090a;
+            color: #dce0e6;
+            margin-bottom: 5px;
         }
    }
     .betCollection{
         display: grid;
         grid-template-columns: auto auto auto;
         grid-gap: 5px;
-    
-        .home{
-            text-align: right;
-            line-height: 18px;
-            display: flex;
-            margin-left: auto;
-            align-items: center
-        }
-        .draw{
-            text-align: center;
-            line-height: 18px;
-            display: flex
-        }
-        .away{
-            line-height: 18px;
-            display: flex;
-            align-items: center
-        }
+
         button{
             // background-color: #4fb1f7;
             background-color: #08090a;
@@ -113,41 +106,8 @@ a{
             min-height: 45px;
         }
     }
-
-    .leaguesitem{
-        padding: 10px 0;
-        border-bottom: .1px solid #cccccc;
-        // border-bottom-color: #967f40
-    }
 }
-.tot_stake{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
 
-    .tot{
-        width: 50%;
-    }
-    .stake_input{
-        width: 50%;
-
-        input{
-            width: 100%;
-        }
-    }
-}
-.border-gray{
-    border: 1px solid #6c757d;
-}
-.swal-button {
-    padding: 7px 19px;
-    border-radius: 2px;
-    background-color: #4962B3;
-    font-size: 12px;
-    border: 1px solid #3e549a;
-    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
-  }
 @media (max-width: 767px){
     .main_content{
         display: grid;
@@ -170,8 +130,8 @@ a{
     }
     .main_content{
         .betCollection{
-            display: flex;
-            justify-content: flex-end;
+            // display: flex;
+            // justify-content: flex-end;
         }
     }
 }

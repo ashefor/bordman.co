@@ -1,12 +1,15 @@
 <div class="main_content">
     <div class="main">
+        <h4 class="leaguename" *ngIf="leagueName">
+            {{leagueName}}
+        </h4>
         <div *ngFor="let event of schedules" class="row no-gutters align-items-end single-match">
-            <div class="col-2">
+            <div class="col-12 col-md-2">
                 <p class="match_event">
                     <span>
                             {{event.dateEvent | date: 'dd/MM EE'}}
                     </span>
-                    <span class="d-xl-none d-block">
+                    <span class="d-md-none">
                         {{event.strEvent}}
                     </span>
                 </p>
@@ -14,7 +17,7 @@
                     {{event.strTimeLocal | utcDate}}
                 </small>
             </div>
-            <div class="col-6">
+            <div class="col-6 d-none d-md-block">
                <div>
                    <span class="d-block">
                     {{event.strHomeTeam}}
@@ -24,7 +27,7 @@
                    </span>
                </div>
             </div>
-            <div class="col-4">
+            <div class="col-12 col-md-4">
                 <div class="betCollection">
                     <button mat-flat-button #win color="primary" class="betoutcome"
                             (click)="clicked(win, event.strEvent)" [value]="event.strHomeTeam">
