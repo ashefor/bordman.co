@@ -40,17 +40,17 @@
                             <div class="col-6 card-text text-center">
                                 <div>
                                     <div class="bet-outcome">
-                                        {{ticket.outcome | titlecase}}
+                                        {{ticket.player1.outcome | titlecase}}
                                     </div>
-                                    <div *ngIf="ticket.creatorId" class="username">User</div>
+                                    <div *ngIf="ticket.player1.userId" class="username">{{ticket.player1.userName | titlecase}}</div>
                                 </div>
                             </div>
                             <div class="col-6 card-text text-center">
                                 <div>
                                     <div *ngIf="!ticket.open" class="bet-outcome">
-                                        {{ticket.contendingOutcome | titlecase}}
+                                        {{ticket.player2.outcome | titlecase}}
                                     </div>
-                                    <div *ngIf="(userId !== ticket.creatorId) && (ticket.open)">
+                                    <div *ngIf="(userId !== ticket.player1.userId) && (ticket.open)">
                                         <select (change)="counterOption($event)" class="form-control"
                                         [disabled]="disableSelect">
                                         <option selected disabled>Choose an outcome</option>
@@ -59,7 +59,7 @@
                                         </option>
                                     </select>
                                     </div>
-                                    <div *ngIf="ticket.contenderId" class="username">User2</div>
+                                    <div class="username">{{ticket.player2?.userName | titlecase}}</div>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div *ngIf="(userId !== ticket.creatorId) && (ticket.open)">
+                        <div *ngIf="(userId !== ticket.player1.userId) && (ticket.open)">
                            <div class="d-flex flex-wrap justify-content-between py-3 betactions">
                             <div class="bet-check">
                                 <input type="checkbox" class="bet-check-input" id="betcheck">

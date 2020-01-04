@@ -23,7 +23,7 @@ export class TicketsComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private sportservice: SportsService, private authservice: AuthService, private fs: FirebaseNotificationsService, ) {
     if (this.authservice.isLoggedIn) {
-      this.userId = JSON.parse(localStorage.getItem('user')).uid;
+      this.userId = JSON.parse(localStorage.getItem('userId'));
     }
   }
 
@@ -39,10 +39,10 @@ export class TicketsComponent implements OnInit {
     this.sportservice.viewSingleTicket(ticketId).subscribe(res => {
       this.ticket = res;
       console.log(this.ticket);
-      if (this.ticket.match.includes(this.ticket.outcome)) {
+      if (this.ticket.match.includes(this.ticket.player1.outcome)) {
         const options = this.ticket.match.split(' vs ');
         this.availableoptions.push('draw', options[0], options[1]);
-        this.availableoptions = this.availableoptions.filter(opt => opt !== this.ticket.outcome);
+        this.availableoptions = this.availableoptions.filter(opt => opt !== this.ticket.player1.outcome);
       } else if (this.ticket.outcome === 'draw') {
         const options = this.ticket.match.split(' vs ');
         this.availableoptions.push(options[0], options[1]);

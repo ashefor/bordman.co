@@ -19,7 +19,11 @@ export class AuthService {
         this.user = user;
         console.log(this.user);
         this.getLoggedInUserDetails(user.uid);
+        this.loggedInUser.subscribe(userdetails => {
+          localStorage.setItem('userDetails', JSON.stringify(userdetails));
+        });
         localStorage.setItem('userId', JSON.stringify(this.user.uid));
+        // localStorage.setItem('userDetails', JSON.stringify(this.loggedInUser));
       } else {
         localStorage.setItem('user', null);
       }
@@ -47,6 +51,8 @@ export class AuthService {
       console.log(this.user);
       localStorage.setItem('userId', null);
       localStorage.removeItem('userId');
+      localStorage.setItem('userDetails', null);
+      localStorage.removeItem('userDetails');
     });
   }
 
@@ -60,7 +66,8 @@ export class AuthService {
             const newUser = {
               displayName: username,
               userId: user.uid,
-              userEmail: user.email
+              userEmail: user.email,
+              wallet: 0.00
             };
             this.db.list('userProfiles').set(user.uid, newUser).then(() =>
               resolve(value));

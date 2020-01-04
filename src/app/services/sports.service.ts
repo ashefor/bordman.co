@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { ToastrService } from 'ngx-toastr';
 import { forkJoin, BehaviorSubject } from 'rxjs';
+import { userProfile } from '../models/userProfile';
+import { tickets } from '../models/ticket';
 
 @Injectable({
   providedIn: 'root'
@@ -53,25 +55,29 @@ export class SportsService {
     return text;
   }
   addBets(betslip) {
-    const userid = JSON.parse(localStorage.getItem('user'));
+    // const userid = JSON.parse(localStorage.getItem('userId'));
     const pushId = this.db.createPushId();
-    const ticket = {...betslip,  id: pushId, creatorId: userid.uid};
+    const ticket = {...betslip,  id: pushId};
+    ticket.player1.ticketId = pushId;
     return this.db.list('tickets').set(ticket.id, ticket);
   }
 
   addUserToBet(betslip, betOutcome) {
-    const userid = JSON.parse(localStorage.getItem('user'));
+    const user: userProfile = JSON.parse(localStorage.getItem('userDetails'));
     const ticket = {
-      ticketId: betslip.id,
       outcome: betOutcome,
       stake: betslip.openingStake,
+      userId: user.userId,
+      userEmail: user.userEmail,
+      userName: user.displayName,
       createdAt: Date.now(),
+      ticketId: betslip.id
     };
-    return this.db.list(`triggers/JOINBETS/`).set(userid.uid, {...ticket});
+    return this.db.list(`triggers/JOINBETS/`).set(user.userId, {...ticket});
   }
 
   getAllBetsDatas() {
-    const userid = JSON.parse(localStorage.getItem('user'));
+    const userid = JSON.parse(localStorage.getItem('userId'));
     return new Promise((resolve, reject) => {
       this.db.list('tickets').valueChanges().subscribe(data => {
         if (data) {

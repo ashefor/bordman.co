@@ -3,3 +3,5 @@ export interface betslip {
     match: any;
     outcome: any;
 }
+
+
