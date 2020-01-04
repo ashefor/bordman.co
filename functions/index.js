@@ -23,13 +23,14 @@ admin.initializeApp();
 
 exports.addBets = functions.database.ref('/tickets/{pushId}').onCreate((snapshot, context) => {
     const ticket = snapshot.val();
-    const userticket = {
-        createdAt: ticket.createdAt,
-        betOutcome: ticket.outcome,
-        ticketId: ticket.id,
-        stake: ticket.openingStake
-    };
-    return snapshot.ref.parent.parent.child(`usertickets/${ticket.creatorId}/${ticket.id}`).set(userticket);
+    // const userticket = {
+    //     createdAt: ticket.createdAt,
+    //     betOutcome: ticket.outcome,
+    //     ticketId: ticket.id,
+    //     stake: ticket.openingStake
+    // };
+    const userticket = ticket.player1;
+    return snapshot.ref.parent.parent.child(`usertickets/${ticket.player1.userId}/${ticket.id}`).set(userticket);
 })
 
 
@@ -41,9 +42,17 @@ exports.addUserToBet = functions.database.ref('triggers/JOINBETS/{userId}').onCr
     const userId = context.params.userId;
     let ticketWasOpen = false;//we would be using this soon, pay attention
     const newUserTicket = {
+        // createdAt: Date.now(),
+        // betOutcome: ticket.outcome,
+        // ticketId: ticketid,
+
+        outcome: ticket.outcome,
+        stake: ticket.stake,
+        userId: ticket.userId,
+        userEmail: ticket.userEmail,
+        userName: ticket.userName,
         createdAt: Date.now(),
-        betOutcome: ticket.outcome,
-        ticketId: ticketid,
+        ticketId: ticketid
     }
     return snapshot.ref.parent.parent.parent.child(`tickets/${ticketid}`).transaction(transaction => {
         if (transaction === null) {
@@ -51,18 +60,19 @@ exports.addUserToBet = functions.database.ref('triggers/JOINBETS/{userId}').onCr
         } else if (transaction !== null) {
             if (transaction.open === true) {
                 ticketWasOpen = true;//we reset our variable
-                transaction['contenderId'] = userId;
+                // transaction['contenderId'] = userId;
                 transaction['open'] = false;
-                transaction['contendingOutcome'] = newUserTicket.betOutcome;
-                const senderId = transaction.creatorId;
+                transaction['player2'] = newUserTicket;
+                // transaction['contendingOutcome'] = newUserTicket.betOutcome;
+                const senderId = transaction.id;
                 //we update the transaction and return it
 
-                  const payload = {
-                    notification:{
-                        "title":"New Contender",
+                const payload = {
+                    notification: {
+                        "title": "New Contender",
                         "body": "New user has successfully joined your bet"
                     }
-                  };
+                };
                 admin.database()
                     .ref(`/fcmTokens/${senderId}`)
                     .once('value')
