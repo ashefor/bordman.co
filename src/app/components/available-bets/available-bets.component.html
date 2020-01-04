@@ -1,4 +1,4 @@
-<div class="allbets">
+<div class="allbets" *ngIf="showBetsMode === 0">
     <div class="availablebets-header my-2">Available bets</div>
     <div class="availablebets loadingdiv" *ngIf="!availableBets && !errorMsg">
         <div class="loadingspinner">
@@ -18,7 +18,7 @@
         </div>
     </div>
     <div *ngIf="availableBets && availableBets.length">
-        <a [routerLink]="['/tickets/' + bet.id]" *ngFor="let bet of availableBets.reverse()">
+        <a [routerLink]="['/tickets/' + bet.id]" *ngFor="let bet of availableBets.reverse() | paginate: { itemsPerPage: 15, currentPage: 1}">
             <div class="card">
                 <div class="card-body bet-results">
                     <div class="small-text">{{bet.createdAt | timeAgo}}</div>
@@ -30,5 +30,64 @@
                 </div>
             </div>
         </a>
+    </div>
+    <div *ngIf="availableBets && availableBets.length > 15" class="showAllbets mt-2">
+        <a role="button" [routerLink]="['/available-bets']" class="btn btn-block">Show All</a>
+    </div>
+</div>
+
+<div *ngIf="showBetsMode === 1">
+    <div class="allbets leaguename">
+        <div class="availablebets-header my-2">Available bets</div>
+        <div class="availablebets loadingdiv" *ngIf="!availableBets && !errorMsg">
+            <div class="loadingspinner">
+                <i class="fa fa-spin fa-spinner"></i>
+                <span class="d-block">Loading</span>
+            </div>
+        </div>
+        <div *ngIf="!availableBets && errorMsg" class="errordiv">
+            <div class="errormsg">
+                <i class="fa fa-warning"></i>
+                <span class="d-block">Error. Please try again</span>
+            </div>
+        </div>
+        <div class="availablebets loadingdiv" *ngIf="availableBets && availableBets.length === 0">
+            <div class="loadingspinner">
+                <span class="d-block">No Bets</span>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="availableBets && availableBets.length">
+        <div class="d-flex flex-wrap main">
+            <div class="col-12 col-md-6 px-0" *ngFor="let bets of availableBets.reverse() | paginate: { itemsPerPage: 10, currentPage: p, totalItems: availableBets.length }">
+                <div class="single-match">
+                    <div class="bet-results">
+                        <div class="small-text text-right">{{bets.createdAt | timeAgo}}</div>
+                        <h5>{{bets.match}}</h5>
+                        <div class="flex flex-column">
+                            <div class="d-block my-2">
+                                <span class="font-light">Owner: 
+                                    <span>User</span>
+                                </span>
+                            </div>
+                            <div class="d-block my-2">
+                            <span class="font-light">Outcome: 
+                                <span style="color: #2BD55C;">
+                                    {{bets.outcome | titlecase}}
+                                </span>
+                            </span>
+                            </div>
+                        </div>
+                         <a role="button" class="btn button btn-sm btn-block my-2" [routerLink]="['/tickets/' + bets.id]">
+                            Join
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ng-container *ngIf="availableBets">
+            <pagination-controls *ngIf="availableBets.length > 9" class="pagination m-3" responsive="true"
+                (pageChange)="p = $event"></pagination-controls>
+        </ng-container>
     </div>
 </div>

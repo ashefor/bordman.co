@@ -39,7 +39,8 @@ export class LandingComponent implements OnInit {
   errorMsg = false;
   loading = true;
   allMatches: Array<any>;
-  availableBets: Array<any>;
+  availableBets: any;
+  showBetsMode = 0;
   allEplSchedules: Array<any>;
   allLigue1Schedules: Array<any>;
   allBundesligaSchedules: Array<any>;
@@ -75,17 +76,7 @@ export class LandingComponent implements OnInit {
     //     this.betslip = betslip;
     //   }
     // });
-    // this.getNext15Schedules();
-    // this.getLigue1Next15Schedules();
-    // this.getBundesligaNext15Schedules();
-    // this.getSerieANext15Schedules();
-    // this.getLigue1Next15Schedules();
-    // this.getLaLigaNext15Schedules();
-    this.sportservice.getAllBetsDatas().subscribe(res => {
-      this.availableBets = res;
-    }, error => {
-      this.toastr.error('An error has occured');
-    });
+    this.loadAvailableBets();
     this.sportservice.getSchedule().subscribe(results => {
       if (results) {
         this.allMatches = results;
@@ -117,6 +108,14 @@ export class LandingComponent implements OnInit {
     };
     localStorage.setItem('bordman-slip', JSON.stringify(this.matchEvent));
     this.dataservice.shareBetslip(this.matchEvent);
+  }
+
+  loadAvailableBets() {
+    this.sportservice.availableBets.subscribe(res => {
+      this.availableBets = res;
+    }, err => {
+      this.toastr.error('Failure to load Bets');
+    });
   }
   onValChange(eev) {
     this.selectedLeagueIndex = eev;

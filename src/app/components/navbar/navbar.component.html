@@ -4,13 +4,20 @@
       <a routerLink="/">Bordman</a>
       <fa-icon class="float-right" [icon]="faLightbulb" (click)="toggleTheme()"></fa-icon>
     </div>
-    <div class="my-5 text-center">
-      <h4>Username</h4>
-      <div>
-        <span>
-          Balance: 5,000
-        </span>
+    <div *ngIf="authservice.isLoggedIn">
+      <div class="my-5 text-center" *ngIf="(authservice.loggedInUser | async) as loggedUser; else loading">
+        <h4>{{ loggedUser.displayName | titlecase}}</h4>
+        <div>
+          <span>
+            {{ loggedUser.wallet | currency}}
+          </span>
+        </div>
       </div>
+      <ng-template  #loading>
+        <div class="my-5 text-center" style="font-size: 30px">
+          <i class="fa fa-spin fa-spinner"></i> 
+        </div>
+      </ng-template>
     </div>
   </div>
   <div class="nav-links-wrapper">

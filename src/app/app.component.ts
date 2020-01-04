@@ -1,14 +1,14 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from './services/auth.service';
-import { Router } from '@angular/router';
+import { Router, Event, NavigationEnd } from '@angular/router';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from './services/data.service';
 import { FirebaseNotificationsService } from './services/firebase-notifications.service';
 import { SportsService } from './services/sports.service';
 import { EventEmittersService } from './services/event-emitters.service';
-import { faHamburger, faBars, faCaretDown, faUser, faTv, faTicketAlt, faFutbol, faStar, faHome, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCaretDown, faUser, faTv, faTicketAlt, faFutbol, faStar, faHome, faTimes, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
   loginForm: FormGroup;
   registerForm: FormGroup;
   faHamburger = faBars;
+  faSpinner = faSpinner;
   faCaretDown = faCaretDown;
   faUser = faUser;
   faTicketAlt = faTicketAlt;
@@ -37,28 +38,32 @@ export class AppComponent implements OnInit {
   betslip;
   message: any;
   mode = 0;
-  availableBets: Array<any>;
+  showBetsHomepage = true;
   errorMsg = false;
   showBetslip: boolean;
   loggingIn: boolean;
   registering: boolean;
+  currentUser;
   constructor(public authservice: AuthService,
-              public dataservice: DataService,
-              private fs: FirebaseNotificationsService,
-              private toastr: ToastrService,
-              private formbuilder: FormBuilder,
-              private sportservice: SportsService,
-              private emitterService: EventEmittersService,
-              ) {
-                this.initialiseForm();
-                this.initialiseRegForm();
+    public dataservice: DataService,
+    private fs: FirebaseNotificationsService,
+    private toastr: ToastrService,
+    private formbuilder: FormBuilder,
+    private sportservice: SportsService,
+    private emitterService: EventEmittersService,
+    private router: Router
+  ) {
+    this.initialiseForm();
+    this.initialiseRegForm();
+    this.currentUser = JSON.parse(localStorage.getItem('user'));
+    // console.log(this.currentUser);
+    // this.getLoggedInUserDetails();
   }
 
   ngOnInit() {
     this.fs.getPermission();
     this.fs.receiveMsg();
     this.message = this.fs.alert;
-    this.loadAvailableBets();
     // if (this.message) {
     //   console.log(this.message)
     //   this.toastr.success('this.message.body');
@@ -80,19 +85,25 @@ export class AppComponent implements OnInit {
     //   }
     // });
   }
+
+  // getLoggedInUserDetails() {
+  //   const userid = JSON.parse(localStorage.getItem('userId'));
+  //   console.log(userid);
+  //   return this.authservice.getLoggedInUserDetails(userid).subscribe(data => {
+  //     console.log(data);
+  //     if (data) {
+  //       this.currentUser = data;
+  //       localStorage.setItem('user', JSON.stringify(data));
+  //     } else {
+  //       localStorage.setItem('user', null);
+  //     }
+  //   });
+  // }
   get LoggedIn() {
     return this.authservice.isLoggedIn;
   }
   openSidebar() {
     this.sideNav.open();
-  }
-  loadAvailableBets() {
-    this.sportservice.getAllBetsDatas().subscribe(res => {
-      this.availableBets = res;
-    }, error => {
-      this.errorMsg = true;
-      this.toastr.error('An error has occured');
-    });
   }
 
   openThisModal(selectedindex) {
@@ -127,7 +138,7 @@ export class AppComponent implements OnInit {
   }
 
   toggleBetslip() {
-    this.showBetslip = ! this.showBetslip;
+    this.showBetslip = !this.showBetslip;
   }
 
   register(formvalue) {
@@ -159,5 +170,9 @@ export class AppComponent implements OnInit {
 
   togglePwd() {
     this.hide = !this.hide;
+  }
+
+  logOut() {
+    this.authservice.signOut();
   }
 }

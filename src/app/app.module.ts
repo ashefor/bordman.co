@@ -22,6 +22,7 @@ import { BetslipComponent } from './views/betslip/betslip.component';
 import { ComponentsModule } from './components/components.module';
 import { EventEmittersService } from './services/event-emitters.service';
 import { TicketsComponent } from './views/tickets/tickets.component';
+import { AllAvailableBetsComponent } from './views/all-available-bets/all-available-bets.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { TicketsComponent } from './views/tickets/tickets.component';
     AppComponent,
     BetslipComponent,
     TicketsComponent,
+    AllAvailableBetsComponent,
   ],
   imports: [
     BrowserModule,

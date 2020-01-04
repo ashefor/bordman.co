@@ -57,6 +57,53 @@
         width: 100%;
         font-size: 12px;
         text-align: right;
+        font-weight: 100;
+      }
+
+      .font-light {
+        font-weight: 200;
+      }
+
+      .bet-outcome {
+        span {
+          width: 50%;
+        }
+      }
+    }
+  }
+
+  .showAllbets {
+    .btn {
+      background-color: #4fb1f7;
+      color: #dce0e6;
+    }
+  }
+}
+
+.leaguename {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.main {
+  .single-match {
+    background: var(--background-light);
+    color: var(--foreground-tertiary);
+    padding: .5rem .75rem;
+    border-radius: 5px;
+    margin: 1.5px;
+    // border-bottom: 1px solid #000;
+
+    .bet-results {
+      .small-text {
+        width: 100%;
+        font-size: 12px;
+        text-align: right;
+        font-weight: 100;
+      }
+
+      .font-light {
+        font-weight: 200;
       }
 
       .bet-outcome {
@@ -65,9 +112,17 @@
         }
       }
 
-      button {
-        background-color: #2BD55C;
+      .button {
+        // background-color: #4fb1f7;
+        background-color: #08090a;
+        color: #dce0e6;
       }
     }
+  }
+
+  &:last-child {
+    border-radius: unset;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
   }
 }

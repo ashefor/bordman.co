@@ -17,6 +17,8 @@ export class TicketsComponent implements OnInit {
   userId: string;
   newBetOutcome: string;
   disableSelect: boolean;
+  showBetsMode = 0;
+  availableBets: any;
   errorMsg = false;
   constructor(private route: ActivatedRoute,
               private sportservice: SportsService, private authservice: AuthService, private fs: FirebaseNotificationsService, ) {
@@ -30,6 +32,7 @@ export class TicketsComponent implements OnInit {
       this.ticketId = param.id;
       this.viewSingleTicketDetails(this.ticketId);
     });
+    this.loadAvailableBets();
   }
 
   viewSingleTicketDetails(ticketId) {
@@ -61,5 +64,11 @@ export class TicketsComponent implements OnInit {
         this.disableSelect = true;
       });
     }
+  }
+
+  loadAvailableBets() {
+    this.sportservice.availableBets.subscribe(res => {
+      this.availableBets = res;
+    });
   }
 }

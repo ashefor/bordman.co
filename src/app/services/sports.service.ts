@@ -3,15 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { ToastrService } from 'ngx-toastr';
-import { forkJoin } from 'rxjs';
+import { forkJoin, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SportsService {
-
+  public availableBets = new BehaviorSubject(null);
   constructor(public http: HttpClient,
-              private db: AngularFireDatabase, private toastr: ToastrService) { }
+              private db: AngularFireDatabase, private toastr: ToastrService) { 
+                this.getAllBetsDatas();
+              }
 
   // postData(){
   //   return this.http.get('https://bord-manbets.firebaseio.com/allbets')
@@ -70,7 +72,19 @@ export class SportsService {
 
   getAllBetsDatas() {
     const userid = JSON.parse(localStorage.getItem('user'));
-    return this.db.list('tickets').valueChanges();
+    return new Promise((resolve, reject) => {
+      this.db.list('tickets').valueChanges().subscribe(data => {
+        if (data) {
+          this.availableBets.next(data);
+          resolve(data);
+        } else {
+          reject(data);
+        }
+      }, error => {
+        reject(error);
+      });
+    });
+    // return this.db.list('tickets').valueChanges()
     // return new Promise((resolve, reject) => {
     //   this.db.list('tickets').snapshotChanges(['child_added']).subscribe(actions => {
     //     const newarr = actions.map(action => action.payload.val());

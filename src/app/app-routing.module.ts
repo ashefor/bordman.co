@@ -4,6 +4,8 @@ import { BetslipComponent } from './views/betslip/betslip.component';
 import { LoggedInGuard } from './guards/logged-in.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { TicketsComponent } from './views/tickets/tickets.component';
+import { AvailableBetsComponent } from './components/available-bets/available-bets.component';
+import { AllAvailableBetsComponent } from './views/all-available-bets/all-available-bets.component';
 
 
 const routes: Routes = [
@@ -27,6 +29,9 @@ const routes: Routes = [
   },
   {
     path: 'tickets/:id', component: TicketsComponent
+  },
+  {
+    path: 'available-bets', component: AllAvailableBetsComponent
   },
   {
     path: '**', loadChildren: () => import('./views/pagenotfound/pagenotfound.module').then((m) => m.PagenotfoundModule)

@@ -4,19 +4,22 @@ import { User } from 'firebase';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   user: User;
+  loggedInUser: Observable<any>;
   redirectUrl: string;
   constructor(public auth: AngularFireAuth, private router: Router, private toastr: ToastrService, private db: AngularFireDatabase) {
     this.auth.authState.subscribe((user) => {
       if (user) {
         this.user = user;
         console.log(this.user);
-        localStorage.setItem('user', JSON.stringify(this.user));
+        this.getLoggedInUserDetails(user.uid);
+        localStorage.setItem('userId', JSON.stringify(this.user.uid));
       } else {
         localStorage.setItem('user', null);
       }
@@ -30,11 +33,20 @@ export class AuthService {
   signIn(email, password) {
     return this.auth.auth.signInWithEmailAndPassword(email, password);
   }
+
+  getLoggedInUserDetails(userid) {
+    this.loggedInUser  = this.db.object(`userProfiles/${userid}`).valueChanges();
+  }
+
+  logUser() {
+    return this.loggedInUser;
+  }
   signOut() {
     return this.auth.auth.signOut().then(() => {
-      localStorage.setItem('user', JSON.stringify(null));
-      localStorage.removeItem('user');
-      this.router.navigateByUrl('');
+      this.user = null;
+      console.log(this.user);
+      localStorage.setItem('userId', null);
+      localStorage.removeItem('userId');
     });
   }
 
@@ -63,7 +75,7 @@ export class AuthService {
   }
 
   get isLoggedIn() {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('userId'));
     return user != null;
   }
 }

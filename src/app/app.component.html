@@ -199,8 +199,10 @@
       <div class="nav-links-wrapper">
         <ul class="list-group">
           <li class="list-group-item">
-            <fa-icon class="" [icon]="faTicketAlt"></fa-icon>
-            Available Bets
+            <a [routerLink]="['/available-bets']">
+              <fa-icon class="" [icon]="faTicketAlt"></fa-icon>
+              Available Bets
+            </a>
           </li>
       <li>
         <div class="">
@@ -300,27 +302,23 @@
                         Bordman
                       </a>
                     </span>
-                      <form [formGroup]="loginForm" class="form-inline d-block float-right ml-auto my-2 loginform" (ngSubmit)="login(loginForm.value)">
+                      <form [formGroup]="loginForm" class="form-inline d-flex float-right ml-auto my-2 loginform" (ngSubmit)="login(loginForm.value)">
+                         <div *ngIf="!LoggedIn">
                           <input type="email" formControlName="email" class="form-control mr-sm-2 d-none d-md-inline-block" placeholder="Email">
                           <input type="password" formControlName="password" class="form-control mr-sm-2 d-none d-md-inline-block" placeholder="Password">
                           <button type="submit" mat-flat-button class="mr-2 loginbtn d-none d-md-inline-block">Log In</button>
                           <a role="button" mat-flat-button class="mr-2 loginbtn d-md-none" (click)="openThisModal(0)">Log In</a>
                           <a mat-stroked-button color="primary" role="button" (click)="openThisModal(1)"
                             class="registerbtn">Register</a>
+                         </div>
+                         <div *ngIf="LoggedIn">
+                          <a  mat-stroked-button color="primary" role="button" (click)="logOut()"
+                          class="loginbtn">Log Out</a>
+                         </div>
                         </form>
                   </div>
-                  <div class="col-12 no-padding-sm">
-                     <div class="d-flex flex-wrap">
-                         <div class="col-12 col-lg-9 col-md-9 mt-3">
-                          <router-outlet></router-outlet>
-                         </div>
-                         <div class="col-lg-3 col-3 col-md-3 mt-3 sidebar d-none d-md-block">
-                             <app-betslip></app-betslip>
-                             <div class="mt-4">
-                              <app-available-bets [availableBets]="availableBets" [errorMsg]="errorMsg"></app-available-bets>
-                             </div>
-                         </div>
-                     </div>
+                  <div class="col-12 no-padding-sm pl-0">
+                    <router-outlet></router-outlet>
                   </div>
               </div>
               <div class="fixed-bottom d-md-none">
